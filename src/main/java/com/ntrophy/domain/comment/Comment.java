@@ -1,4 +1,4 @@
-package com.ntrophy.domain.post;
+package com.ntrophy.domain.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+@NoArgsConstructor
+public class Comment {
     private int id;
-    private String title;
-    private int views;
-    private String password;
+    private int postId;
+    private String contents;
+    private int groupId;
+    private int orderInGroupId;
+    private int depth;
     private LocalDateTime registerDate;
 }
