@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AttacheFile {
-    private int no;
+    private int id;
+    private int commonId;
     private String tablename;
-    private int commonNo;
     private String originalFilename;
     private String storeFilename;
     private LocalDateTime registerDate;

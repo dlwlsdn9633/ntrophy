@@ -40,8 +40,9 @@ public class HomeController {
         } finally {
             executorService.shutdown();
         }
-        return "pages/index";
+        return "index";
     }
+
     @GetMapping("/leaderboard")
     public String leaderboard(Model model) {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
@@ -62,6 +63,7 @@ public class HomeController {
         } finally {
             executorService.shutdown();
         }
-        return "pages/leaderboard";
+        return "leaderboard/index";
     }
+
 }

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fighting</title>
+
+    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="/css/content.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="main">
+    <div id="wrap">
+      <!--%@ include file="/include/header.jsp" %-->
+      <!--%@ include file="/include/main_visual.jsp" %-->
+
+      <!-- header -->
+      <header>
+        <div class="inner">
+          <div class="h_logo">
+            <a href="/">
+              <img src="/img/logo.png" alt="" />
+            </a>
+          </div>
+          <div class="gnb">
+            <ul>
+              <li class="active">
+                <a href="/leaderboard/index.html">리더보드</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="javascript:;">리그</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="/notice/index.html">게시판</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- top ad -->
+      <div class="top_ad">
+        <h2>상단 광고</h2>
+      </div>
+
+      <!-- main container -->
+      <div class="container mt70">
+        <!-- left ad -->
+        <div class="ad-left">
+          <h2>왼쪽 광고</h2>
+        </div>
+        <!-- main center -->
+        <div class="main-content">
+          <!-- 메인 제목 (리더보드)-->
+          <div class="sub_page_tit_box">
+            <h2>LEADER BOARD</h2>
+            <div class="tit_line"></div>
+          </div>
+
+          <!-- 리더보드 탭 -->
+          <div class="sub_page_tab_box mt70">
+            <div class="tab_one_yo active">
+              <p>STEAM</p>
+            </div>
+            <div class="tab_one_yo">
+              <p>KAKAO</p>
+            </div>
+            <div class="fpp_check_box">
+              <label for="leader_fpp">
+                <input type="checkbox" id="leader_fpp" />
+                <p>FPP</p>
+              </label>
+            </div>
+          </div>
+
+          <!-- 리더보드 게시판 -->
+          <div class="board_yo leader_board_yo mt20">
+            <!-- 헤더 -->
+            <div class="board-header_yo">
+              <div class="col_yo num_yo">순위</div>
+              <div class="col_yo title_yo">플레이어</div>
+              <div class="col_yo writer_yo">RP</div>
+              <div class="col_yo date_yo">KDA</div>
+              <div class="col_yo views_yo">경기수</div>
+            </div>
+
+            <!-- 상위 3개 -->
+            <div
+              class="board-row_yo top3_yo"
+              onclick="location.href='/record/index.html'"
+            >
+              <div class="col_yo num_yo" data-label="순위">1</div>
+              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
+              <div class="col_yo writer_yo" data-label="RP">1750</div>
+              <div class="col_yo date_yo" data-label="KDA">4.2</div>
+              <div class="col_yo views_yo" data-label="경기수">32</div>
+            </div>
+
+            <div class="board-row_yo top3_yo">
+              <div class="col_yo num_yo" data-label="순위">2</div>
+              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
+              <div class="col_yo writer_yo" data-label="RP">1750</div>
+              <div class="col_yo date_yo" data-label="KDA">4.2</div>
+              <div class="col_yo views_yo" data-label="경기수">32</div>
+            </div>
+
+            <div class="board-row_yo top3_yo">
+              <div class="col_yo num_yo" data-label="순위">3</div>
+              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
+              <div class="col_yo writer_yo" data-label="RP">1750</div>
+              <div class="col_yo date_yo" data-label="KDA">4.2</div>
+              <div class="col_yo views_yo" data-label="경기수">32</div>
+            </div>
+
+            <!-- 하위 3개 -->
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="순위">4</div>
+              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
+              <div class="col_yo writer_yo" data-label="RP">1750</div>
+              <div class="col_yo date_yo" data-label="KDA">4.2</div>
+              <div class="col_yo views_yo" data-label="경기수">32</div>
+            </div>
+
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="순위">5</div>
+              <div class="col_yo title_yo" data-label="플레이어">김철수</div>
+              <div class="col_yo writer_yo" data-label="RP">1620</div>
+              <div class="col_yo date_yo" data-label="KDA">3.7</div>
+              <div class="col_yo views_yo" data-label="경기수">29</div>
+            </div>
+
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="순위">6</div>
+              <div class="col_yo title_yo" data-label="플레이어">이영희</div>
+              <div class="col_yo writer_yo" data-label="RP">1580</div>
+              <div class="col_yo date_yo" data-label="KDA">3.3</div>
+              <div class="col_yo views_yo" data-label="경기수">26</div>
+            </div>
+          </div>
+          <!-- 불러오기 버튼 -->
+          <div class="call_btn mt35">
+            <a href="javascript:;">
+              <p>불러오기</p>
+            </a>
+          </div>
+        </div>
+        <!-- right ad -->
+        <div class="ad-right">
+          <h2>오른쪽 광고</h2>
+        </div>
+      </div>
+
+      <!--%@ include file="/include/footer.jsp" %-->
+    </div>
+  </body>
+</html>
+
+<!-- 양 사이드 광고 높이 조정 스크립트 -->
+<script>
+  window.addEventListener("scroll", () => {
+    const container = document.querySelector(".container");
+    const ads = document.querySelectorAll(".ad");
+
+    const containerTop = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const containerBottom = containerTop + containerHeight;
+    const scrollTop = window.scrollY;
+    const padding = 20;
+
+    ads.forEach((ad) => {
+      const adHeight = ad.offsetHeight;
+      let topOffset = scrollTop + padding - containerTop;
+
+      if (scrollTop + padding < containerTop) {
+        topOffset = 0;
+      }
+
+      if (topOffset + adHeight > containerHeight) {
+        topOffset = containerHeight - adHeight;
+      }
+
+      ad.style.top = `${topOffset}px`;
+    });
+  });
+</script>

@@ -17,6 +17,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PubgService {
     private final PubgApiClient pubgApiClient;
+    public PlayerDto getPlayer(String accountId) {
+        return pubgApiClient.getPlayer(Platform.STEAM, accountId);
+    }
     public List<PlayerDto> getTop10Players(PlatformRegion platformRegion, Platform platform, GameMode gameMode) {
         String seasonId = getCurrentSeasonId(platform);
         if (seasonId == null) {

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fighting</title>
+
+    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="/css/content.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="main">
+    <div id="wrap">
+      <!--%@ include file="/include/header.jsp" %-->
+      <!--%@ include file="/include/main_visual.jsp" %-->
+
+      <!-- header -->
+      <header>
+        <div class="inner">
+          <div class="h_logo">
+            <a href="/">
+              <img src="/img/logo.png" alt="" />
+            </a>
+          </div>
+          <div class="gnb">
+            <ul>
+              <li>
+                <a href="/leaderboard/index.html">리더보드</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="/notice/index.html">게시판</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="/member/login.html">로그인</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- main visual -->
+      <div class="mv_inner">
+        <div class="mv_box">
+          <div class="mv_logo_box">
+            <div class="mv_logo">
+              <img src="/img/mv_logo.png" alt="" />
+            </div>
+            <div class="mv_search_box">
+              <input
+                type="text"
+                placeholder="배틀그라운드 닉네임을 입력해주세요."
+                maxlength="17"
+              />
+              <div class="search_icon_box">
+                <img src="/img/search_icon.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- main container -->
+      <div class="container mt70">
+        <!-- left ad -->
+        <div class="ad-left">
+          <h2>왼쪽 광고</h2>
+        </div>
+        <!-- main center -->
+        <div class="main-content">
+          <!-- main youtube -->
+          <div class="youtube_box">
+            <ul class="item03">
+              <li>
+                <div class="you_tube_con">
+                  <img src="/img/youtube_01.png" alt="" />
+                </div>
+                <p>배틀그라운드 플레이 영상</p>
+              </li>
+              <li>
+                <div class="you_tube_con">
+                  <img src="/img/youtube_01.png" alt="" />
+                </div>
+                <p>배틀그라운드 플레이 영상</p>
+              </li>
+              <li>
+                <div class="you_tube_con">
+                  <img src="/img/youtube_01.png" alt="" />
+                </div>
+                <p>배틀그라운드 플레이 영상</p>
+              </li>
+            </ul>
+          </div>
+          <!-- main ad -->
+          <div class="ad_center mt70">
+            <h2>메인 광고</h2>
+          </div>
+          <!-- 스팀,카카오 경쟁전 -->
+          <div class="steam_kakao_box mt70">
+            <ul class="item02">
+              <li>
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box steam">
+                    <div class="pyo_tit">
+                      <h2>STEAM 경쟁전</h2>
+                      <div class="fpp_check_box">
+                        <label for="steam_fpp">
+                          <input type="checkbox" id="steam_fpp" />
+                          <p>FPP</p>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="pyo_link_yo">
+                      <a href="javascript:;">
+                        <img src="/img/pyo_link.png" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                  <div class="board_yo">
+                    <div class="board-header_yo">
+                      <div class="col_yo rank_yo">순위</div>
+                      <div class="col_yo player_yo">플레이어</div>
+                      <div class="col_yo rp_yo">RP</div>
+                      <div class="col_yo kda_yo">KDA</div>
+                      <div class="col_yo matches_yo">경기수</div>
+                    </div>
+
+                    <div class="board-row_yo">
+                      <div class="col_yo rank_yo" data-label="순위">1</div>
+                      <div class="col_yo player_yo" data-label="플레이어">
+                        홍길동
+                      </div>
+                      <div class="col_yo rp_yo" data-label="RP">1750</div>
+                      <div class="col_yo kda_yo" data-label="KDA">4.2</div>
+                      <div class="col_yo matches_yo" data-label="경기수">
+                        32
+                      </div>
+                    </div>
+
+                    <div class="board-row_yo">
+                      <div class="col_yo rank_yo" data-label="순위">2</div>
+                      <div class="col_yo player_yo" data-label="플레이어">
+                        김철수
+                      </div>
+                      <div class="col_yo rp_yo" data-label="RP">1620</div>
+                      <div class="col_yo kda_yo" data-label="KDA">3.7</div>
+                      <div class="col_yo matches_yo" data-label="경기수">
+                        29
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box kakao">
+                    <div class="pyo_tit">
+                      <h2>KAKAO 경쟁전</h2>
+                      <div class="fpp_check_box">
+                        <label for="kakao_fpp">
+                          <input type="checkbox" id="kakao_fpp" />
+                          <p>FPP</p>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="pyo_link_yo">
+                      <a href="javascript:;">
+                        <img src="/img/pyo_link.png" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                  <div class="board_yo">
+                    <div class="board-header_yo">
+                      <div class="col_yo rank_yo">순위</div>
+                      <div class="col_yo player_yo">플레이어</div>
+                      <div class="col_yo rp_yo">RP</div>
+                      <div class="col_yo kda_yo">KDA</div>
+                      <div class="col_yo matches_yo">경기수</div>
+                    </div>
+
+                    <div class="board-row_yo">
+                      <div class="col_yo rank_yo" data-label="순위">1</div>
+                      <div class="col_yo player_yo" data-label="플레이어">
+                        홍길동
+                      </div>
+                      <div class="col_yo rp_yo" data-label="RP">1750</div>
+                      <div class="col_yo kda_yo" data-label="KDA">4.2</div>
+                      <div class="col_yo matches_yo" data-label="경기수">
+                        32
+                      </div>
+                    </div>
+
+                    <div class="board-row_yo">
+                      <div class="col_yo rank_yo" data-label="순위">2</div>
+                      <div class="col_yo player_yo" data-label="플레이어">
+                        김철수
+                      </div>
+                      <div class="col_yo rp_yo" data-label="RP">1620</div>
+                      <div class="col_yo kda_yo" data-label="KDA">3.7</div>
+                      <div class="col_yo matches_yo" data-label="경기수">
+                        29
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- 커뮤니티 목록 -->
+          <div class="pyo_sub_tit_box community mt70">
+            <div class="pyo_tit">
+              <h2>STEAM 경쟁전</h2>
+              <div class="fpp_check_box">
+                <label for="steam_fpp">
+                  <input type="checkbox" id="steam_fpp" />
+                  <p>FPP</p>
+                </label>
+              </div>
+            </div>
+            <div class="pyo_link_yo">
+              <a href="javascript:;">
+                <img src="/img/pyo_link.png" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="board_yo">
+            <!-- 헤더 -->
+            <div class="board-header_yo">
+              <div class="col_yo num_yo">번호</div>
+              <div class="col_yo title_yo">제목</div>
+              <div class="col_yo writer_yo">글쓴이</div>
+              <div class="col_yo date_yo">작성일</div>
+              <div class="col_yo views_yo">조회수</div>
+              <div class="col_yo likes_yo">추천수</div>
+            </div>
+
+            <!-- 공지 3개 -->
+            <div class="board-row_yo notice_yo">
+              <div class="col_yo num_yo" data-label="번호">공지</div>
+              <div class="col_yo title_yo" data-label="제목">
+                게시판 이용 안내
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-01</div>
+              <div class="col_yo views_yo" data-label="조회수">999</div>
+              <div class="col_yo likes_yo" data-label="추천수">87</div>
+            </div>
+
+            <div class="board-row_yo notice_yo">
+              <div class="col_yo num_yo" data-label="번호">공지</div>
+              <div class="col_yo title_yo" data-label="제목">커뮤니티 규칙</div>
+              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-04-28</div>
+              <div class="col_yo views_yo" data-label="조회수">830</div>
+              <div class="col_yo likes_yo" data-label="추천수">65</div>
+            </div>
+
+            <div class="board-row_yo notice_yo">
+              <div class="col_yo num_yo" data-label="번호">공지</div>
+              <div class="col_yo title_yo" data-label="제목">
+                자주 묻는 질문(FAQ)
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-04-20</div>
+              <div class="col_yo views_yo" data-label="조회수">752</div>
+              <div class="col_yo likes_yo" data-label="추천수">40</div>
+            </div>
+
+            <!-- 일반 글 3개 -->
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="번호">1</div>
+              <div class="col_yo title_yo" data-label="제목">
+                첫 번째 게시글입니다
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">홍길동</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-09</div>
+              <div class="col_yo views_yo" data-label="조회수">124</div>
+              <div class="col_yo likes_yo" data-label="추천수">23</div>
+            </div>
+
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="번호">2</div>
+              <div class="col_yo title_yo" data-label="제목">
+                두 번째 글이에요
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">김철수</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-08</div>
+              <div class="col_yo views_yo" data-label="조회수">98</div>
+              <div class="col_yo likes_yo" data-label="추천수">11</div>
+            </div>
+
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="번호">3</div>
+              <div class="col_yo title_yo" data-label="제목">
+                세 번째 글입니다
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">이영희</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-07</div>
+              <div class="col_yo views_yo" data-label="조회수">72</div>
+              <div class="col_yo likes_yo" data-label="추천수">5</div>
+            </div>
+          </div>
+        </div>
+        <!-- right ad -->
+        <div class="ad-right">
+          <h2>오른쪽 광고</h2>
+        </div>
+      </div>
+
+      <footer id="footer">
+        <div class="footer_top">
+          <div class="inner">
+            <div class="footer_menu_box">
+              <div class="footer_menu">
+                <a href="javascript:;">이용약관</a>
+              </div>
+              <div class="header_bar">|</div>
+              <div class="footer_menu">
+                <a href="javascript:;">개인정보처리방침</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer_bottom">
+          <div class="inner">
+            <div class="footer_side">
+              <img src="/img/footer_logo.png" alt="" />
+            </div>
+            <div class="footer_side right">
+              <div class="footer_info_box">
+                <div class="footer_info_yo">
+                  <img src="/img/footer_icon01.png" alt="" />
+                  <p>NTROPYADMIN</p>
+                </div>
+                <div class="footer_info_yo">
+                  <img src="/img/footer_icon02.png" alt="" />
+                  <p>CKSUN0620@NAVER.COM</p>
+                </div>
+              </div>
+              <div class="copyright">
+                <p>© Copyrights 2025 NTROPHY All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!--%@ include file="/include/footer.jsp" %-->
+    </div>
+  </body>
+</html>
+
+<!-- 양 사이드 광고 높이 조정 스크립트 -->
+<script>
+  window.addEventListener("scroll", () => {
+    const container = document.querySelector(".container");
+    const ads = document.querySelectorAll(".ad");
+
+    const containerTop = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const containerBottom = containerTop + containerHeight;
+    const scrollTop = window.scrollY;
+    const padding = 20;
+
+    ads.forEach((ad) => {
+      const adHeight = ad.offsetHeight;
+      let topOffset = scrollTop + padding - containerTop;
+
+      if (scrollTop + padding < containerTop) {
+        topOffset = 0;
+      }
+
+      if (topOffset + adHeight > containerHeight) {
+        topOffset = containerHeight - adHeight;
+      }
+
+      ad.style.top = `${topOffset}px`;
+    });
+  });
+</script>

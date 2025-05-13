@@ -7,5 +7,9 @@ import lombok.Data;
 public class PlayerAttributes {
     private String name;
     private int rank;
+    private String shardId;
     private PlayerStats stats;
+    private String patchVersion;
+    private String banType;
+    private String titleId;
 }

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fighting</title>
+
+    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="/css/content.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="main">
+    <div id="wrap">
+      <!--%@ include file="/include/header.jsp" %-->
+      <!--%@ include file="/include/main_visual.jsp" %-->
+
+      <!-- header -->
+      <header>
+        <div class="inner">
+          <div class="h_logo">
+            <a href="/">
+              <img src="/img/logo.png" alt="" />
+            </a>
+          </div>
+          <div class="gnb">
+            <ul>
+              <li>
+                <a href="/leaderboard/index.html">리더보드</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="javascript:;">리그</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li class="active">
+                <a href="/notice/index.html">게시판</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- top ad -->
+      <div class="top_ad">
+        <h2>상단 광고</h2>
+      </div>
+
+      <!-- main container -->
+      <div class="container mt70">
+        <!-- left ad -->
+        <div class="ad-left">
+          <h2>왼쪽 광고</h2>
+        </div>
+        <!-- main center -->
+        <div class="main-content">
+          <!-- 메인 제목 (커뮤니티)-->
+          <div class="sub_page_tit_box">
+            <h2>COMMUNITY BOARD</h2>
+            <div class="tit_line"></div>
+          </div>
+
+          <!-- 게시판 탭 -->
+          <div class="sub_page_tab_box tab_flex mt70">
+            <div class="tab_one_yo active">
+              <p>Hot</p>
+            </div>
+            <div class="tab_one_yo">
+              <p>STEAM</p>
+            </div>
+            <div class="tab_one_yo">
+              <p>KAKAO</p>
+            </div>
+            <div class="tab_one_yo">
+              <p>Broadcasts</p>
+            </div>
+            <div class="tab_one_yo">
+              <p>MATCH HISTORY</p>
+            </div>
+          </div>
+
+          <!-- 검색창 -->
+          <div class="search-bar_yo mt70">
+            <select class="search-select_yo">
+              <option>제목+내용</option>
+              <option>제목만</option>
+              <option>글쓴이</option>
+            </select>
+            <input
+              type="text"
+              class="search-input_yo"
+              placeholder="검색어를 입력하세요"
+            />
+            <button class="search-btn_yo">
+              <img src="/img/search_icon_white.png" alt="" />
+            </button>
+          </div>
+
+          <!-- 커뮤니티 게시판 -->
+          <div class="board_yo mt70">
+            <!-- 헤더 -->
+            <div class="board-header_yo">
+              <div class="col_yo num_yo">번호</div>
+              <div class="col_yo title_yo">제목</div>
+              <div class="col_yo writer_yo">글쓴이</div>
+              <div class="col_yo date_yo">작성일</div>
+              <div class="col_yo views_yo">조회수</div>
+              <div class="col_yo likes_yo">추천수</div>
+            </div>
+
+            <!-- 공지 3개 -->
+            <div
+              class="board-row_yo notice_yo"
+              onclick="location.href='/notice/view.html'"
+            >
+              <div class="col_yo num_yo" data-label="번호">공지</div>
+              <div class="col_yo title_yo" data-label="제목">
+                게시판 이용 안내
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-01</div>
+              <div class="col_yo views_yo" data-label="조회수">999</div>
+              <div class="col_yo likes_yo" data-label="추천수">87</div>
+            </div>
+
+            <div class="board-row_yo notice_yo">
+              <div class="col_yo num_yo" data-label="번호">공지</div>
+              <div class="col_yo title_yo" data-label="제목">커뮤니티 규칙</div>
+              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-04-28</div>
+              <div class="col_yo views_yo" data-label="조회수">830</div>
+              <div class="col_yo likes_yo" data-label="추천수">65</div>
+            </div>
+
+            <div class="board-row_yo notice_yo">
+              <div class="col_yo num_yo" data-label="번호">공지</div>
+              <div class="col_yo title_yo" data-label="제목">
+                자주 묻는 질문(FAQ)
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-04-20</div>
+              <div class="col_yo views_yo" data-label="조회수">752</div>
+              <div class="col_yo likes_yo" data-label="추천수">40</div>
+            </div>
+
+            <!-- 공지글 사이 광고 -->
+            <div class="notice_ad">
+              <hw>게시판 광고</hw>
+            </div>
+
+            <!-- 일반 글 3개 -->
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="번호">1</div>
+              <div class="col_yo title_yo" data-label="제목">
+                첫 번째 게시글입니다
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">홍길동</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-09</div>
+              <div class="col_yo views_yo" data-label="조회수">124</div>
+              <div class="col_yo likes_yo" data-label="추천수">23</div>
+            </div>
+
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="번호">2</div>
+              <div class="col_yo title_yo" data-label="제목">
+                두 번째 글이에요
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">김철수</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-08</div>
+              <div class="col_yo views_yo" data-label="조회수">98</div>
+              <div class="col_yo likes_yo" data-label="추천수">11</div>
+            </div>
+
+            <div class="board-row_yo">
+              <div class="col_yo num_yo" data-label="번호">3</div>
+              <div class="col_yo title_yo" data-label="제목">
+                세 번째 글입니다
+              </div>
+              <div class="col_yo writer_yo" data-label="글쓴이">이영희</div>
+              <div class="col_yo date_yo" data-label="작성일">2025-05-07</div>
+              <div class="col_yo views_yo" data-label="조회수">72</div>
+              <div class="col_yo likes_yo" data-label="추천수">5</div>
+            </div>
+          </div>
+          <!-- 글쓰기 버튼 -->
+          <div class="call_btn write mt35">
+            <a href="/notice/write.html">
+              <p>글쓰기</p>
+            </a>
+          </div>
+
+          <!-- 페이지네이션 -->
+          <div class="pagination_yo mt70">
+            <button class="arrow_yo prev_yo" aria-label="이전 페이지">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+                <path
+                  d="M7 1L1 7L7 13"
+                  stroke="#4B6EFF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+
+            <ul class="page-list_yo">
+              <!-- <li class="page-item_yo active_yo">1</li>
+              <li class="page-item_yo">2</li>
+              <li class="page-item_yo">3</li>
+              <li class="page-item_yo">4</li>
+              <li class="page-item_yo">5</li>
+              <li class="page-item_yo">6</li>
+              <li class="page-item_yo">7</li>
+              <li class="page-item_yo">8</li>
+              <li class="page-item_yo">9</li>
+              <li class="page-item_yo">10</li> -->
+            </ul>
+
+            <button class="arrow_yo next_yo" aria-label="다음 페이지">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+                <path
+                  d="M1 1L7 7L1 13"
+                  stroke="#4B6EFF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- right ad -->
+        <div class="ad-right">
+          <h2>오른쪽 광고</h2>
+        </div>
+      </div>
+
+      <!--%@ include file="/include/footer.jsp" %-->
+    </div>
+  </body>
+</html>
+
+<!-- 양 사이드 광고 높이 조정 스크립트 -->
+<script>
+  window.addEventListener("scroll", () => {
+    const container = document.querySelector(".container");
+    const ads = document.querySelectorAll(".ad");
+
+    const containerTop = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const containerBottom = containerTop + containerHeight;
+    const scrollTop = window.scrollY;
+    const padding = 20;
+
+    ads.forEach((ad) => {
+      const adHeight = ad.offsetHeight;
+      let topOffset = scrollTop + padding - containerTop;
+
+      if (scrollTop + padding < containerTop) {
+        topOffset = 0;
+      }
+
+      if (topOffset + adHeight > containerHeight) {
+        topOffset = containerHeight - adHeight;
+      }
+
+      ad.style.top = `${topOffset}px`;
+    });
+  });
+</script>
+
+<!-- 페이지네이션 -->
+<script>
+  const totalPages = 10;
+  let currentPage = 1;
+
+  function renderPagination_yo() {
+    const list = document.querySelector(".page-list_yo");
+    list.innerHTML = "";
+
+    const addItem = (
+      text,
+      page = null,
+      isActive = false,
+      isEllipsis = false
+    ) => {
+      const li = document.createElement("li");
+      li.className = "page-item_yo";
+      if (isActive) li.classList.add("active_yo");
+      li.textContent = text;
+
+      if (!isActive && !isEllipsis && page) {
+        li.style.cursor = "pointer";
+        li.addEventListener("click", () => {
+          currentPage = page;
+          renderPagination_yo();
+        });
+      }
+
+      list.appendChild(li);
+    };
+
+    // 좌우 버튼
+    document.querySelector(".prev_yo").onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPagination_yo();
+      }
+    };
+
+    document.querySelector(".next_yo").onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPagination_yo();
+      }
+    };
+
+    // 실제 페이지 표시
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+      return;
+    }
+
+    if (currentPage <= 3) {
+      for (let i = 1; i <= 5; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+      addItem("...", null, false, true);
+      addItem(totalPages.toString(), totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      addItem("1", 1);
+      addItem("...", null, false, true);
+      for (let i = totalPages - 4; i <= totalPages; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+    } else {
+      addItem("1", 1);
+      addItem("...", null, false, true);
+      for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+      addItem("...", null, false, true);
+      addItem(totalPages.toString(), totalPages);
+    }
+  }
+
+  renderPagination_yo();
+</script>

@@ -15,5 +15,5 @@ public class PlayerStats {
     private double averageRank;
     private String tier;
     private String subTier;
-
+    private String description;
 }

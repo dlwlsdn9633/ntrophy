@@ -1,0 +1,161 @@
+@charset "utf-8";
+
+/* basic */
+.inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+.inner.blank {
+  max-width: calc(100% - calc(calc(100% - 1400px) / 2));
+  margin: auto;
+}
+
+@media all and (max-width: 1400px) {
+  .inner {
+    width: 93.75%;
+  }
+  .inner.blank {
+    width: 96.875%;
+  }
+}
+
+@media all and (max-width: 1025px) {
+  br.pc_only {
+    display: none;
+  }
+}
+
+/* header */
+header {
+  height: 68px;
+  background-color: #13161a;
+}
+
+header .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.gnb ul {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.h_logo a {
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.gnb ul li {
+  height: 100%;
+}
+.gnb ul li a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #8c9498;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.gnb ul li.active a {
+  color: #fefdfe;
+  font-weight: 700;
+}
+
+.header_bar {
+  margin: 0 10px;
+  width: 2px;
+  height: 9px;
+  color: #25282c !important;
+}
+
+@media all and (max-width: 768px) {
+  .gnb ul li a {
+    font-size: 14px;
+  }
+  .header_bar {
+    margin: 0 5px;
+  }
+  .h_logo a {
+    width: 80%;
+  }
+}
+
+/* footer */
+#footer {
+  background: #13161a;
+}
+
+.footer_top {
+  padding: 36px 0 18px 0;
+  border-bottom: 1px solid #25282c;
+}
+
+.footer_menu {
+  color: #fefdfe;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.footer_menu_box {
+  display: flex;
+  align-items: center;
+}
+
+.footer_menu_box .header_bar {
+  height: 16px;
+}
+
+.footer_bottom {
+  padding: 36px 0;
+}
+
+.footer_bottom .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer_side.right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.footer_info_box p {
+  color: #fefdfe;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 214.286% */
+}
+.footer_info_yo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.copyright p {
+  color: rgba(196, 197, 199, 0.4);
+  font-family: Sansation;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media all and (max-width: 600px) {
+  .footer_bottom .inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

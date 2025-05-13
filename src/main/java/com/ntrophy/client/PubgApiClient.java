@@ -1,11 +1,13 @@
 package com.ntrophy.client;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ntrophy.dto.pubg.enums.GameMode;
 import com.ntrophy.dto.pubg.enums.PlatformRegion;
 import com.ntrophy.dto.pubg.enums.Platform;
 import com.ntrophy.dto.pubg.leaderboard.LeaderboardResponseDto;
 import com.ntrophy.dto.pubg.player.PlayerDto;
+import com.ntrophy.dto.pubg.player.PlayerResponseDto;
 import com.ntrophy.dto.pubg.season.SeasonDto;
 import com.ntrophy.dto.pubg.season.SeasonResponseDto;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ import java.util.List;
 @Component
 public class PubgApiClient {
     private static final String PUBG_BASE_URL = "https://api.pubg.com";
+    private static final String HEADER_ACCEPT = "application/vnd.api+json";
     private final WebClient webClient;
     private final ObjectMapper objectMapper = new ObjectMapper();
     public PubgApiClient(@Value("${api.pubg-key}") String apiKey) {
@@ -27,7 +30,7 @@ public class PubgApiClient {
         this.webClient = WebClient.builder()
                 .baseUrl(PUBG_BASE_URL)
                 .defaultHeader("Authorization", "Bearer " + apiKey)
-                .defaultHeader("Accept", "application/vnd.api+json")
+                .defaultHeader("Accept", HEADER_ACCEPT)
                 .build();
     }
     public List<PlayerDto> getTop10Players(PlatformRegion platformRegion, GameMode gameMode, String seasonId) {
@@ -81,10 +84,29 @@ public class PubgApiClient {
             return null;
         }
     }
+    public PlayerDto getPlayer(Platform platform, String accountId) {
+        try {
+            String URI = String.format("/shards/%s/players/%s", platform.getLabel(), accountId);
+            String response = webClient.get()
+                    .uri(URI)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+            PlayerResponseDto playerResponseDto = objectMapper.readValue(response, PlayerResponseDto.class);
+            PlayerDto playerDto = playerResponseDto.getData();
+            return playerDto;
+        } catch (Exception e) {
+            log.error("Failed To Fetch PUBG Player Data ", e);
+            return null;
+        }
+    }
+
     private SeasonDto extractCurrentSeason(SeasonResponseDto responseDto) {
         return responseDto.getData().stream()
                 .filter(season -> season.getAttributes().isCurrentSeason())
                 .findFirst()
                 .orElse(null);
     }
+
+    
 }

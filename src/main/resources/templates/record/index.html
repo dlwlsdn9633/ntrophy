@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fighting</title>
+
+    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="/css/content.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="main">
+    <div id="wrap">
+      <!--%@ include file="/include/header.jsp" %-->
+      <!--%@ include file="/include/main_visual.jsp" %-->
+
+      <!-- header -->
+      <header>
+        <div class="inner">
+          <div class="h_logo">
+            <a href="/">
+              <img src="/img/logo.png" alt="" />
+            </a>
+          </div>
+          <div class="gnb">
+            <ul>
+              <li>
+                <a href="/leaderboard/index.html">리더보드</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="javascript:;">리그</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li class="active">
+                <a href="/notice/index.html">게시판</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- top ad -->
+      <div class="top_ad">
+        <h2>상단 광고</h2>
+      </div>
+
+      <!-- main container -->
+      <div class="container mt70">
+        <!-- left ad -->
+        <div class="ad-left">
+          <h2>왼쪽 광고</h2>
+        </div>
+        <!-- main center -->
+        <div class="main-content">
+          <!-- 메인 제목 (개인 전적)-->
+          <div class="sub_page_tit_box">
+            <h2>personal record</h2>
+            <div class="tit_line"></div>
+          </div>
+
+          <!-- 개인 전적 상단 -->
+          <div class="personal_record_box mt70">
+            <div class="record_top_box">
+              <div class="record_side_yo left">
+                <div class="personal_img_box">
+                  <img src="/img/human_dafault.png" alt="" />
+                </div>
+                <div class="personal_info_box">
+                  <div class="per_info_top">
+                    <div class="per_info_id">
+                      <h2>QwerAsdf</h2>
+                      <p class="mt10">최근 업데이트: <span>1</span> 시간 전</p>
+                    </div>
+                    <div class="per_icon_box">
+                      <div class="per_icon_yo">
+                        <img src="/img/per_icon01.png" alt="" />
+                      </div>
+                      <div class="per_icon_yo">
+                        <img src="/img/per_icon02.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="per_info_bottom">
+                    <div class="per_select_wrapper">
+                      <select class="dat_select_yo persnonal_select">
+                        <option>경쟁전 시즌10</option>
+                        <option>경쟁전 시즌9</option>
+                        <option>경쟁전 시즌8</option>
+                      </select>
+                      <div class="fpp_check_box">
+                        <label for="personal_fpp">
+                          <input type="checkbox" id="personal_fpp" />
+                          <p>FPP</p>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="record_side_yo right">
+                <div class="personal_logo_box">
+                  <img src="/img/per_logo01.png" alt="" />
+                  <p>Steam</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 개인전적 탭 -->
+          <div class="sub_page_tab_box mt70">
+            <div class="tab_one_yo active">
+              <p>Overview</p>
+            </div>
+            <div class="tab_one_yo">
+              <p>Match History</p>
+            </div>
+          </div>
+
+          <!-- 경쟁전 스쿼드, 경쟁전 솔로 -->
+          <div class="steam_kakao_box mt20">
+            <ul class="item02">
+              <!-- 스쿼드 -->
+              <li>
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box squad">
+                    <div class="pyo_tit">
+                      <h2>경쟁전 스쿼드</h2>
+                    </div>
+                  </div>
+                  <div class="competition_box_yo">
+                    <div class="competition_top">
+                      <div class="compet_img_yo">
+                        <img src="/img/squad_img01.png" alt="" />
+                      </div>
+                      <div class="compet_info_yo">
+                        <div class="rp_box">
+                          <h2>5,000 RP</h2>
+                        </div>
+                        <div class="rank_bar_box">
+                          <div class="rank-bar_yo" id="rankBar">
+                            <div class="rank-bar-header_yo">
+                              <span class="tier_yo" id="tierLabel"
+                                >Master 1</span
+                              >
+                              <span class="percent_yo" id="rankPercentText"
+                                >1위 (상위 0.0001%)</span
+                              >
+                            </div>
+                            <div class="progress-bg_yo">
+                              <div
+                                class="progress-fill_yo"
+                                id="progressFill"
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="competition_middle">
+                      <div class="comp_three_info">
+                        <p>KDA</p>
+                        <span>10.00</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>승률</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>Top10</p>
+                        <span>100%</span>
+                      </div>
+                    </div>
+                    <div class="competition_bottom">
+                      <div class="comp_two_box">
+                        <p>평균 딜량</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>최다 킬 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>게임 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>헤드샷</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>생존</p>
+                        <span>100분</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>저격</p>
+                        <span>100m</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <!-- 솔로 -->
+              <li>
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box solo">
+                    <div class="pyo_tit">
+                      <h2>경쟁전 솔로</h2>
+                    </div>
+                  </div>
+                  <div class="competition_box_yo">
+                    <div class="competition_top no_data_yo">
+                      <div class="compet_info_yo">
+                        <p>기록 없음</p>
+                      </div>
+                    </div>
+                    <div class="competition_middle">
+                      <div class="comp_three_info">
+                        <p>KDA</p>
+                        <span>10.00</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>승률</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>Top10</p>
+                        <span>100%</span>
+                      </div>
+                    </div>
+                    <div class="competition_bottom">
+                      <div class="comp_two_box">
+                        <p>평균 딜량</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>최다 킬 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>게임 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>헤드샷</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>생존</p>
+                        <span>100분</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>저격</p>
+                        <span>100m</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 일반 솔로, 일반 듀오, 일반 스쿼드 -->
+          <div class="normal_box mt20">
+            <ul class="item03">
+              <li>
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box normal">
+                    <div class="pyo_tit">
+                      <h2>일반 솔로</h2>
+                    </div>
+                  </div>
+                  <div class="competition_box_yo">
+                    <div class="competition_middle">
+                      <div class="comp_three_info">
+                        <p>KDA</p>
+                        <span>10.00</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>승률</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>Top10</p>
+                        <span>100%</span>
+                      </div>
+                    </div>
+                    <div class="competition_bottom">
+                      <div class="comp_two_box">
+                        <p>평균 딜량</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>최다 킬 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>게임 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>헤드샷</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>생존</p>
+                        <span>100분</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>저격</p>
+                        <span>100m</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box normal">
+                    <div class="pyo_tit">
+                      <h2>일반 듀오</h2>
+                    </div>
+                  </div>
+                  <div class="competition_box_yo">
+                    <div class="competition_middle">
+                      <div class="comp_three_info">
+                        <p>KDA</p>
+                        <span>10.00</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>승률</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>Top10</p>
+                        <span>100%</span>
+                      </div>
+                    </div>
+                    <div class="competition_bottom">
+                      <div class="comp_two_box">
+                        <p>평균 딜량</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>최다 킬 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>게임 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>헤드샷</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>생존</p>
+                        <span>100분</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>저격</p>
+                        <span>100m</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box normal">
+                    <div class="pyo_tit">
+                      <h2>일반 스쿼드</h2>
+                    </div>
+                  </div>
+                  <div class="competition_box_yo">
+                    <div class="competition_middle">
+                      <div class="comp_three_info">
+                        <p>KDA</p>
+                        <span>10.00</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>승률</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_three_info">
+                        <p>Top10</p>
+                        <span>100%</span>
+                      </div>
+                    </div>
+                    <div class="competition_bottom">
+                      <div class="comp_two_box">
+                        <p>평균 딜량</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>최다 킬 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>게임 수</p>
+                        <span>100</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>헤드샷</p>
+                        <span>100%</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>생존</p>
+                        <span>100분</span>
+                      </div>
+                      <div class="comp_two_box">
+                        <p>저격</p>
+                        <span>100m</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 중간광고 -->
+          <div class="notice_view_ad mt70">
+            <h2>광고</h2>
+          </div>
+
+          <!-- 매치 히스토리 -->
+          <div class="pyo_sub_tit_box community mt70">
+            <div class="pyo_tit">
+              <h2>매치 히스토리</h2>
+            </div>
+          </div>
+          <!-- 매치 히스토리 컨텐츠 -->
+          <div class="match-list_yo">
+            <div class="match-item_yo">
+              <div class="match-summary_yo">
+                <div class="match_left_wrapper">
+                  <div class="match_his_bar"></div>
+                  <div class="match-info-left_yo">
+                    <div class="mode_yo">스쿼드</div>
+                    <div class="time_yo">1시간 전</div>
+                  </div>
+
+                  <div class="match-info-center_yo">
+                    #1<span class="of_yo">/12</span>
+                  </div>
+                </div>
+                <div class="match-info-right_yo">
+                  <div class="match-stats_yo">
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">에란겔</div>
+                      <div class="stat-label_yo">지도</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">M4</div>
+                      <div class="stat-label_yo">주무기</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">10</div>
+                      <div class="stat-label_yo">킬</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">1,000</div>
+                      <div class="stat-label_yo">딜량</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">8.88KM</div>
+                      <div class="stat-label_yo">이동거리</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">에란겔</div>
+                      <div class="stat-label_yo">생존시간</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">100M</div>
+                      <div class="stat-label_yo">저격</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="toggle_btn_box">
+                  <button class="toggle-button_yo">
+                    <img
+                      src="/img/down_arrow.png"
+                      alt="화살표"
+                      class="arrow-icon_yo"
+                    />
+                  </button>
+                </div>
+              </div>
+              <!-- 매치 히스토리 상세 -->
+              <div class="match-detail_yo">
+                <!-- 팀 전적, 전체 순위 탭 -->
+                <div class="sub_page_tab_box tab_flex max_width_unset">
+                  <div class="tab_one_yo active" data-target="team_record">
+                    <p>팀 전적</p>
+                  </div>
+                  <div class="tab_one_yo" data-target="overall_ranking">
+                    <p>전체 순위</p>
+                  </div>
+                </div>
+
+                <div
+                  class="tab_contents_wrapper_yo"
+                  style="position: relative; transition: height 0.3s ease"
+                >
+                  <!-- 팀 전적 -->
+                  <div class="match_detail_wrapper_yo team_record mt35">
+                    <div class="match_tit_yo">
+                      <h2>팀 전적</h2>
+                    </div>
+                    <div class="summ_box">
+                      <p>팀 요약</p>
+                    </div>
+                    <!-- 팀 요약 -->
+                    <div class="match-summary_yo detail_custom">
+                      <div class="match_left_wrapper">
+                        <div class="match_his_bar"></div>
+                        <div class="match-info-center_yo">#1</div>
+                      </div>
+                      <div class="match-info-right_yo">
+                        <div class="match-stats_yo">
+                          <div class="stat-block_yo">
+                            <div class="stat-value_yo">8</div>
+                            <div class="stat-label_yo">킬 합산</div>
+                          </div>
+                          <div class="stat-block_yo">
+                            <div class="stat-value_yo">1,000</div>
+                            <div class="stat-label_yo">딜량 합산</div>
+                          </div>
+                          <div class="stat-block_yo">
+                            <div class="stat-value_yo">5,000M</div>
+                            <div class="stat-label_yo">평균 이동거리</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 팀원 테이블 -->
+                    <div class="team-table_yo mt35">
+                      <!-- 헤더 -->
+                      <div class="team-row_yo team-header_yo">
+                        <div class="cell_yo team_mem_yo">팀원</div>
+                        <div class="cell_yo">주무기</div>
+                        <div class="cell_yo">킬</div>
+                        <div class="cell_yo">헤드</div>
+                        <div class="cell_yo">어시</div>
+                        <div class="cell_yo">딜량</div>
+                        <div class="cell_yo">DBNO</div>
+                        <div class="cell_yo">이동거리</div>
+                        <div class="cell_yo">저격</div>
+                        <div class="cell_yo">생존시간</div>
+                      </div>
+
+                      <!-- 생존자 -->
+                      <div class="team-row_yo survivor_yo">
+                        <div class="cell_yo team_mem_yo" data-label="팀원">
+                          <strong>QwerAsdf</strong>
+                          <span class="status_yo">(생존)</span>
+                        </div>
+                        <div class="cell_yo" data-label="주무기">M4</div>
+                        <div class="cell_yo highlight_yo" data-label="킬">
+                          10
+                        </div>
+                        <div class="cell_yo highlight_yo" data-label="헤드">
+                          1
+                        </div>
+                        <div class="cell_yo highlight_yo" data-label="어시">
+                          1
+                        </div>
+                        <div class="cell_yo flex_center_yo" data-label="딜량">
+                          <div class="damage-bar_yo">
+                            <div
+                              class="damage-fill_yo"
+                              style="width: 80%"
+                            ></div>
+                            <span>555</span>
+                          </div>
+                        </div>
+                        <div class="cell_yo" data-label="DBNO">5</div>
+                        <div class="cell_yo highlight_yo" data-label="이동거리">
+                          5.55KM
+                        </div>
+                        <div class="cell_yo highlight_yo" data-label="저격">
+                          555M
+                        </div>
+                        <div class="cell_yo" data-label="생존시간">22:22</div>
+                      </div>
+
+                      <!-- 일반 인원 1 -->
+                      <div class="team-row_yo">
+                        <div class="cell_yo team_mem_yo" data-label="팀원">
+                          Abc
+                        </div>
+                        <div class="cell_yo" data-label="주무기">MK12</div>
+                        <div class="cell_yo" data-label="킬">1</div>
+                        <div class="cell_yo" data-label="헤드">-</div>
+                        <div class="cell_yo" data-label="어시">-</div>
+                        <div class="cell_yo flex_center_yo" data-label="딜량">
+                          <div class="damage-bar_yo">
+                            <div
+                              class="damage-fill_yo"
+                              style="width: 10%"
+                            ></div>
+                            <span>10</span>
+                          </div>
+                        </div>
+                        <div class="cell_yo" data-label="DBNO">-</div>
+                        <div class="cell_yo" data-label="이동거리">1.00KM</div>
+                        <div class="cell_yo" data-label="저격">100M</div>
+                        <div class="cell_yo" data-label="생존시간">11:00</div>
+                      </div>
+
+                      <!-- 일반 인원 2 -->
+                      <div class="team-row_yo">
+                        <div class="cell_yo team_mem_yo" data-label="팀원">
+                          Dfg
+                        </div>
+                        <div class="cell_yo" data-label="주무기">MK12</div>
+                        <div class="cell_yo" data-label="킬">1</div>
+                        <div class="cell_yo" data-label="헤드">-</div>
+                        <div class="cell_yo" data-label="어시">-</div>
+                        <div class="cell_yo flex_center_yo" data-label="딜량">
+                          <div class="damage-bar_yo">
+                            <div
+                              class="damage-fill_yo"
+                              style="width: 10%"
+                            ></div>
+                            <span>10</span>
+                          </div>
+                        </div>
+                        <div class="cell_yo" data-label="DBNO">-</div>
+                        <div class="cell_yo" data-label="이동거리">1.00KM</div>
+                        <div class="cell_yo" data-label="저격">100M</div>
+                        <div class="cell_yo" data-label="생존시간">11:00</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 전체 순위 -->
+                  <div
+                    class="match_detail_wrapper_yo overall_ranking mt35"
+                    style="display: none"
+                  >
+                    <!-- 팀원 테이블 -->
+                    <div class="team-table_yo grade_customd">
+                      <!-- 헤더 -->
+                      <div class="team-header_yo grade_customd">
+                        <div class="cell_yo grade_customd">#</div>
+                        <div class="cell_yo grade_customd team_mem_yo">
+                          팀원
+                        </div>
+                        <div class="cell_yo grade_customd">주무기</div>
+                        <div class="cell_yo grade_customd">킬</div>
+                        <div class="cell_yo grade_customd">헤드</div>
+                        <div class="cell_yo grade_customd">어시</div>
+                        <div class="cell_yo grade_customd">딜량</div>
+                        <div class="cell_yo grade_customd">DBNO</div>
+                        <div class="cell_yo grade_customd">이동거리</div>
+                        <div class="cell_yo grade_customd">저격</div>
+                        <div class="cell_yo grade_customd">생존시간</div>
+                      </div>
+
+                      <!-- 예시 팀 그룹 -->
+                      <div class="team-group_yo grade_customd">
+                        <div class="rank-cell_yo grade_customd" data-label="#">
+                          #1
+                        </div>
+
+                        <div class="team-row_yo grade_customd">
+                          <div
+                            class="cell_yo grade_customd team_mem_yo"
+                            data-label="팀원"
+                          >
+                            QwerAsdf <span class="status_yo">(생존)</span>
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="주무기"
+                          >
+                            M4
+                          </div>
+                          <div
+                            class="cell_yo grade_customd highlight_yo"
+                            data-label="킬"
+                          >
+                            10
+                          </div>
+                          <div
+                            class="cell_yo grade_customd highlight_yo"
+                            data-label="헤드"
+                          >
+                            1
+                          </div>
+                          <div
+                            class="cell_yo grade_customd highlight_yo"
+                            data-label="어시"
+                          >
+                            1
+                          </div>
+                          <div
+                            class="cell_yo grade_customd dill_max_width"
+                            data-label="딜량"
+                          >
+                            <div class="damage-bar_yo">
+                              <div
+                                class="damage-fill_yo"
+                                style="width: 80%"
+                              ></div>
+                              <span>555</span>
+                            </div>
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="DBNO">
+                            5
+                          </div>
+                          <div
+                            class="cell_yo grade_customd highlight_yo"
+                            data-label="이동거리"
+                          >
+                            5.55KM
+                          </div>
+                          <div
+                            class="cell_yo grade_customd highlight_yo"
+                            data-label="저격"
+                          >
+                            555M
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="생존시간"
+                          >
+                            22:22
+                          </div>
+                        </div>
+
+                        <div class="team-row_yo grade_customd">
+                          <div
+                            class="cell_yo grade_customd team_mem_yo"
+                            data-label="팀원"
+                          >
+                            Abc
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="주무기"
+                          >
+                            MK12
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="킬">
+                            1
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="헤드">
+                            -
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="어시">
+                            -
+                          </div>
+                          <div
+                            class="cell_yo grade_customd dill_max_width"
+                            data-label="딜량"
+                          >
+                            <div class="damage-bar_yo">
+                              <div
+                                class="damage-fill_yo"
+                                style="width: 10%"
+                              ></div>
+                              <span>10</span>
+                            </div>
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="DBNO">
+                            -
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="이동거리"
+                          >
+                            1.00KM
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="저격">
+                            100M
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="생존시간"
+                          >
+                            11:00
+                          </div>
+                        </div>
+
+                        <div class="team-row_yo grade_customd">
+                          <div
+                            class="cell_yo grade_customd team_mem_yo"
+                            data-label="팀원"
+                          >
+                            Abc
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="주무기"
+                          >
+                            MK12
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="킬">
+                            1
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="헤드">
+                            -
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="어시">
+                            -
+                          </div>
+                          <div
+                            class="cell_yo grade_customd dill_max_width"
+                            data-label="딜량"
+                          >
+                            <div class="damage-bar_yo">
+                              <div
+                                class="damage-fill_yo"
+                                style="width: 10%"
+                              ></div>
+                              <span>10</span>
+                            </div>
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="DBNO">
+                            -
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="이동거리"
+                          >
+                            1.00KM
+                          </div>
+                          <div class="cell_yo grade_customd" data-label="저격">
+                            100M
+                          </div>
+                          <div
+                            class="cell_yo grade_customd"
+                            data-label="생존시간"
+                          >
+                            11:00
+                          </div>
+                        </div>
+
+                        <!-- 나머지 팀원도 동일한 구조로 반복 -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 불러오기 버튼 -->
+          <div class="call_btn mt35">
+            <a href="javascript:;">
+              <p>불러오기</p>
+            </a>
+          </div>
+        </div>
+        <!-- right ad -->
+        <div class="ad-right">
+          <h2>오른쪽 광고</h2>
+        </div>
+      </div>
+
+      <!--%@ include file="/include/footer.jsp" %-->
+    </div>
+  </body>
+</html>
+
+<!-- 양 사이드 광고 높이 조정 스크립트 -->
+<script>
+  window.addEventListener("scroll", () => {
+    const container = document.querySelector(".container");
+    const ads = document.querySelectorAll(".ad");
+
+    const containerTop = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const containerBottom = containerTop + containerHeight;
+    const scrollTop = window.scrollY;
+    const padding = 20;
+
+    ads.forEach((ad) => {
+      const adHeight = ad.offsetHeight;
+      let topOffset = scrollTop + padding - containerTop;
+
+      if (scrollTop + padding < containerTop) {
+        topOffset = 0;
+      }
+
+      if (topOffset + adHeight > containerHeight) {
+        topOffset = containerHeight - adHeight;
+      }
+
+      ad.style.top = `${topOffset}px`;
+    });
+  });
+</script>
+
+<!-- 랭크바 스크립트 -->
+<script>
+  function updateRankBar({ tier, rankText, percent }) {
+    const tierLabel = document.getElementById("tierLabel");
+    const rankPercentText = document.getElementById("rankPercentText");
+    const progressFill = document.getElementById("progressFill");
+
+    // 텍스트 업데이트
+    tierLabel.textContent = tier;
+    rankPercentText.textContent = rankText;
+
+    // 진행 바 채우기
+    const clampedPercent = Math.max(0, Math.min(percent, 100)); // 0~100 사이 보장
+    progressFill.style.width = clampedPercent + "%";
+  }
+
+  // 예시 호출
+  updateRankBar({
+    tier: "Master 1",
+    rankText: "1위 (상위 0.0001%)",
+    percent: 92.5,
+  });
+</script>
+
+<!-- 매치 히스토리 아코디언 스크립트 -->
+<script>
+  document.querySelectorAll(".toggle_btn_box").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".match-item_yo");
+      const detail = item.querySelector(".match-detail_yo");
+      const isOpen = detail.style.display === "block";
+
+      // 모든 항목 초기화
+      document
+        .querySelectorAll(".match-detail_yo")
+        .forEach((d) => (d.style.display = "none"));
+      document.querySelectorAll(".arrow-icon_yo").forEach((icon) => {
+        icon.style.transform = "rotate(0deg)";
+      });
+
+      // 클릭한 항목 열기
+      if (!isOpen) {
+        detail.style.display = "block";
+        const icon = button.querySelector(".arrow-icon_yo");
+        icon.style.transform = "rotate(180deg)";
+      }
+    });
+  });
+</script>
+
+<!-- 딜량 스크립트 -->
+<script>
+  // 딜량 바를 동적으로 설정하는 함수
+  function setDamageBar(element, damage) {
+    const damageFill = element.querySelector(".damage-fill_yo");
+    const damageText = element.querySelector(".damage-bar_yo span");
+
+    // 최대 딜량 값 (예: 600으로 가정)
+    const maxDamage = 600;
+
+    // 딜량에 따른 너비 비율 계산 (최소 5%, 최대 95%)
+    const widthPercent = Math.max(5, Math.min(95, (damage / maxDamage) * 100));
+
+    // 딜량 값 설정
+    damageText.textContent = damage;
+
+    // 바 너비 설정
+    damageFill.style.width = widthPercent + "%";
+  }
+
+  // 예시: 페이지 로드 후 모든 딜량 바 설정
+  document.addEventListener("DOMContentLoaded", () => {
+    // 모든 딜량 셀 찾기
+    const damageCells = document.querySelectorAll(
+      '.cell_yo[data-label="딜량"]'
+    );
+
+    damageCells.forEach((cell) => {
+      // 예시로 각 셀의 숫자 텍스트를 가져와 딜량으로 사용
+      const damageText = cell.querySelector(".damage-bar_yo span").textContent;
+      const damage = parseInt(damageText, 10);
+
+      // 딜량 바 설정
+      setDamageBar(cell, damage);
+    });
+  });
+</script>
+
+<!-- 팀 전적, 전체 순위 탭 -->
+<script>
+  document.querySelectorAll(".tab_one_yo").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // 탭 스타일 갱신
+      document
+        .querySelectorAll(".tab_one_yo")
+        .forEach((el) => el.classList.remove("active"));
+      tab.classList.add("active");
+
+      // 모든 전적 영역 숨김
+      document
+        .querySelectorAll(".match_detail_wrapper_yo")
+        .forEach((section) => {
+          section.style.display = "none";
+        });
+
+      // 선택된 탭의 대상만 보이게
+      const target = tab.getAttribute("data-target");
+      const selected = document.querySelector(
+        `.match_detail_wrapper_yo.${target}`
+      );
+      if (selected) {
+        selected.style.display = "block";
+      }
+    });
+  });
+</script>
