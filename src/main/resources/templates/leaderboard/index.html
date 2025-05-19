@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,8 +22,6 @@
   </head>
   <body class="main">
     <div id="wrap">
-      <!--%@ include file="/include/header.jsp" %-->
-      <!--%@ include file="/include/main_visual.jsp" %-->
 
       <!-- header -->
       <header>
@@ -36,7 +34,7 @@
           <div class="gnb">
             <ul>
               <li class="active">
-                <a href="/leaderboard/index.html">리더보드</a>
+                <a href="/leaderboard/steam">리더보드</a>
               </li>
               <li class="header_bar">|</li>
               <li>
@@ -44,7 +42,7 @@
               </li>
               <li class="header_bar">|</li>
               <li>
-                <a href="/notice/index.html">게시판</a>
+                <a href="/subPage/notice/index.html">게시판</a>
               </li>
             </ul>
           </div>
@@ -73,14 +71,14 @@
           <!-- 리더보드 탭 -->
           <div class="sub_page_tab_box mt70">
             <div class="tab_one_yo active">
-              <p>STEAM</p>
+              <p><a href="/leaderboard/steam">STEAM</a></p>
             </div>
             <div class="tab_one_yo">
-              <p>KAKAO</p>
+              <p><a href="/leaderboard/kakao">KAKAO</a></p>
             </div>
             <div class="fpp_check_box">
               <label for="leader_fpp">
-                <input type="checkbox" id="leader_fpp" />
+                <input type="checkbox" id="leader_fpp" onchange="onChangeFpp(event)" />
                 <p>FPP</p>
               </label>
             </div>
@@ -88,6 +86,9 @@
 
           <!-- 리더보드 게시판 -->
           <div class="board_yo leader_board_yo mt20">
+
+
+
             <!-- 헤더 -->
             <div class="board-header_yo">
               <div class="col_yo num_yo">순위</div>
@@ -97,58 +98,47 @@
               <div class="col_yo views_yo">경기수</div>
             </div>
 
+            <div id="normal_list">
             <!-- 상위 3개 -->
-            <div
-              class="board-row_yo top3_yo"
-              onclick="location.href='/record/index.html'"
-            >
-              <div class="col_yo num_yo" data-label="순위">1</div>
-              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
-              <div class="col_yo writer_yo" data-label="RP">1750</div>
-              <div class="col_yo date_yo" data-label="KDA">4.2</div>
-              <div class="col_yo views_yo" data-label="경기수">32</div>
+              <div
+                      th:each="player, stat : ${playerList}"
+                      th:class="board-row_yo"
+              >
+                <div class="col_yo num_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
+                <div class="col_yo title_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
+                <div class="col_yo writer_yo"
+                     th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
+                     data-label="RP">
+                </div>
+                <div class="col_yo date_yo"
+                     th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
+                     data-label="KDA">
+                </div>
+                <div class="col_yo views_yo" th:text="${player.attributes.stats.games}" data-label="경기수"></div>
+
+              </div>
             </div>
 
-            <div class="board-row_yo top3_yo">
-              <div class="col_yo num_yo" data-label="순위">2</div>
-              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
-              <div class="col_yo writer_yo" data-label="RP">1750</div>
-              <div class="col_yo date_yo" data-label="KDA">4.2</div>
-              <div class="col_yo views_yo" data-label="경기수">32</div>
+            <div id="fpp_list" style="display: none;">
+              <div
+                    th:each="player, stat : ${playerFppList}"
+                    th:class="board-row_yo"
+              >
+                <div class="col_yo num_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
+                <div class="col_yo title_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
+                <div class="col_yo writer_yo"
+                     th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
+                     data-label="RP">
+                </div>
+                <div class="col_yo date_yo"
+                     th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
+                     data-label="KDA">
+                </div>
+                <div class="col_yo views_yo" th:text="${player.attributes.stats.games}" data-label="경기수"></div>
+              </div>
             </div>
 
-            <div class="board-row_yo top3_yo">
-              <div class="col_yo num_yo" data-label="순위">3</div>
-              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
-              <div class="col_yo writer_yo" data-label="RP">1750</div>
-              <div class="col_yo date_yo" data-label="KDA">4.2</div>
-              <div class="col_yo views_yo" data-label="경기수">32</div>
-            </div>
 
-            <!-- 하위 3개 -->
-            <div class="board-row_yo">
-              <div class="col_yo num_yo" data-label="순위">4</div>
-              <div class="col_yo title_yo" data-label="플레이어">홍길동</div>
-              <div class="col_yo writer_yo" data-label="RP">1750</div>
-              <div class="col_yo date_yo" data-label="KDA">4.2</div>
-              <div class="col_yo views_yo" data-label="경기수">32</div>
-            </div>
-
-            <div class="board-row_yo">
-              <div class="col_yo num_yo" data-label="순위">5</div>
-              <div class="col_yo title_yo" data-label="플레이어">김철수</div>
-              <div class="col_yo writer_yo" data-label="RP">1620</div>
-              <div class="col_yo date_yo" data-label="KDA">3.7</div>
-              <div class="col_yo views_yo" data-label="경기수">29</div>
-            </div>
-
-            <div class="board-row_yo">
-              <div class="col_yo num_yo" data-label="순위">6</div>
-              <div class="col_yo title_yo" data-label="플레이어">이영희</div>
-              <div class="col_yo writer_yo" data-label="RP">1580</div>
-              <div class="col_yo date_yo" data-label="KDA">3.3</div>
-              <div class="col_yo views_yo" data-label="경기수">26</div>
-            </div>
           </div>
           <!-- 불러오기 버튼 -->
           <div class="call_btn mt35">
@@ -170,6 +160,29 @@
 
 <!-- 양 사이드 광고 높이 조정 스크립트 -->
 <script>
+
+  function onChangeFpp(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const checkbox = document.getElementById("leader_fpp");
+    const normalList = document.getElementById("normal_list");
+    const fppList = document.getElementById("fpp_list");
+
+    // Toggle the display of normal_list and fpp_list
+
+    if (checkbox.checked) {
+      // Hide normal list and show fpp list when checkbox is checked
+      normalList.style.display = 'none';
+      fppList.style.display = 'block';
+    } else {
+      // Show normal list and hide fpp list when checkbox is unchecked
+      normalList.style.display = 'block';
+      fppList.style.display = 'none';
+    }
+
+  }
+
   window.addEventListener("scroll", () => {
     const container = document.querySelector(".container");
     const ads = document.querySelectorAll(".ad");
@@ -179,6 +192,8 @@
     const containerBottom = containerTop + containerHeight;
     const scrollTop = window.scrollY;
     const padding = 20;
+
+
 
     ads.forEach((ad) => {
       const adHeight = ad.offsetHeight;

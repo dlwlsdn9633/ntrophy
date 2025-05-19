@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class MatchResponseDto {
-    MatchDto data;
+@JsonIgnoreProperties
+public class MatchDto {
+    String type;
+    String id;
+
 }

@@ -158,4 +158,7 @@ header .inner {
     flex-direction: column;
     gap: 20px;
   }
+  .footer_info_yo {
+    justify-content: center;
+  }
 }

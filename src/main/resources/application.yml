@@ -3,3 +3,4 @@ spring:
     name: ntrophy.gg
   profiles:
     active: dev
+

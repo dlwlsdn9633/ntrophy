@@ -1,6 +1,6 @@
 package com.ntrophy.service;
 
-import com.ntrophy.client.PubgApiClient;
+import com.ntrophy.client.pubg.facade.PubgApiClient;
 import com.ntrophy.dto.pubg.player.PlayerDto;
 import com.ntrophy.dto.pubg.enums.GameMode;
 import com.ntrophy.dto.pubg.enums.PlatformRegion;
@@ -19,13 +19,6 @@ public class PubgService {
     private final PubgApiClient pubgApiClient;
     public PlayerDto getPlayer(String accountId) {
         return pubgApiClient.getPlayer(Platform.STEAM, accountId);
-    }
-    public List<PlayerDto> getTop10Players(PlatformRegion platformRegion, Platform platform, GameMode gameMode) {
-        String seasonId = getCurrentSeasonId(platform);
-        if (seasonId == null) {
-            return Collections.emptyList();
-        }
-        return pubgApiClient.getTop10Players(platformRegion, gameMode, seasonId);
     }
     public List<PlayerDto> getTopNPlayers(PlatformRegion platformRegion, Platform platform, GameMode gameMode, int topNumbers) {
         String seasonId = getCurrentSeasonId(platform);

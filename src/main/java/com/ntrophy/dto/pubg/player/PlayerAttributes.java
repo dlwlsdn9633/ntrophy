@@ -12,4 +12,5 @@ public class PlayerAttributes {
     private String patchVersion;
     private String banType;
     private String titleId;
+    private String clanId;
 }

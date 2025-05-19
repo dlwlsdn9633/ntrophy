@@ -98,7 +98,9 @@
 .board-row_yo.top3_yo {
   background: #1c243f; /* top3 배경색 */
 }
-
+.leader_board_yo .avg_yo {
+  width: 80px;
+}
 .leader_board_yo .writer_yo {
   width: 80px;
 }
@@ -112,6 +114,18 @@
 .leader_board_yo .title_yo {
   flex: 1;
   min-width: 160px;
+}
+.board_yo.clan .col_yo {
+  padding: 0 15px;
+}
+.board_yo.clan .board-row_yo {
+  padding: 8px;
+  align-items: center;
+}
+.col_yo.title_yo.clan {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 @media all and (max-width: 768px) {
@@ -131,6 +145,13 @@
   .leader_board_yo .title_yo {
     flex: 1;
     min-width: 100px;
+  }
+  .leader_board_yo .avg_yo {
+    display: none;
+  }
+  .leader_board_yo.clan .writer_yo,
+  .leader_board_yo.clan .date_yo {
+    width: 60px;
   }
 }
 
@@ -1686,12 +1707,364 @@
   text-transform: uppercase;
 }
 
+/* 회원가입 */
+.birth_select_box {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.birth_select {
+  background-color: #101115;
+  color: #ccc;
+  border: 1px solid #8c9498;
+  border-radius: 6px;
+  height: 54px;
+  padding: 0 18px;
+  font-size: 14px;
+  flex: 1;
+  appearance: none;
+  background-image: url("/img/down_arrow.png"); /* 원하는 화살표 이미지 */
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 10px;
+
+  color: #8c9498;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.sign_btn_custom .notice_btn {
+  justify-content: space-between;
+}
+.sign_btn_custom .notice_btn button {
+  width: 50%;
+}
+
+/* 이용약관 */
+.member_con_box.policy_custom {
+  padding: 72px;
+}
+
+.mem_tit.policy_tit_yo {
+  border-bottom: 1px solid #8c9498;
+  padding-bottom: 35px;
+  margin-bottom: unset;
+}
+
+.policy_box {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  margin-top: 35px;
+}
+
+.policy_yo h3 {
+  color: #fefdfe;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 180%; /* 28.8px */
+  text-transform: capitalize;
+}
+.policy_yo p {
+  color: #fefdfe;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%;
+  text-transform: capitalize;
+  margin-top: 3px;
+}
+
+.policy_yo .policy_first_p {
+  font-size: 16px;
+}
+
+/* 404 page */
+.f404_txt h2 {
+  color: #f0f0f0;
+  text-align: center;
+  font-family: Sansation;
+  font-size: 90px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.f404_txt h2 span {
+  font-size: 120px;
+}
+
+.main-content.f404_custom {
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.f404_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 60px;
+}
+.f404_sub_txt p {
+  color: #8c9498;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+}
+.notice_btn_group.width_100 {
+  width: 100%;
+}
+.notice_btn_group.width_100 button {
+  width: 100%;
+}
+
 @media (max-width: 768px) {
-  .member_con_box {
-    padding: 36px 18px;
+  .main-content.f404_custom {
+    height: 700px;
   }
+  .f404_txt h2 {
+    font-size: 50px;
+  }
+  .f404_box {
+    gap: 30px;
+  }
+
+  .member_con_box,
+  .member_con_box.policy_custom {
+    padding: 36px 12px;
+  }
+
+  .mem_tit.policy_tit_yo {
+    padding-bottom: 18px;
+  }
+  .policy_box {
+    margin-top: 18px;
+  }
+  .mem_tit h2 {
+    font-size: 35px;
+  }
+
   .login_menu_box {
     flex-direction: column;
     gap: 10px;
+  }
+  .login_menu_side_yo label p {
+    font-size: 15px;
+  }
+  .sign_btn_custom .notice_btn {
+    gap: 15px;
+  }
+  .birth_select_box {
+    gap: 8px;
+  }
+  .birth_select {
+    padding: 0 8px;
+    background-position: right 8px center;
+  }
+}
+
+/* 클랜 */
+/* 클랜 리스트 */
+.clan_list_box ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 35px;
+}
+.clan_list_box ul li {
+  width: calc(33.333% - 24px);
+  border-radius: 6px;
+}
+.clan_info {
+  background: #13161a;
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+.clan_info p,
+.discord_btn a p {
+  color: #fefdfe;
+  font-family: Sansation;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.discord_btn a {
+  border-radius: 0 0 6px 6px;
+}
+.discord_btn a {
+  cursor: pointer;
+  background: #000;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+.clan_top_img img {
+  border-radius: 6px 6px 0 0;
+  width: 100%;
+  height: 100%;
+}
+
+.clan_search_group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.search-bar_yo.clan_search_custom {
+  width: 347px;
+}
+.search-bar_yo.clan_search_custom input {
+  color: #fff;
+  font-family: Sansation;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  background: unset;
+}
+
+.notice_btn_group.clan_btn_custom .notice_btn {
+  gap: 18px;
+  justify-content: center;
+}
+
+.notice_btn_group.clan_btn_custom .notice_btn button {
+  width: 50%;
+  background: unset;
+}
+.notice_btn_group.clan_btn_custom {
+  width: 500px;
+}
+.clan_yo .match-item_yo {
+  border: 1px solid #a0a2a4;
+  border-radius: 6px;
+}
+.match-list_yo.clan_yo {
+  gap: 0;
+}
+
+/* 클랜 레코드 */
+.clan_record_name_box {
+  border-radius: 6px;
+  background: linear-gradient(0deg, #13161a 0%, #13161a 100%), #13161a;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+.clan_record_side.left {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+}
+.clan_name_yo h2 {
+  color: #fefdfe;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.clan_name_yo p {
+  color: #8c9498;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  margin-top: 6px;
+}
+.clan_name_btn_group {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.clan_name_btn_group a {
+  border-radius: 6px;
+  border: 1px solid #25282c;
+  background: #13161a;
+  width: 160px;
+  height: 36px;
+  padding: 0 9px;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.clan_name_btn_group a p {
+  color: #fefdfe;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.rp_box.clan h2 {
+  color: #91d7a4;
+  font-family: Sansation;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.rank-bar-header_yo.clan {
+  justify-content: end;
+}
+
+.rank_bar_box.clan {
+  max-width: 357px;
+}
+.compet_info_yo.clan {
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .clan_list_box ul li {
+    width: calc(50% - 18px);
+  }
+}
+@media (max-width: 768px) {
+  .clan_list_box ul li {
+    width: 100%;
+  }
+  .clan_info {
+    padding: 15px 10px;
+  }
+  .clan_record_name_box {
+    flex-direction: column;
+  }
+
+  .clan_name_btn_group a,
+  .clan_record_side {
+    width: 100%;
   }
 }

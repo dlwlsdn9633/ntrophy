@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,15 +36,15 @@
           <div class="gnb">
             <ul>
               <li>
-                <a href="/leaderboard/index.html">리더보드</a>
+                <a href="/leaderboard/steam">리더보드</a>
               </li>
               <li class="header_bar">|</li>
               <li>
-                <a href="/notice/index.html">게시판</a>
+                <a href="/subPage/notice/index.html">게시판</a>
               </li>
               <li class="header_bar">|</li>
               <li>
-                <a href="/member/login.html">로그인</a>
+                <a href="/subPage/member/login.html">로그인</a>
               </li>
             </ul>
           </div>
@@ -137,29 +137,25 @@
                       <div class="col_yo matches_yo">경기수</div>
                     </div>
 
-                    <div class="board-row_yo">
-                      <div class="col_yo rank_yo" data-label="순위">1</div>
-                      <div class="col_yo player_yo" data-label="플레이어">
-                        홍길동
+
+                    <div
+                            th:each="player, stat : ${steamPlayerList}"
+                            th:class="board-row_yo"
+                    >
+                      <div class="col_yo num_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
+                      <div class="col_yo title_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
+                      <div class="col_yo writer_yo"
+                           th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
+                           data-label="RP">
                       </div>
-                      <div class="col_yo rp_yo" data-label="RP">1750</div>
-                      <div class="col_yo kda_yo" data-label="KDA">4.2</div>
-                      <div class="col_yo matches_yo" data-label="경기수">
-                        32
+                      <div class="col_yo date_yo"
+                           th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
+                           data-label="KDA">
                       </div>
+                      <div class="col_yo views_yo" th:text="${player.attributes.stats.games}" data-label="경기수"></div>
                     </div>
 
-                    <div class="board-row_yo">
-                      <div class="col_yo rank_yo" data-label="순위">2</div>
-                      <div class="col_yo player_yo" data-label="플레이어">
-                        김철수
-                      </div>
-                      <div class="col_yo rp_yo" data-label="RP">1620</div>
-                      <div class="col_yo kda_yo" data-label="KDA">3.7</div>
-                      <div class="col_yo matches_yo" data-label="경기수">
-                        29
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </li>
@@ -190,29 +186,23 @@
                       <div class="col_yo matches_yo">경기수</div>
                     </div>
 
-                    <div class="board-row_yo">
-                      <div class="col_yo rank_yo" data-label="순위">1</div>
-                      <div class="col_yo player_yo" data-label="플레이어">
-                        홍길동
+                    <div
+                            th:each="player, stat : ${kakaoPlayerList}"
+                            th:class="board-row_yo"
+                    >
+                      <div class="col_yo num_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
+                      <div class="col_yo title_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
+                      <div class="col_yo writer_yo"
+                           th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
+                           data-label="RP">
                       </div>
-                      <div class="col_yo rp_yo" data-label="RP">1750</div>
-                      <div class="col_yo kda_yo" data-label="KDA">4.2</div>
-                      <div class="col_yo matches_yo" data-label="경기수">
-                        32
+                      <div class="col_yo date_yo"
+                           th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
+                           data-label="KDA">
                       </div>
+                      <div class="col_yo views_yo" th:text="${player.attributes.stats.games}" data-label="경기수"></div>
                     </div>
 
-                    <div class="board-row_yo">
-                      <div class="col_yo rank_yo" data-label="순위">2</div>
-                      <div class="col_yo player_yo" data-label="플레이어">
-                        김철수
-                      </div>
-                      <div class="col_yo rp_yo" data-label="RP">1620</div>
-                      <div class="col_yo kda_yo" data-label="KDA">3.7</div>
-                      <div class="col_yo matches_yo" data-label="경기수">
-                        29
-                      </div>
-                    </div>
                   </div>
                 </div>
               </li>
@@ -318,17 +308,17 @@
           <h2>오른쪽 광고</h2>
         </div>
       </div>
-
+      <!-- 푸터 -->
       <footer id="footer">
         <div class="footer_top">
           <div class="inner">
             <div class="footer_menu_box">
               <div class="footer_menu">
-                <a href="javascript:;">이용약관</a>
+                <a href="/subPage/member/agree.html">이용약관</a>
               </div>
               <div class="header_bar">|</div>
               <div class="footer_menu">
-                <a href="javascript:;">개인정보처리방침</a>
+                <a href="/subPage/member/policy.html">개인정보처리방침</a>
               </div>
             </div>
           </div>
@@ -357,7 +347,6 @@
           </div>
         </div>
       </footer>
-      <!--%@ include file="/include/footer.jsp" %-->
     </div>
   </body>
 </html>

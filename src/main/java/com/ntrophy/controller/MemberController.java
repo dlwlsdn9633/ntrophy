@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,10 +21,9 @@ public class MemberController {
     public String loginForm() {
         return "member/login";
     }
-    @GetMapping("/record")
-    public String recordForm(@RequestParam("accountId") String accountId) {
 
-        //log.info("{}", accountId);
+    @GetMapping("/record/{accountId}")
+    public String recordForm(@PathVariable("accountId") String accountId) {
         PlayerDto player = pubgService.getPlayer(accountId);
         log.info("{}", player);
         return "record/index";
