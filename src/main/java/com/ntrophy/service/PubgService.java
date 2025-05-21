@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.*;
 
 @Slf4j
 @Service
@@ -27,6 +27,30 @@ public class PubgService {
         }
         return pubgApiClient.getTopNPlayers(platformRegion, gameMode, seasonId, topNumbers);
     }
+    public PlayerDto getPlayerBySeasonId(String accountId) {
+        PlayerDto player = getPlayer(accountId);
+        Platform playerPlatform = Platform.fromLabel(player.getAttributes().getShardId());
+        String seasonId = getCurrentSeasonId(playerPlatform);
+
+        if (seasonId == null) {
+            return null;
+        }
+        return pubgApiClient.getPlayerBySeasonId(playerPlatform, accountId, seasonId);
+    }
+    public PlayerDto getPlayerByName(String name) {
+        String steamAccountId = pubgApiClient.getAccountIdByName(Platform.STEAM, name);
+        //String kakaoAccountId = pubgApiClient.getAccountIdByName(Platform.KAKAO, name);
+        if (steamAccountId != null) {
+            return pubgApiClient.getPlayer(Platform.STEAM, steamAccountId);
+        }
+        /*
+        if (kakaoAccountId != null) {
+            return pubgApiClient.getPlayer(Platform.KAKAO, kakaoAccountId);
+        }
+        */
+
+        return null;
+    }
     private String getCurrentSeasonId(Platform platform) {
         try {
             return pubgApiClient.getCurrentSeason(platform).getId();
@@ -35,4 +59,5 @@ public class PubgService {
             return null;
         }
     }
+
 }

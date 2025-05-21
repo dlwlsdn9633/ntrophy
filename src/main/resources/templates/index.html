@@ -58,16 +58,19 @@
             <div class="mv_logo">
               <img src="/img/mv_logo.png" alt="" />
             </div>
-            <div class="mv_search_box">
-              <input
-                type="text"
-                placeholder="배틀그라운드 닉네임을 입력해주세요."
-                maxlength="17"
-              />
-              <div class="search_icon_box">
-                <img src="/img/search_icon.png" alt="" />
+            <form action="/search" method="get">
+              <div class="mv_search_box">
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="배틀그라운드 닉네임을 입력해주세요."
+                    maxlength="17"
+                  />
+                <div class="search_icon_box">
+                  <img src="/img/search_icon.png" alt="" />
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

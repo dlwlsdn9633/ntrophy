@@ -37,4 +37,7 @@ public class PubgApiClient {
     public SeasonDto getCurrentSeason(Platform platform) {
         return seasonService.getCurrentSeason(platform);
     }
+    public PlayerDto getPlayerBySeasonId(Platform platform, String accountId, String seasonId) {
+        return playerService.getPlayerBySeasonId(platform, accountId, seasonId);
+    }
 }

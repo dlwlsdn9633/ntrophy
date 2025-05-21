@@ -13,4 +13,5 @@ public class PlayerAttributes {
     private String banType;
     private String titleId;
     private String clanId;
+    private RankedGameModeStats rankedGameModeStats;
 }

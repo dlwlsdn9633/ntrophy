@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -80,7 +80,7 @@
                 <div class="personal_info_box">
                   <div class="per_info_top">
                     <div class="per_info_id">
-                      <h2>QwerAsdf</h2>
+                      <h2 th:text="${player.name}">QwerAsdf</h2>
                       <p class="mt10">최근 업데이트: <span>1</span> 시간 전</p>
                     </div>
                     <div class="per_icon_box">
@@ -146,17 +146,15 @@
                       </div>
                       <div class="compet_info_yo">
                         <div class="rp_box">
-                          <h2>5,000 RP</h2>
+                          <h2 ><span th:text="${player.playerRankSquad.currentRankPoint}">5,000</span> RP</h2>
                         </div>
                         <div class="rank_bar_box">
                           <div class="rank-bar_yo" id="rankBar">
                             <div class="rank-bar-header_yo">
                               <span class="tier_yo" id="tierLabel"
-                                >Master 1</span
+                                ><span th:text="${player.playerRankSquad.tier}">Master</span> <span th:text="${player.playerRankSquad.subTier}">1</span></span
                               >
-                              <span class="percent_yo" id="rankPercentText"
-                                >1위 (상위 0.0001%)</span
-                              >
+                              <span class="percent_yo" id="rankPercentText" th:text="${player.playerRankSquad.avgRank}">4위 (상위 0.0001%)</span>
                             </div>
                             <div class="progress-bg_yo">
                               <div
@@ -171,41 +169,41 @@
                     <div class="competition_middle">
                       <div class="comp_three_info">
                         <p>KDA</p>
-                        <span>10.00</span>
+                        <span th:text="${player.playerRankSquad.kda}">10.00</span>
                       </div>
                       <div class="comp_three_info">
                         <p>승률</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerRankSquad.winRatio}">100%</span>
                       </div>
                       <div class="comp_three_info">
                         <p>Top10</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerRankSquad.top10Ratio}">100%</span>
                       </div>
                     </div>
                     <div class="competition_bottom">
                       <div class="comp_two_box">
                         <p>평균 딜량</p>
-                        <span>100</span>
+                        <span th:text="${player.playerRankSquad.avgDamageDealt}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>최다 킬 수</p>
-                        <span>100</span>
+                        <p>킬수</p>
+                        <span th:text="${player.playerRankSquad.kills}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>게임 수</p>
-                        <span>100</span>
+                        <span th:text="${player.playerRankSquad.roundsPlayed}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>헤드샷</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerRankSquad.headshotKillRatio}">100%</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>생존</p>
-                        <span>100분</span>
+                        <p>승리</p>
+                        <span th:text="${player.playerRankSquad.wins}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>저격</p>
-                        <span>100m</span>
+                        <p>최대 저격</p>
+                        <span th:text="${player.playerRankSquad.longestKill}">100m</span>
                       </div>
                     </div>
                   </div>
@@ -923,11 +921,13 @@
   }
 
   // 예시 호출
+  /*
   updateRankBar({
     tier: "Master 1",
     rankText: "1위 (상위 0.0001%)",
     percent: 92.5,
   });
+  */
 </script>
 
 <!-- 매치 히스토리 아코디언 스크립트 -->
