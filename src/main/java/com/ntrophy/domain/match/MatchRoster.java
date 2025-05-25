@@ -9,12 +9,13 @@ import java.util.List;
 
 @Data
 @Builder
-@AllArgsConstructor
 @RequiredArgsConstructor
-public class Match {
-    private String type;
+@AllArgsConstructor
+public class MatchRoster {
     private String id;
-    private MatchAttribute matchAttribute;
-    private List<MatchRoster> rosters;
-
+    private int rank;
+    private int teamId;
+    private boolean won;
+    private String shardId;
+    private List<MatchParticipant> participants;
 }

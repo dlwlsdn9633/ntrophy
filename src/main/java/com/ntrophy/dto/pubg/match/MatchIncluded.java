@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MatchDto {
-    String type;
-    String id;
-    MatchAttributes attributes;
-    MatchRelationships relationships;
+public class MatchIncluded {
+    private String type;
+    private String id;
+    private MatchAttributes attributes;
+    private MatchRelationships relationships;
 }

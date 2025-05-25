@@ -5,9 +5,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MatchDto {
-    String type;
-    String id;
-    MatchAttributes attributes;
-    MatchRelationships relationships;
+public class MatchRelationships {
+    private MatchRosters rosters;
+    private MatchTeam team;
+    private MatchParticipants participants;
 }

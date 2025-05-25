@@ -1,6 +1,6 @@
 package com.ntrophy.config;
 
-import com.ntrophy.converter.SeasonInfoToRankSquad;
+import com.ntrophy.converter.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -20,5 +20,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         // 컨버터 등록
         registry.addConverter(new SeasonInfoToRankSquad());
+        registry.addConverter(new SeasonInfoToSquad());
+        registry.addConverter(new SeasonInfoToDuo());
+        registry.addConverter(new SeasonInfoToSolo());
+        registry.addConverter(new MatchResponseDtoToMatch());
+        registry.addConverter(new SeasonDtoToSeason());
     }
 }

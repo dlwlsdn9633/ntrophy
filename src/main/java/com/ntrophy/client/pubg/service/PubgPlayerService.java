@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PlayerService {
+public class PubgPlayerService {
     private final PubgApiRequester requester;
     public PlayerDto getPlayer(Platform platform, String accountId) {
         try {
@@ -24,7 +24,7 @@ public class PlayerService {
             return null;
         }
     }
-    public PlayerDto getPlayerBySeasonId(Platform platform, String accountId, String seasonId) {
+    public PlayerDto getPlayerBySeasonIdRank(Platform platform, String accountId, String seasonId) {
         try {
             String uri = String.format("/shards/%s/players/%s/seasons/%s/ranked", platform.getLabel(), accountId, seasonId);
             PlayerResponseDto response = requester.get(uri, PlayerResponseDto.class);
@@ -34,6 +34,18 @@ public class PlayerService {
             return null;
         }
     }
+    public PlayerDto getPlayerBySeasonId(Platform platform, String accountId, String seasonId) {
+        try {
+            String uri = String.format("/shards/%s/players/%s/seasons/%s", platform.getLabel(), accountId, seasonId);
+            PlayerResponseDto response = requester.get(uri, PlayerResponseDto.class);
+
+            return response.getData();
+        } catch (Exception e) {
+            log.error("Failed To Fetch Player Data", e);
+            return null;
+        }
+    }
+
     public String getAccountIdByName(Platform platform, String name) {
         try {
             String uri = String.format("/shards/%s/players?filter[playerNames]=%s", platform.getLabel(), name);

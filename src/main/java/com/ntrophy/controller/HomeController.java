@@ -32,23 +32,33 @@ public class HomeController {
                 GameMode.SQUAD,
                 HOME_LEADERBOARD_TOTAL_NUMBER
         );
+        Callable<List<PlayerDto>> steamFppTask = () -> pubgService.getTopNPlayers(
+                PlatformRegion.PC_AS,
+                Platform.STEAM,
+                GameMode.SQUAD_FPP,
+                HOME_LEADERBOARD_TOTAL_NUMBER
+        );
         Callable<List<PlayerDto>> kakaoTask = () -> pubgService.getTopNPlayers(
                 PlatformRegion.PC_KAKAO,
                 Platform.KAKAO,
                 GameMode.SQUAD,
                 HOME_LEADERBOARD_TOTAL_NUMBER
         );
+
         List<Future<List<PlayerDto>>> futures = null;
         try {
-            List<Callable<List<PlayerDto>>> tasks = List.of(steamTask, kakaoTask);
+            List<Callable<List<PlayerDto>>> tasks = List.of(steamTask, kakaoTask, steamFppTask);
             futures = executorService.invokeAll(tasks);
             // 결과를 모델에 담기
             model.addAttribute("steamPlayerList", futures.get(0).get());
             model.addAttribute("kakaoPlayerList", futures.get(1).get());
+            model.addAttribute("steamFppPlayerList", futures.get(2).get());
+
         } catch (InterruptedException | ExecutionException e) {
             log.error("Error Fetching PUBG Player Data", e);
             model.addAttribute("steamPlayerList", List.of());
             model.addAttribute("kakaoPlayerList", List.of());
+            model.addAttribute("steamFppPlayerList", List.of());
         } finally {
             executorService.shutdown();
         }
@@ -94,9 +104,11 @@ public class HomeController {
     @GetMapping("/search")
     public String search(@RequestParam("name") String name) {
         PlayerDto player = pubgService.getPlayerByName(name);
-        if (player != null) {
-            return "redirect:/member/record/" + player.getId();
+        try {
+            Platform platform = Platform.fromLabel(player.getAttributes().getShardId());
+            return "redirect:/member/record/" + player.getId() + "/" + platform.getLabel();
+        } catch (Exception e) {
+            return "redirect:/";
         }
-        return "redirect:/";
     }
 }

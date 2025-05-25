@@ -22,34 +22,11 @@
   </head>
   <body class="main">
     <div id="wrap">
-      <!--%@ include file="/include/header.jsp" %-->
-      <!--%@ include file="/include/main_visual.jsp" %-->
+
 
       <!-- header -->
-      <header>
-        <div class="inner">
-          <div class="h_logo">
-            <a href="/">
-              <img src="/img/logo.png" alt="" />
-            </a>
-          </div>
-          <div class="gnb">
-            <ul>
-              <li>
-                <a href="/subPage/leaderboard/index.html">리더보드</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li>
-                <a href="javascript:;">리그</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li class="active">
-                <a href="/subPage/notice/index.html">게시판</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+      <div th:replace="~{fragments/header :: siteHeader}"></div>
+
 
       <!-- top ad -->
       <div class="top_ad">
@@ -119,15 +96,16 @@
           </div>
 
           <!-- 개인전적 탭 -->
+
           <div class="sub_page_tab_box mt70">
-            <div class="tab_one_yo active">
+            <div class="tab_one_yo active" id="overviewBtn">
               <p>Overview</p>
             </div>
-            <div class="tab_one_yo">
+            <div class="tab_one_yo" id="matchHistoryBtn">
               <p>Match History</p>
             </div>
           </div>
-
+          <section id="career_section">
           <!-- 경쟁전 스쿼드, 경쟁전 솔로 -->
           <div class="steam_kakao_box mt20">
             <ul class="item02">
@@ -282,42 +260,42 @@
                   <div class="competition_box_yo">
                     <div class="competition_middle">
                       <div class="comp_three_info">
-                        <p>KDA</p>
-                        <span>10.00</span>
+                        <p>KD</p>
+                        <span th:text="${player.playerSolo.kd}">10.00</span>
                       </div>
                       <div class="comp_three_info">
                         <p>승률</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerSolo.winsRatio}">100%</span>
                       </div>
                       <div class="comp_three_info">
                         <p>Top10</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerSolo.top10Ratio}">100%</span>
                       </div>
                     </div>
                     <div class="competition_bottom">
                       <div class="comp_two_box">
                         <p>평균 딜량</p>
-                        <span>100</span>
+                        <span th:text="${player.playerSolo.avgDamageDealt}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>최다 킬 수</p>
-                        <span>100</span>
+                        <p>킬 수</p>
+                        <span th:text="${player.playerSolo.kills}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>게임 수</p>
-                        <span>100</span>
+                        <span th:text="${player.playerSolo.roundsPlayed}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>헤드샷</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerSolo.headshotKillsRatio}">100%</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>생존</p>
-                        <span>100분</span>
+                        <p>생존 시간</p>
+                        <span th:text="${player.playerSolo.longestTimeSurvived}">100분</span>
                       </div>
                       <div class="comp_two_box">
                         <p>저격</p>
-                        <span>100m</span>
+                        <span th:text="${player.playerSolo.longestKill}">100m</span>
                       </div>
                     </div>
                   </div>
@@ -333,42 +311,42 @@
                   <div class="competition_box_yo">
                     <div class="competition_middle">
                       <div class="comp_three_info">
-                        <p>KDA</p>
-                        <span>10.00</span>
+                        <p>KD</p>
+                        <span th:text="${player.playerDuo.kd}">10.00</span>
                       </div>
                       <div class="comp_three_info">
                         <p>승률</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerDuo.winsRatio}">100%</span>
                       </div>
                       <div class="comp_three_info">
                         <p>Top10</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerDuo.top10Ratio}">100%</span>
                       </div>
                     </div>
                     <div class="competition_bottom">
                       <div class="comp_two_box">
                         <p>평균 딜량</p>
-                        <span>100</span>
+                        <span th:text="${player.playerDuo.avgDamageDealt}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>최다 킬 수</p>
-                        <span>100</span>
+                        <p>킬 수</p>
+                        <span th:text="${player.playerDuo.kills}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>게임 수</p>
-                        <span>100</span>
+                        <span th:text="${player.playerDuo.roundsPlayed}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>헤드샷</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerDuo.headshotKillsRatio}">100%</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>생존</p>
-                        <span>100분</span>
+                        <p>생존 시간</p>
+                        <span th:text="${player.playerDuo.longestTimeSurvived}">100분</span>
                       </div>
                       <div class="comp_two_box">
                         <p>저격</p>
-                        <span>100m</span>
+                        <span th:text="${player.playerDuo.longestKill}">100m</span>
                       </div>
                     </div>
                   </div>
@@ -384,42 +362,42 @@
                   <div class="competition_box_yo">
                     <div class="competition_middle">
                       <div class="comp_three_info">
-                        <p>KDA</p>
-                        <span>10.00</span>
+                        <p>KD</p>
+                        <span th:text="${player.playerSquad.kd}">10.00</span>
                       </div>
                       <div class="comp_three_info">
                         <p>승률</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerSquad.winsRatio}">100%</span>
                       </div>
                       <div class="comp_three_info">
                         <p>Top10</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerSquad.top10Ratio}">100%</span>
                       </div>
                     </div>
                     <div class="competition_bottom">
                       <div class="comp_two_box">
                         <p>평균 딜량</p>
-                        <span>100</span>
+                        <span th:text="${player.playerSquad.avgDamageDealt}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>최다 킬 수</p>
-                        <span>100</span>
+                        <p>킬 수</p>
+                        <span th:text="${player.playerSquad.kills}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>게임 수</p>
-                        <span>100</span>
+                        <span th:text="${player.playerSquad.roundsPlayed}">100</span>
                       </div>
                       <div class="comp_two_box">
                         <p>헤드샷</p>
-                        <span>100%</span>
+                        <span th:text="${player.playerSquad.headshotKillsRatio}">100%</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>생존</p>
-                        <span>100분</span>
+                        <p>생존 시간</p>
+                        <span th:text="${player.playerSquad.longestTimeSurvived}">100분</span>
                       </div>
                       <div class="comp_two_box">
                         <p>저격</p>
-                        <span>100m</span>
+                        <span th:text="${player.playerSquad.longestKill}">100m</span>
                       </div>
                     </div>
                   </div>
@@ -427,12 +405,14 @@
               </li>
             </ul>
           </div>
-
+          </section>
           <!-- 중간광고 -->
           <div class="notice_view_ad mt70">
             <h2>광고</h2>
           </div>
 
+
+          <section id="match_history_section" style="display: none;">
           <!-- 매치 히스토리 -->
           <div class="pyo_sub_tit_box community mt70">
             <div class="pyo_tit">
@@ -441,7 +421,11 @@
           </div>
           <!-- 매치 히스토리 컨텐츠 -->
           <div class="match-list_yo">
-            <div class="match-item_yo">
+
+
+
+
+            <div th:each="match : ${matchList}" class="match-item_yo">
               <div class="match-summary_yo">
                 <div class="match_left_wrapper">
                   <div class="match_his_bar"></div>
@@ -497,6 +481,10 @@
                   </button>
                 </div>
               </div>
+
+
+
+
               <!-- 매치 히스토리 상세 -->
               <div class="match-detail_yo">
                 <!-- 팀 전적, 전체 순위 탭 -->
@@ -522,6 +510,8 @@
                       <p>팀 요약</p>
                     </div>
                     <!-- 팀 요약 -->
+
+
                     <div class="match-summary_yo detail_custom">
                       <div class="match_left_wrapper">
                         <div class="match_his_bar"></div>
@@ -643,6 +633,8 @@
                         <div class="cell_yo" data-label="생존시간">11:00</div>
                       </div>
                     </div>
+
+
                   </div>
                   <!-- 전체 순위 -->
                   <div
@@ -854,9 +846,15 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
 
+
+
+
+            </div>
+
+
+          </div>
+          </section>
           <!-- 불러오기 버튼 -->
           <div class="call_btn mt35">
             <a href="javascript:;">
@@ -906,28 +904,44 @@
 
 <!-- 랭크바 스크립트 -->
 <script>
-  function updateRankBar({ tier, rankText, percent }) {
-    const tierLabel = document.getElementById("tierLabel");
-    const rankPercentText = document.getElementById("rankPercentText");
-    const progressFill = document.getElementById("progressFill");
+  const overviewBtn = document.getElementById("overviewBtn");
+  const matchHistoryBtn = document.getElementById("matchHistoryBtn");
+  const careerSection = document.getElementById("career_section");
+  const matchHistorySection = document.getElementById("match_history_section");
 
-    // 텍스트 업데이트
-    tierLabel.textContent = tier;
-    rankPercentText.textContent = rankText;
+      overviewBtn.addEventListener("click", () => {
+      careerSection.style.display = "block";
+      matchHistorySection.style.display = "none";
+    });
 
-    // 진행 바 채우기
-    const clampedPercent = Math.max(0, Math.min(percent, 100)); // 0~100 사이 보장
-    progressFill.style.width = clampedPercent + "%";
-  }
+    matchHistoryBtn.addEventListener("click", () => {
+      careerSection.style.display = "none";
+      matchHistorySection.style.display = "block";
+    });
 
-  // 예시 호출
-  /*
-  updateRankBar({
-    tier: "Master 1",
-    rankText: "1위 (상위 0.0001%)",
-    percent: 92.5,
-  });
-  */
+
+function updateRankBar({ tier, rankText, percent }) {
+  const tierLabel = document.getElementById("tierLabel");
+  const rankPercentText = document.getElementById("rankPercentText");
+  const progressFill = document.getElementById("progressFill");
+
+  // 텍스트 업데이트
+  tierLabel.textContent = tier;
+  rankPercentText.textContent = rankText;
+
+  // 진행 바 채우기
+  const clampedPercent = Math.max(0, Math.min(percent, 100)); // 0~100 사이 보장
+  progressFill.style.width = clampedPercent + "%";
+}
+
+// 예시 호출
+/*
+updateRankBar({
+  tier: "Master 1",
+  rankText: "1위 (상위 0.0001%)",
+  percent: 92.5,
+});
+*/
 </script>
 
 <!-- 매치 히스토리 아코디언 스크립트 -->

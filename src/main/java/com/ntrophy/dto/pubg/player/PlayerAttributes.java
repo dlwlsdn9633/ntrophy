@@ -14,4 +14,5 @@ public class PlayerAttributes {
     private String titleId;
     private String clanId;
     private RankedGameModeStats rankedGameModeStats;
+    private GameModeStats gameModeStats;
 }

@@ -5,7 +5,11 @@ public class Function {
         return (str == null) ? "" : str;
     }
     public static double getRoundedDouble(double number) {
-        return Math.round(number * 100.0) / 100.0;
+        try {
+            return Math.round(number * 100.0) / 100.0;
+        } catch (Exception e) {
+            return 0.0;
+        }
     }
 
 }

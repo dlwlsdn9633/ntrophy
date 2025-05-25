@@ -9,8 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class Player {
     private int id;
     private String name;
     private PlayerRankSquad playerRankSquad;
+    private PlayerSquad playerSquad;
+    private PlayerDuo playerDuo;
+    private PlayerSolo playerSolo;
+
 }

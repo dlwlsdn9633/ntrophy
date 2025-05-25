@@ -8,10 +8,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SeasonService {
+public class PubgSeasonService {
     private final PubgApiRequester requester;
     public SeasonDto getCurrentSeason(Platform platform) {
         try {
@@ -24,6 +27,17 @@ public class SeasonService {
         } catch (Exception e) {
             log.error("Failed To Fetch Season Data", e);
             return null;
+        }
+    }
+
+    public List<SeasonDto> getSeasonList(Platform platform) {
+        try {
+            String uri = String.format("/shards/%s/seasons", platform.getLabel());
+            SeasonResponseDto response = requester.get(uri, SeasonResponseDto.class);
+            return response.getData();
+        } catch (Exception e) {
+            log.error("Failed To Fetch Season Data ", e);
+            return new ArrayList<>();
         }
     }
 }
