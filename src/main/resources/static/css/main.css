@@ -19,7 +19,7 @@ body {
 /* main_visual */
 .mv_box {
   aspect-ratio: 1 / 0.42840909;
-  background-color: bisque;
+  background: url("/img/mv_img01.jpg") no-repeat center / cover;
   position: relative;
 }
 
