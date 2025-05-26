@@ -128,11 +128,27 @@
   gap: 15px;
 }
 
+.br_mb_only {
+  display: none;
+}
+
+.br_pc_only {
+  display: block;
+}
+
 @media all and (max-width: 768px) {
   /* .tab_one_yo {
     height: 35px;
     width: 150px;
   } */
+  .br_mb_only {
+    display: block;
+  }
+
+  .br_pc_only {
+    display: none;
+  }
+
   .sub_page_tit_box h2 {
     font-size: 30px;
   }
@@ -799,6 +815,22 @@
   flex-wrap: wrap;
   width: 100%;
   border-bottom: 1px solid #25282c;
+}
+.competition_middle.no_data {
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  color: #8c9498;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  border-right: 1px solid #25282c;
+  border-left: 1px solid #25282c;
 }
 .comp_three_info {
   width: 33.333%;
@@ -1622,7 +1654,7 @@
 
 .mem_ber_input label {
   display: flex;
-  gap: 9px;
+  gap: 10px;
   flex-direction: column;
 }
 
@@ -1711,7 +1743,7 @@
 .birth_select_box {
   display: flex;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .birth_select {
@@ -2066,5 +2098,272 @@
   .clan_name_btn_group a,
   .clan_record_side {
     width: 100%;
+  }
+}
+
+/* admin 페이지 */
+.admin_box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 72px 144px;
+}
+
+.admin_input_yo {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+}
+
+.admin_tit h2 {
+  color: #fff;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 27px */
+  text-transform: uppercase;
+}
+
+.admin_tit {
+  width: 100px;
+}
+.admin_btn {
+  width: 110px;
+  margin-top: auto;
+}
+.admin_btn button {
+  height: 36px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #8c9498;
+  background: rgba(140, 148, 152, 0.2);
+  color: #fefdfe;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.admin_input_group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  /* width: 466px; */
+  flex: 1;
+}
+.admin_input_group input {
+  border-radius: 6px;
+  border: 1px solid #8c9498;
+  background: #101115;
+  width: 100%;
+  height: 36px;
+  padding: 0 18px;
+  outline: unset;
+}
+
+.admin_input_group label p {
+  color: #fefdfe;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  margin-bottom: 9px;
+}
+
+.admin_delete .admin_tit {
+  width: auto;
+}
+
+.admin_delete .admin_input_group input {
+  width: 100%;
+}
+.admin_tit span {
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  text-transform: uppercase;
+}
+
+.admin_delete .admin_tit {
+  display: flex;
+  gap: 5px;
+}
+.admin_delete {
+  width: 100%;
+}
+.gap_wrapper {
+  margin: 60px 0;
+}
+
+@media (max-width: 1000px) {
+  .admin_box {
+    padding: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin_box {
+    padding: 36px 18px;
+  }
+  .admin_input_yo {
+    flex-direction: column;
+  }
+  .admin_btn {
+    margin-left: auto;
+  }
+  .admin_tit {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* 검색결과 없음 페이지 */
+.no_search_box {
+  padding: 72px 144px;
+}
+
+.no_search_box p {
+  color: #fefdfe;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 32.4px */
+  text-transform: uppercase;
+}
+.no_search_box p span {
+  color: #5c83ff;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 180%;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .no_search_box {
+    padding: 36px 18px;
+  }
+}
+
+/* 클랜 등록 페이지 */
+.clan_record_name_box .mem_ber_input {
+  width: 100%;
+}
+
+.input_double_box {
+  display: flex;
+  width: 100%;
+  gap: 54px;
+}
+
+.gray_b {
+  color: #919191;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+#clan_mark,
+#clan_regi01,
+#clan_regi02,
+#clan_regi03 {
+  height: 100%;
+  padding: 18px;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  cursor: pointer;
+}
+
+.mark_box {
+  width: 100%;
+  position: relative;
+}
+
+.add_icon_yo {
+  position: absolute;
+  right: 46px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 33;
+  align-items: center;
+  display: flex;
+}
+.delete_icon_yo {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 33;
+  align-items: center;
+  display: flex;
+}
+
+.check_icon_yo {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 33;
+  align-items: center;
+  display: flex;
+}
+
+.clan_regi_check {
+  width: 90%;
+  position: relative;
+}
+
+.call_btn.cancel a {
+  border-radius: 6px;
+  border: 1px solid #25282c;
+  background: #13161a;
+}
+
+@media (max-width: 1000px) {
+  .input_double_box {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .clan_ragi_box_yo .clan_record_name_box {
+    padding: 18px 9px;
+  }
+  .mark_box.ragi .add_icon_yo {
+    right: 30px;
+  }
+  .mark_box.ragi .delete_icon_yo {
+    right: 0;
+  }
+  .mark_box.ragi .clan_regi_check input {
+    font-size: 14px;
+  }
+  #clan_mark {
+    font-size: 15px;
+  }
+  .clan_ragi_box_yo .mem_ber_input p,
+  .clan_ragi_box_yo .mem_ber_input p b {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 850px) {
+  .clan_regi_check {
+    width: 85%;
+  }
+}
+
+@media (max-width: 600px) {
+  .clan_regi_check {
+    width: 80%;
   }
 }
