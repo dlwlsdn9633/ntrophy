@@ -71,10 +71,17 @@
                   </div>
                   <div class="per_info_bottom">
                     <div class="per_select_wrapper">
-                      <select class="dat_select_yo persnonal_select">
+                      <select class="dat_select_yo persnonal_select" onchange="onChangeSeason(event, this);">
+                        <th:block th:each="season : ${seasonList}">
+                          <option th:value="${season.id}"
+                                  th:text="'경쟁전 시즌 ' + ${T(com.ntrophy.domain.season.Season).getSeasonNumber(season.id)}"
+                                  >경쟁전 시즌</option>
+                        </th:block>
+                        <!--
                         <option>경쟁전 시즌10</option>
                         <option>경쟁전 시즌9</option>
                         <option>경쟁전 시즌8</option>
+                        -->
                       </select>
                       <div class="fpp_check_box">
                         <label for="personal_fpp">
@@ -875,6 +882,15 @@
 
 <!-- 양 사이드 광고 높이 조정 스크립트 -->
 <script>
+
+  function onChangeSeason(event, obj) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    console.log(event.target.value);
+
+  }
+
   window.addEventListener("scroll", () => {
     const container = document.querySelector(".container");
     const ads = document.querySelectorAll(".ad");
@@ -904,6 +920,8 @@
 
 <!-- 랭크바 스크립트 -->
 <script>
+
+
   const overviewBtn = document.getElementById("overviewBtn");
   const matchHistoryBtn = document.getElementById("matchHistoryBtn");
   const careerSection = document.getElementById("career_section");
