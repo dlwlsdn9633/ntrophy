@@ -46,63 +46,66 @@
             <div class="tit_line"></div>
           </div>
           <!-- 게시판 탭 -->
-          <div class="sub_page_tab_box tab_flex max_width_unset mt70">
-            <div class="tab_one_yo active">
-              <p>STEAM</p>
-            </div>
-            <div class="tab_one_yo">
-              <p>KAKAO</p>
-            </div>
-            <div class="tab_one_yo">
-              <p>Broadcasts</p>
-            </div>
-            <div class="tab_one_yo">
-              <p>Match History</p>
-            </div>
-          </div>
-          <!-- 커뮤니티 게시판 상세 -->
-          <!-- 게시물 -->
-          <div class="notice_view_box mt35">
-            <div class="notice_txt_box">
-              <div class="notice_write_tit_box">
-                <input type="text" placeholder="제목을 입력해주세요." />
+          <form method="post" action="/notice/write">
+            <div class="sub_page_tab_box tab_flex max_width_unset mt70">
+              <div class="tab_one_yo active">
+                <p>STEAM</p>
               </div>
-              <div class="notice_editor_box">
-                <textarea
-                  name=""
-                  id=""
-                  placeholder="내용을 입력해주세요."
-                  style="
-                    height: 280px;
-                    padding: 18px;
-                    border-radius: 6px;
-                    border: 1px solid #25282c;
-                    background: #101115;
-                    color: #8c9498;
-                    outline: unset;
-                    font-family: Sansation;
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 180%; /* 32.4px */
-                    text-transform: capitalize;
-                  "
-                ></textarea>
-                <!-- 게시글 비밀번호 입력 -->
-                <div class="board_pw_box mt25">
-                  <p>게시글 비밀번호</p>
-                  <input type="password" />
+              <div class="tab_one_yo">
+                <p>KAKAO</p>
+              </div>
+              <div class="tab_one_yo">
+                <p>Broadcasts</p>
+              </div>
+              <div class="tab_one_yo">
+                <p>Match History</p>
+              </div>
+            </div>
+            <!-- 커뮤니티 게시판 상세 -->
+            <!-- 게시물 -->
+            <div class="notice_view_box mt35">
+              <div class="notice_txt_box">
+                <div class="notice_write_tit_box">
+                  <input type="text" placeholder="제목을 입력해주세요." name="title" />
+                </div>
+                <div class="notice_editor_box">
+                  <textarea
+                    name="contents"
+                    id=""
+                    placeholder="내용을 입력해주세요."
+                    style="
+                      height: 280px;
+                      padding: 18px;
+                      border-radius: 6px;
+                      border: 1px solid #25282c;
+                      background: #101115;
+                      color: #8c9498;
+                      outline: unset;
+                      font-family: Sansation;
+                      font-size: 18px;
+                      font-style: normal;
+                      font-weight: 400;
+                      line-height: 180%; /* 32.4px */
+                      text-transform: capitalize;
+                    "
+                  ></textarea>
+                  <!-- 게시글 비밀번호 입력 -->
+                  <div class="board_pw_box mt25">
+                    <p>게시글 비밀번호</p>
+                    <input type="password" name="password" />
+                  </div>
+                </div>
+                <!-- 이전, 등록 버튼 -->
+                <div class="notice_btn_group mt70 mb35">
+                  <div class="notice_btn">
+                    <button>이전</button>
+                    <button type="submit" class="blue_btn_yo">등록</button>
+                  </div>
                 </div>
               </div>
-              <!-- 이전, 등록 버튼 -->
-              <div class="notice_btn_group mt70 mb35">
-                <div class="notice_btn">
-                  <button>이전</button>
-                  <button class="blue_btn_yo">등록</button>
-                </div>
-              </div>
             </div>
-          </div>
+            <input type="hidden" name="postType" value="1" />
+          </form>
           <!-- 게시판 상세 중간광고 -->
           <div class="notice_view_ad mt70">
             <h2>광고</h2>
