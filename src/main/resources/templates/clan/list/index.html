@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fighting</title>
+
+    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="/css/content.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="main">
+    <div id="wrap">
+      <!--%@ include file="/include/header.jsp" %-->
+      <!--%@ include file="/include/main_visual.jsp" %-->
+
+      <!-- header -->
+      <header>
+        <div class="inner">
+          <div class="h_logo">
+            <a href="/">
+              <img src="/img/logo.png" alt="" />
+            </a>
+          </div>
+          <div class="gnb">
+            <ul>
+              <li>
+                <a href="/subPage/leaderboard/index.html">리더보드</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="javascript:;">리그</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li class="active">
+                <a href="/subPage/notice/index.html">게시판</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- top ad -->
+      <div class="top_ad">
+        <h2>상단 광고</h2>
+      </div>
+
+      <!-- main container -->
+      <div class="container mt70">
+        <!-- left ad -->
+        <div class="ad-left">
+          <h2>왼쪽 광고</h2>
+        </div>
+        <!-- main center -->
+        <div class="main-content">
+          <!-- 메인 제목 (클랜 리스트)-->
+          <div class="sub_page_tit_box">
+            <h2>CLAN LIST</h2>
+            <div class="tit_line"></div>
+          </div>
+          <!-- 클랜 리스트 상단 -->
+          <div class="clan_list_box mt50">
+            <ul>
+              <li>
+                <div class="clan_list_yo">
+                  <div class="clan_top_img">
+                    <img src="/img/clan_img01.png" alt="" />
+                  </div>
+                  <div class="clan_info">
+                    <p class="clan_name">test clan name</p>
+                    <p class="clan_info_yo">상세내용</p>
+                  </div>
+                  <div class="discord_btn">
+                    <a href="javascript:;">
+                      <p>디스코드 바로가기</p>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="clan_list_yo">
+                  <div class="clan_top_img">
+                    <img src="/img/clan_img02.png" alt="" />
+                  </div>
+                  <div class="clan_info">
+                    <p class="clan_name">test clan name</p>
+                    <p class="clan_info_yo">상세내용</p>
+                  </div>
+                  <div class="discord_btn">
+                    <a href="javascript:;">
+                      <p>디스코드 바로가기</p>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="clan_list_yo">
+                  <div class="clan_top_img">
+                    <img src="/img/clan_img03.png" alt="" />
+                  </div>
+                  <div class="clan_info">
+                    <p class="clan_name">test clan name</p>
+                    <p class="clan_info_yo">상세내용</p>
+                  </div>
+                  <div class="discord_btn">
+                    <a href="javascript:;">
+                      <p>디스코드 바로가기</p>
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- 중간광고 -->
+          <div class="notice_view_ad mt25">
+            <h2>광고</h2>
+          </div>
+          <!-- 클랜 검색창 -->
+          <div class="clan_search_group mt25">
+            <!-- 검색창 -->
+            <div class="search-bar_yo clan_search_custom">
+              <input
+                type="text"
+                class="search-input_yo"
+                placeholder="클랜검색"
+              />
+              <button class="search-btn_yo">
+                <img src="/img/search_icon_white.png" alt="" />
+              </button>
+            </div>
+
+            <!-- 클랜 버튼 -->
+            <div class="notice_btn_group clan_btn_custom">
+              <div class="notice_btn">
+                <button>내 클랜</button>
+                <button class="blue_btn_yo">클랜 등록하기</button>
+              </div>
+            </div>
+          </div>
+          <!-- 클랜 리스트 -->
+          <div class="match-list_yo clan_yo mt25">
+            <div class="match-item_yo">
+              <div class="match-summary_yo">
+                <div class="match_left_wrapper">
+                  <div class="match_his_bar"></div>
+                  <div class="match-info-left_yo">
+                    <div class="clan_list_logo">
+                      <img src="/img/clan_logo.png" alt="" />
+                    </div>
+                  </div>
+
+                  <div class="match-info-center_yo">
+                    <span class="of_yo">클랜이름</span>
+                  </div>
+                </div>
+                <div class="match-info-right_yo">
+                  <div class="match-stats_yo">
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">클랜모집</div>
+                      <div class="stat-label_yo">avg 450+</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">플랫폼</div>
+                      <div class="stat-label_yo">스팀</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">평균딜량</div>
+                      <div class="stat-label_yo">500</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">인원수</div>
+                      <div class="stat-label_yo">22</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">게임모드</div>
+                      <div class="stat-label_yo">경쟁전</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">클랜마스터</div>
+                      <div class="stat-label_yo">이진우</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="toggle_btn_box">
+                  <button class="toggle-button_yo">
+                    <img
+                      src="/img/link_arrow.png"
+                      alt="화살표"
+                      class="arrow-icon_yo"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="match-item_yo">
+              <div class="match-summary_yo">
+                <div class="match_left_wrapper">
+                  <div class="match_his_bar"></div>
+                  <div class="match-info-left_yo">
+                    <div class="clan_list_logo">
+                      <img src="/img/clan_logo.png" alt="" />
+                    </div>
+                  </div>
+
+                  <div class="match-info-center_yo">
+                    <span class="of_yo">클랜이름</span>
+                  </div>
+                </div>
+                <div class="match-info-right_yo">
+                  <div class="match-stats_yo">
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">클랜모집</div>
+                      <div class="stat-label_yo">추천제</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">플랫폼</div>
+                      <div class="stat-label_yo">스팀</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">평균딜량</div>
+                      <div class="stat-label_yo">200</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">인원수</div>
+                      <div class="stat-label_yo">7</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">게임모드</div>
+                      <div class="stat-label_yo">일반전</div>
+                    </div>
+                    <div class="stat-block_yo">
+                      <div class="stat-value_yo">클랜마스터</div>
+                      <div class="stat-label_yo">이진우</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="toggle_btn_box">
+                  <button class="toggle-button_yo">
+                    <img
+                      src="/img/link_arrow.png"
+                      alt="화살표"
+                      class="arrow-icon_yo"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 페이지네이션 -->
+          <div class="pagination_yo mt40">
+            <button class="arrow_yo prev_yo" aria-label="이전 페이지">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+                <path
+                  d="M7 1L1 7L7 13"
+                  stroke="#4B6EFF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <ul class="page-list_yo"></ul>
+            <button class="arrow_yo next_yo" aria-label="다음 페이지">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+                <path
+                  d="M1 1L7 7L1 13"
+                  stroke="#4B6EFF"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- right ad -->
+        <div class="ad-right">
+          <h2>오른쪽 광고</h2>
+        </div>
+      </div>
+      <!-- 푸터 -->
+      <footer id="footer">
+        <div class="footer_top">
+          <div class="inner">
+            <div class="footer_menu_box">
+              <div class="footer_menu">
+                <a href="/subPage/member/agree.html">이용약관</a>
+              </div>
+              <div class="header_bar">|</div>
+              <div class="footer_menu">
+                <a href="/subPage/member/policy.html">개인정보처리방침</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer_bottom">
+          <div class="inner">
+            <div class="footer_side">
+              <img src="/img/footer_logo.png" alt="" />
+            </div>
+            <div class="footer_side right">
+              <div class="footer_info_box">
+                <div class="footer_info_yo">
+                  <img src="/img/footer_icon01.png" alt="" />
+                  <p>NTROPYADMIN</p>
+                </div>
+                <div class="footer_info_yo">
+                  <img src="/img/footer_icon02.png" alt="" />
+                  <p>CKSUN0620@NAVER.COM</p>
+                </div>
+              </div>
+              <div class="copyright">
+                <p>© Copyrights 2025 NTROPHY All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<!-- 양 사이드 광고 높이 조정 스크립트 -->
+<script>
+  window.addEventListener("scroll", () => {
+    const container = document.querySelector(".container");
+    const ads = document.querySelectorAll(".ad");
+
+    const containerTop = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const containerBottom = containerTop + containerHeight;
+    const scrollTop = window.scrollY;
+    const padding = 20;
+
+    ads.forEach((ad) => {
+      const adHeight = ad.offsetHeight;
+      let topOffset = scrollTop + padding - containerTop;
+
+      if (scrollTop + padding < containerTop) {
+        topOffset = 0;
+      }
+
+      if (topOffset + adHeight > containerHeight) {
+        topOffset = containerHeight - adHeight;
+      }
+
+      ad.style.top = `${topOffset}px`;
+    });
+  });
+</script>
+
+<!-- 페이지네이션 -->
+<script>
+  const totalPages = 10;
+  let currentPage = 1;
+
+  function renderPagination_yo() {
+    const list = document.querySelector(".page-list_yo");
+    list.innerHTML = "";
+
+    const addItem = (
+      text,
+      page = null,
+      isActive = false,
+      isEllipsis = false
+    ) => {
+      const li = document.createElement("li");
+      li.className = "page-item_yo";
+      if (isActive) li.classList.add("active_yo");
+      li.textContent = text;
+
+      if (!isActive && !isEllipsis && page) {
+        li.style.cursor = "pointer";
+        li.addEventListener("click", () => {
+          currentPage = page;
+          renderPagination_yo();
+        });
+      }
+
+      list.appendChild(li);
+    };
+
+    // 좌우 버튼
+    document.querySelector(".prev_yo").onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPagination_yo();
+      }
+    };
+
+    document.querySelector(".next_yo").onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPagination_yo();
+      }
+    };
+
+    // 실제 페이지 표시
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+      return;
+    }
+
+    if (currentPage <= 3) {
+      for (let i = 1; i <= 5; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+      addItem("...", null, false, true);
+      addItem(totalPages.toString(), totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      addItem("1", 1);
+      addItem("...", null, false, true);
+      for (let i = totalPages - 4; i <= totalPages; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+    } else {
+      addItem("1", 1);
+      addItem("...", null, false, true);
+      for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+        addItem(i.toString(), i, i === currentPage);
+      }
+      addItem("...", null, false, true);
+      addItem(totalPages.toString(), totalPages);
+    }
+  }
+
+  renderPagination_yo();
+</script>
