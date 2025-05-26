@@ -23,6 +23,6 @@ public class NoticeController {
     }
     @PostMapping("/write")
     public String write() {
-        return "redirect:/notice/view/" + 0;
+        return "redirect:/notice/view/";
     }
 }
