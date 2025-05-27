@@ -222,16 +222,23 @@ body {
   width: calc(33.333% - 12px);
 }
 
-@media (max-width: 900px) {
-  .youtube_box ul.item03 li {
+@media (max-width: 678px) {
+ /*  .youtube_box ul.item03 li {
     width: calc(50% - 9px);
-  }
+  } */
+
+   .youtube_box ul.item03 li.you2 {
+      display:none;
+    }
+    .youtube_box ul.item03 li {
+      width: 100%;
+    }
 }
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .youtube_box ul.item03 li {
     width: 100%;
   }
-}
+}  */
 /* main ad */
 .ad_center {
   width: 100%;

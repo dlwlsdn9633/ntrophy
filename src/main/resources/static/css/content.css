@@ -1690,6 +1690,7 @@
   height: 32px;
   padding: 0px 18px;
   outline: unset;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
