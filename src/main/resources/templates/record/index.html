@@ -1025,29 +1025,38 @@ updateRankBar({
 
 <!-- 팀 전적, 전체 순위 탭 -->
 <script>
-  document.querySelectorAll(".tab_one_yo").forEach((tab) => {
-    tab.addEventListener("click", () => {
-      // 탭 스타일 갱신
-      document
-        .querySelectorAll(".tab_one_yo")
-        .forEach((el) => el.classList.remove("active"));
-      tab.classList.add("active");
+  document.querySelectorAll(".match-detail_yo").forEach((matchDetail) => {
+    const tabs = matchDetail.querySelectorAll(".tab_one_yo");
+    const contents = matchDetail.querySelectorAll(".match_detail_wrapper_yo");
 
-      // 모든 전적 영역 숨김
-      document
-        .querySelectorAll(".match_detail_wrapper_yo")
-        .forEach((section) => {
-          section.style.display = "none";
-        });
+    // 첫 번째 탭과 콘텐츠 기본 활성화
+    if (tabs.length > 0 && contents.length > 0) {
+      tabs.forEach((t) => t.classList.remove("active"));
+      contents.forEach((c) => (c.style.display = "none"));
 
-      // 선택된 탭의 대상만 보이게
-      const target = tab.getAttribute("data-target");
-      const selected = document.querySelector(
-        `.match_detail_wrapper_yo.${target}`
-      );
-      if (selected) {
-        selected.style.display = "block";
-      }
+      tabs[0].classList.add("active");
+      const target = tabs[0].getAttribute("data-target");
+      matchDetail
+        .querySelectorAll(`.match_detail_wrapper_yo.${target}`)
+        .forEach((el) => (el.style.display = "block"));
+    }
+
+    // 탭 클릭 이벤트
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // 탭 스타일 초기화
+        tabs.forEach((el) => el.classList.remove("active"));
+        tab.classList.add("active");
+
+        // 콘텐츠 숨기기
+        contents.forEach((section) => (section.style.display = "none"));
+
+        // 대상만 보이기
+        const target = tab.getAttribute("data-target");
+        matchDetail
+          .querySelectorAll(`.match_detail_wrapper_yo.${target}`)
+          .forEach((el) => (el.style.display = "block"));
+      });
     });
   });
 </script>

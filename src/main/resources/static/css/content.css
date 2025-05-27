@@ -1315,7 +1315,7 @@
 
 @media (max-width: 1000px) {
   .match-detail_yo {
-    padding: 18px;
+    padding: 18px 9px;
   }
 }
 
@@ -1337,44 +1337,80 @@
 @media (max-width: 900px) {
   .team-row_yo {
     display: flex;
-    flex-direction: column;
-    padding: 14px 0;
-    gap: 6px;
-  }
-
-  .flex_center_yo {
-    justify-content: space-between !important;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
   }
 
   .team-header_yo {
-    display: none;
+    display: flex;
   }
 
   .cell_yo {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+    display: none; /* 기본은 안 보이게 해두고 필요한 것만 보이게 */
     font-size: 12px;
-    border-bottom: 1px dashed #333;
-    padding: 4px 0;
-  }
-
-  .cell_yo::before {
-    content: attr(data-label);
-    color: #f7f7f7;
-    font-weight: 500;
-    margin-right: 8px;
-    flex-shrink: 0;
-  }
-
-  .damage-bar_yo {
+    padding: 4px;
+    justify-content: center;
+    text-align: center;
     flex: 1;
   }
 
-  .damage-fill_yo {
-    width: 100%;
-    max-width: 100px;
+  /* 보여줄 셀만 따로 설정 */
+  .cell_yo[data-label="팀원"],
+  .cell_yo[data-label="킬"],
+  .cell_yo[data-label="딜량"] {
+    display: flex !important;
   }
+
+  /* 너비 비율 지정: 팀원:킬:딜량 = 2:1:2 */
+  .cell_yo[data-label="팀원"] {
+    flex: 2;
+  }
+
+  .cell_yo[data-label="킬"] {
+    flex: 1;
+  }
+
+  .cell_yo[data-label="딜량"] {
+    flex: 2;
+  }
+
+  .damage-bar_yo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .damage-fill_yo {
+    max-width: 60px;
+    width: 100%;
+  }
+
+  /* 헤더도 똑같이 적용 */
+  .team-header_yo:not(.grade_customd) .cell_yo {
+    display: none; /* 모든 셀 기본 숨김 */
+  }
+
+  .team-header_yo:not(.grade_customd) .cell_yo:nth-child(1),  /* 팀원 */
+.team-header_yo:not(.grade_customd) .cell_yo:nth-child(3),  /* 킬 */
+.team-header_yo:not(.grade_customd) .cell_yo:nth-child(6) {
+    /* 딜량 */
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .team-header_yo:not(.grade_customd) .cell_yo:nth-child(1) {
+    flex: 2;
+  } /* 팀원 */
+  .team-header_yo:not(.grade_customd) .cell_yo:nth-child(3) {
+    flex: 1;
+  } /* 킬 */
+  .team-header_yo:not(.grade_customd) .cell_yo:nth-child(6) {
+    flex: 2;
+  } /* 딜량 */
 }
 
 /* 전체순위 */
@@ -1395,6 +1431,8 @@
   border-bottom: 1px solid #fff;
   margin-bottom: 16px;
   padding-bottom: 6px;
+
+  gap: 8px;
 }
 
 .rank-cell_yo.grade_customd {
@@ -1410,9 +1448,9 @@
 
 .team-row_yo.grade_customd {
   display: grid;
-  grid-template-columns: 120px 90px 50px 50px 50px 90px 60px 90px 80px 80px;
+  grid-template-columns: repeat(10, 1fr);
   gap: 8px;
-  padding: 10px 12px;
+  padding: 10px 8px;
   border-bottom: 1px solid #25282c;
   align-items: center;
 }
@@ -1421,8 +1459,8 @@
   border-radius: 6px;
   background: #25282c;
   display: grid;
-  grid-template-columns: 40px 120px 90px 50px 50px 50px 90px 60px 90px 80px 80px;
-  padding: 10px 4px;
+  grid-template-columns: 40px repeat(10, 1fr);
+  padding: 10px 8px;
   gap: 8px;
   align-items: center;
 }
@@ -1504,54 +1542,102 @@
   width: 100%;
 }
 
-@media (max-width: 1600px) {
-  .dill_max_width {
-    max-width: unset;
-  }
-  .team-row_yo.grade_customd,
+@media all and (max-width: 900px) {
   .team-group_yo.grade_customd {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 14px 0;
-    max-width: 700px;
-    width: 100%;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 4px;
+    align-items: flex-start;
+    /* padding: 0; */
+    border-bottom: 1px solid #fff;
+    margin-bottom: 16px;
+    padding-bottom: 6px;
   }
 
   .rank-cell_yo.grade_customd {
-    font-size: 18px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fefdfe;
   }
 
   .team-header_yo.grade_customd {
-    display: none;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 4px;
+    padding: 10px 0;
+    align-items: center;
   }
 
-  .cell_yo.grade_customd,
-  .rank-cell_yo.grade_customd {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(1) {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
     font-size: 12px;
-    border-bottom: 1px dashed #333;
-    padding: 4px 0;
+    padding: 4px;
   }
 
-  .cell_yo.grade_customd::before {
-    content: attr(data-label);
-    color: #f7f7f7;
-    font-weight: 500;
-    margin-right: 8px;
-    flex-shrink: 0;
+  /* 헤더 셀 기본 숨김 */
+  .team-header_yo.grade_customd .cell_yo.grade_customd {
+    display: none;
+    font-size: 12px;
+    padding: 4px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
   }
 
-  .damage-bar_yo {
-    flex: 1;
+  .team-header_yo.grade_customd {
+    display: grid;
+    grid-template-columns: 40px 2fr 1fr 2fr;
+    gap: 4px;
+    padding: 10px 0;
+    align-items: center;
   }
 
-  .damage-fill_yo {
-    width: 100%;
-    max-width: 100px;
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(1),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(2),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(4),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(7) {
+    display: flex !important;
+  }
+
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(3),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(5),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(6),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(8),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(9),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(10),
+  .team-header_yo.grade_customd .cell_yo.grade_customd:nth-child(11) {
+    display: none !important;
+  }
+
+  .team-row_yo.grade_customd {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    gap: 4px;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+    align-items: center;
+  }
+
+  .team-row_yo.grade_customd .cell_yo.grade_customd {
+    display: none;
+    font-size: 12px;
+    padding: 4px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .team-row_yo.grade_customd .cell_yo.grade_customd[data-label="팀원"],
+  .team-row_yo.grade_customd .cell_yo.grade_customd[data-label="킬"],
+  .team-row_yo.grade_customd .cell_yo.grade_customd[data-label="딜량"] {
+    display: flex !important;
   }
 }
 
