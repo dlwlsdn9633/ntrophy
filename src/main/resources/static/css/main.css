@@ -99,7 +99,8 @@ body {
   max-width: 1760px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content:center;
   margin-bottom: 70px;
   /* padding: 20px; */
 }
@@ -118,6 +119,7 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 20px; /* 상단에서 20px 떨어진 위치에서 고정 */
+  display:none;
 }
 
 .main-content {
