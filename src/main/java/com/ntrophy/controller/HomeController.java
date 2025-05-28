@@ -1,9 +1,12 @@
 package com.ntrophy.controller;
 
+import com.ntrophy.domain.post.Post;
+import com.ntrophy.dto.post.PostRequestDto;
 import com.ntrophy.dto.pubg.player.PlayerDto;
 import com.ntrophy.dto.pubg.enums.GameMode;
 import com.ntrophy.dto.pubg.enums.Platform;
 import com.ntrophy.dto.pubg.enums.PlatformRegion;
+import com.ntrophy.service.PostService;
 import com.ntrophy.service.PubgService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +26,7 @@ public class HomeController {
     private static final int LEADERBOARD_TOTAL_NUMBER = 50;
     private static final int HOME_LEADERBOARD_TOTAL_NUMBER = 10;
     private final PubgService pubgService;
+    private final PostService postService;
     @GetMapping("/")
     public String home(Model model) {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
@@ -45,6 +49,7 @@ public class HomeController {
                 HOME_LEADERBOARD_TOTAL_NUMBER
         );
 
+
         List<Future<List<PlayerDto>>> futures = null;
         try {
             List<Callable<List<PlayerDto>>> tasks = List.of(steamTask, kakaoTask, steamFppTask);
@@ -53,12 +58,14 @@ public class HomeController {
             model.addAttribute("steamPlayerList", futures.get(0).get());
             model.addAttribute("kakaoPlayerList", futures.get(1).get());
             model.addAttribute("steamFppPlayerList", futures.get(2).get());
+            model.addAttribute("postList", postService.list(PostRequestDto.builder().startPage(0).build()));
 
         } catch (InterruptedException | ExecutionException e) {
             log.error("Error Fetching PUBG Player Data", e);
             model.addAttribute("steamPlayerList", List.of());
             model.addAttribute("kakaoPlayerList", List.of());
             model.addAttribute("steamFppPlayerList", List.of());
+            model.addAttribute("postList", postService.list(PostRequestDto.builder().startPage(0).build()));
         } finally {
             executorService.shutdown();
         }
@@ -108,7 +115,11 @@ public class HomeController {
             Platform platform = Platform.fromLabel(player.getAttributes().getShardId());
             return "redirect:/member/record/" + player.getId() + "/" + platform.getLabel();
         } catch (Exception e) {
-            return "redirect:/";
+            return "redirect:/not-found";
         }
+    }
+    @GetMapping("/not-found")
+    public String notFound() {
+        return "record/search";
     }
 }

@@ -10,30 +10,33 @@
     >
         SELECT *
         FROM post
+        LIMIT #{startPage}, #{pageRows}
+    </select>
+    <select
+        id="read"
+        parameterType="com.ntrophy.domain.post.Post"
+        resultType="com.ntrophy.domain.post.Post"
+    >
+        SELECT *
+        FROM post
+        WHERE id = #{id}
     </select>
     <insert
         id="insert"
         parameterType="com.ntrophy.domain.post.Post"
+        useGeneratedKeys="true"
+        keyProperty="id"
     >
         INSERT INTO post (
             title,
             contents,
             views,
-            password,
-            registerdate
+            password
         ) VALUES (
             #{title},
             #{contents},
             #{views},
-            #{password},
-            #{registerdate}
+            #{password}
         )
-        <selectKey
-            keyProperty="id"
-            resultType="int"
-            order="AFTER"
-        >
-            SELECT LAST_INSERT_ID()
-        </selectKey>
     </insert>
 </mapper>

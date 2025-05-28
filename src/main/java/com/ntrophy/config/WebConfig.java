@@ -25,5 +25,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addConverter(new SeasonInfoToSolo());
         registry.addConverter(new MatchResponseDtoToMatch());
         registry.addConverter(new SeasonDtoToSeason());
+        registry.addConverter(new StringToPostTypeConverter());
     }
 }

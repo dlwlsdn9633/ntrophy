@@ -11,8 +11,10 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class PostRequestDto {
+    private int id;
     private String title;
     private String contents;
     private String password;
     private PostType postType;
+    private int startPage;
 }

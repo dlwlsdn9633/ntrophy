@@ -48,13 +48,13 @@
           <!-- 게시물 -->
           <div class="notice_view_box mt70">
             <div class="notice_tit_box">
-              <h2>커뮤니티 게시물 제목입니다.</h2>
+              <h2 th:text="${post.title}">커뮤니티 게시물 제목입니다.</h2>
               <div class="notice_info_box">
                 <div class="left_info_yo">
                   <ul>
                     <li>인기</li>
                     <li class="notice_bar">|</li>
-                    <li>25.05.05</li>
+                    <li th:text="${#temporals.format(post.registerDate, 'yy-MM-dd')}">25.05.05</li>
                     <li class="notice_bar">|</li>
                     <li>qwerAsdf</li>
                   </ul>
@@ -73,7 +73,7 @@
                     <li class="notice_bar">|</li>
                     <li>
                       추천
-                      <p>100</p>
+                      <p th:text="${post.views}">100</p>
                     </li>
                   </ul>
                 </div>
@@ -81,13 +81,8 @@
             </div>
             <div class="notice_txt_box">
               <div class="notice_txt_yo">
-                <p>
-                  커뮤니티 게시물 내용입니다. 커뮤니티 게시물 내용입니다.
-                  커뮤니티 게시물 내용입니다. 커뮤니티 게시물 내용입니다.
-                  커뮤니티 게시물 내용입니다. 커뮤니티 게시물 내용입니다.
-                  커뮤니티 게시물 내용입니다. 커뮤니티 게시물 내용입니다.
-                  커뮤니티 게시물 내용입니다. 커뮤니티 게시물 내용입니다.
-                  커뮤니티 게시물 내용입니다.
+                <p th:text="${post.contents}">
+
                 </p>
               </div>
               <div class="notice_btn_group mt70">
@@ -210,7 +205,7 @@
           </div>
           <!-- 글쓰기 버튼 -->
           <div class="call_btn write mt35">
-            <a href="/subPage/notice/write.html">
+            <a href="/notice">
               <p>글쓰기</p>
             </a>
           </div>

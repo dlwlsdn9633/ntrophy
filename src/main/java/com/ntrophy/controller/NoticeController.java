@@ -1,15 +1,19 @@
 package com.ntrophy.controller;
 
 import com.ntrophy.domain.enums.PostType;
+import com.ntrophy.domain.post.Post;
 import com.ntrophy.dto.post.PostRequestDto;
 import com.ntrophy.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -26,13 +30,36 @@ public class NoticeController {
         });
     }
 
+    private final ConversionService conversionService;
     private final PostService postService;
-    @GetMapping("")
-    public String indexForm() {
-        return "notice/index";
+    @GetMapping({"", "/{postType}"})
+    public String indexForm(
+            @RequestParam(
+                    value = "reqPage",
+                    required = false,
+                    defaultValue = "0"
+            ) int reqPage,
+            @PathVariable(value = "postType", required = false) String postType,
+            Model model
+    ) {
+        try {
+            List<Post> postList = postService.list(
+                    PostRequestDto.builder()
+                            .startPage(reqPage)
+                            .build()
+            );
+            model.addAttribute("postList", postList);
+            return "notice/index";
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return "redirect:/notice";
+        }
     }
-    @GetMapping("/view/{no}")
-    public String viewForm(@PathVariable("no") int no) {
+    @GetMapping("/view/{id}")
+    public String viewForm(@PathVariable("id") int id, Model model) {
+        Post readPost = postService.read(PostRequestDto.builder().id(id).build());
+        model.addAttribute("post", readPost);
+
         return "notice/view";
     }
     @GetMapping("/write")
@@ -41,7 +68,7 @@ public class NoticeController {
     }
     @PostMapping("/write")
     public String write(@ModelAttribute PostRequestDto postRequestDto) {
-        log.info("postRequestDto: {}", postRequestDto);
-        return "redirect:/notice/view/";
+        Post insertedPost = postService.insert(postRequestDto);
+        return "redirect:/notice/view/" + insertedPost.getId();
     }
 }

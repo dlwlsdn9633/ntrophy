@@ -16,6 +16,7 @@ public class Post {
     private int id;
     private String title;
     private int views;
+    private String contents;
     private PostType postType;
     private String password;
     private LocalDateTime registerDate;
