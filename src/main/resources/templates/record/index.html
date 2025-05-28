@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
+  <th:block th:replace="~{fragments/common_head :: commonHeadScripts}"></th:block>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>fighting</title>
@@ -19,6 +20,9 @@
       href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
       rel="stylesheet"
     />
+
+
+
   </head>
   <body class="main">
     <div id="wrap">
@@ -104,7 +108,7 @@
 
           <!-- 개인전적 탭 -->
 
-          <div class="sub_page_tab_box mt70">
+          <div class="sub_page_tab_box over_history mt70">
             <div class="tab_one_yo active" id="overviewBtn">
               <p>Overview</p>
             </div>
@@ -647,7 +651,7 @@
                     style="display: none"
                   >
                     <!-- 팀원 테이블 -->
-                    <div class="team-table_yo grade_customd">
+                    <div th:each="roster : ${match.rosters}" class="team-table_yo grade_customd">
                       <!-- 헤더 -->
                       <div class="team-header_yo grade_customd">
                         <div class="cell_yo grade_customd">#</div>
@@ -667,38 +671,41 @@
 
                       <!-- 예시 팀 그룹 -->
                       <div class="team-group_yo grade_customd">
-                        <div class="rank-cell_yo grade_customd" data-label="#">
-                          #1
+                        <div class="rank-cell_yo grade_customd" data-label="#" >
+                          # <span th:text="${roster.rank}">1</span>
                         </div>
 
-                        <div class="team-row_yo grade_customd">
+                        <div class="team-row_yo grade_customd" th:each="participant : ${roster.participants}">
                           <div
                             class="cell_yo grade_customd team_mem_yo"
                             data-label="팀원"
                           >
-                            QwerAsdf <span class="status_yo">(생존)</span>
+                            <span th:text="${participant.name}">QwerAsdf</span> (<span class="status_yo" th:text="${participant.deathType}">생존</span>)
                           </div>
                           <div
                             class="cell_yo grade_customd"
                             data-label="주무기"
                           >
-                            M4
+                            -
                           </div>
                           <div
                             class="cell_yo grade_customd highlight_yo"
                             data-label="킬"
+                            th:text="${participant.kills}"
                           >
                             10
                           </div>
                           <div
                             class="cell_yo grade_customd highlight_yo"
                             data-label="헤드"
+                            th:text="${participant.headshotKills}"
                           >
                             1
                           </div>
                           <div
                             class="cell_yo grade_customd highlight_yo"
                             data-label="어시"
+                            th:text="${participant.assists}"
                           >
                             1
                           </div>
@@ -711,140 +718,46 @@
                                 class="damage-fill_yo"
                                 style="width: 80%"
                               ></div>
-                              <span>555</span>
+                              <span th:text="${participant.damageDealt}">555</span>
                             </div>
                           </div>
-                          <div class="cell_yo grade_customd" data-label="DBNO">
+                          <div class="cell_yo grade_customd" data-label="DBNO" th:text="${participant.DBNOs}">
                             5
                           </div>
                           <div
                             class="cell_yo grade_customd highlight_yo"
                             data-label="이동거리"
                           >
-                            5.55KM
+<span th:with="kmValue = ${participant.walkDistance / 1000.0}">
+    <span th:if="${kmValue % 1 != 0}">
+        <span th:if="${kmValue < 0.005}" th:text="'0KM'"></span>
+        <span th:unless="${kmValue < 0.005}"
+              th:text="${#numbers.formatDecimal(kmValue, 1, 2)} + 'KM'"></span>
+    </span>
+
+    <span th:unless="${kmValue % 1 != 0}"
+          th:text="${#numbers.formatDecimal(kmValue, 0, 0)} + 'KM'"></span>
+</span>
+
                           </div>
                           <div
                             class="cell_yo grade_customd highlight_yo"
                             data-label="저격"
                           >
-                            555M
-                          </div>
-                          <div
-                            class="cell_yo grade_customd"
-                            data-label="생존시간"
-                          >
-                            22:22
-                          </div>
-                        </div>
+                        <span th:if="${participant.longestKill % 1 != 0}"
+                              th:text="${#numbers.formatDecimal(participant.longestKill, 1, 2)} + 'M'">0.00M</span>
+                            <span th:unless="${participant.longestKill % 1 != 0}"
+                                  th:text="${#numbers.formatDecimal(participant.longestKill, 0, 0)} + 'M'">0M</span>
 
-                        <div class="team-row_yo grade_customd">
-                          <div
-                            class="cell_yo grade_customd team_mem_yo"
-                            data-label="팀원"
-                          >
-                            Abc
                           </div>
                           <div
-                            class="cell_yo grade_customd"
-                            data-label="주무기"
-                          >
-                            MK12
+                                  class="cell_yo grade_customd"
+                                  data-label="생존시간"
+                                  th:text="${#numbers.formatInteger(participant.timeSurvived / 60, 2)} + ':' + ${#numbers.formatInteger(participant.timeSurvived % 60, 2)}">
+                            00:00
                           </div>
-                          <div class="cell_yo grade_customd" data-label="킬">
-                            1
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="헤드">
-                            -
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="어시">
-                            -
-                          </div>
-                          <div
-                            class="cell_yo grade_customd dill_max_width"
-                            data-label="딜량"
-                          >
-                            <div class="damage-bar_yo">
-                              <div
-                                class="damage-fill_yo"
-                                style="width: 10%"
-                              ></div>
-                              <span>10</span>
-                            </div>
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="DBNO">
-                            -
-                          </div>
-                          <div
-                            class="cell_yo grade_customd"
-                            data-label="이동거리"
-                          >
-                            1.00KM
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="저격">
-                            100M
-                          </div>
-                          <div
-                            class="cell_yo grade_customd"
-                            data-label="생존시간"
-                          >
-                            11:00
-                          </div>
-                        </div>
 
-                        <div class="team-row_yo grade_customd">
-                          <div
-                            class="cell_yo grade_customd team_mem_yo"
-                            data-label="팀원"
-                          >
-                            Abc
-                          </div>
-                          <div
-                            class="cell_yo grade_customd"
-                            data-label="주무기"
-                          >
-                            MK12
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="킬">
-                            1
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="헤드">
-                            -
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="어시">
-                            -
-                          </div>
-                          <div
-                            class="cell_yo grade_customd dill_max_width"
-                            data-label="딜량"
-                          >
-                            <div class="damage-bar_yo">
-                              <div
-                                class="damage-fill_yo"
-                                style="width: 10%"
-                              ></div>
-                              <span>10</span>
-                            </div>
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="DBNO">
-                            -
-                          </div>
-                          <div
-                            class="cell_yo grade_customd"
-                            data-label="이동거리"
-                          >
-                            1.00KM
-                          </div>
-                          <div class="cell_yo grade_customd" data-label="저격">
-                            100M
-                          </div>
-                          <div
-                            class="cell_yo grade_customd"
-                            data-label="생존시간"
-                          >
-                            11:00
-                          </div>
                         </div>
-
                         <!-- 나머지 팀원도 동일한 구조로 반복 -->
                       </div>
                     </div>
@@ -1059,4 +972,31 @@ updateRankBar({
       });
     });
   });
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const tabContainers = document.querySelectorAll('.sub_page_tab_box.over_history');
+
+  tabContainers.forEach(function(container) {
+    const tabs = container.querySelectorAll('.tab_one_yo');
+
+    tabs.forEach(function(clickedTab) {
+      clickedTab.addEventListener('click', function() {
+        tabs.forEach(function(tab) {
+          tab.classList.remove('active');
+        });
+        this.classList.add('active');
+
+        const tabId = this.id;
+        if (tabId === 'overviewBtn') {
+          // Overview 탭 클릭 시 실행할 코드
+        } else if (tabId === 'matchHistoryBtn') {
+          // Match History 탭 클릭 시 실행할 코드
+        }
+      });
+    });
+  });
+});
 </script>
