@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fighting</title>
+
+    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="/css/content.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="main">
+    <div id="wrap">
+      <!--%@ include file="/include/header.jsp" %-->
+      <!--%@ include file="/include/main_visual.jsp" %-->
+
+      <!-- header -->
+      <header>
+        <div class="inner">
+          <div class="h_logo">
+            <a href="/">
+              <img src="/img/logo.png" alt="" />
+            </a>
+          </div>
+          <div class="gnb">
+            <ul>
+              <li class="active">
+                <a href="/leaderboard">리더보드</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="javascript:;">리그</a>
+              </li>
+              <li class="header_bar">|</li>
+              <li>
+                <a href="/notice">게시판</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- top ad -->
+      <div class="top_ad">
+        <h2>상단 광고</h2>
+      </div>
+
+      <!-- main container -->
+      <div class="container mt70">
+        <!-- left ad -->
+        <div class="ad-left">
+          <h2>왼쪽 광고</h2>
+        </div>
+        <!-- main center -->
+        <div class="main-content clan_ragi_box_yo">
+          <!-- 메인 제목 (클랜 등록)-->
+          <div class="sub_page_tit_box">
+            <h2>Clan edit</h2>
+            <div class="tit_line"></div>
+          </div>
+
+          <!-- 게시글 끌어올리기 버튼 -->
+          <div class="call_btn mt25">
+            <a href="javascript:;">
+              <p>게시글 끌어올리기</p>
+            </a>
+          </div>
+
+          <!-- 클랜 등록 -->
+          <!-- 플랫폼 -->
+          <div class="clan_record_name_box mt20">
+            <div class="mem_ber_input">
+              <label for="platform">
+                <p><span>*</span> 플랫폼</p>
+                <div class="birth_select_box">
+                  <select id="platform" name="platform" class="birth_select">
+                    <option value="steam">스팀</option>
+                    <option value="kakao">카카오</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
+          <!-- 클랜명 -->
+          <div class="clan_record_name_box mt20">
+            <div class="mem_ber_input">
+              <label for="clan_name">
+                <p><span>*</span> 클랜명</p>
+                <input class="mt10" id="clan_name" type="text" />
+              </label>
+            </div>
+          </div>
+          <!-- 게임모드 -->
+          <div class="clan_record_name_box mt20">
+            <div class="mem_ber_input">
+              <label for="game_mode">
+                <p><span>*</span> 게임모드</p>
+                <div class="birth_select_box">
+                  <select id="game_mode" name="platform" class="birth_select">
+                    <option value="steam">경쟁전</option>
+                    <option value="kakao">일반전</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
+          <!-- 커뮤니티 링크, 클랜마스터 -->
+          <div class="clan_record_name_box mt20">
+            <div class="input_double_box">
+              <div class="mem_ber_input">
+                <label for="community_link">
+                  <p>
+                    <span>*</span> 커뮤니티 링크
+                    <b class="gray_b">(디스코드 링크 생성시 유효기간 설정필)</b>
+                  </p>
+                  <input class="mt10" id="community_link" type="text" />
+                </label>
+              </div>
+              <div class="mem_ber_input">
+                <label for="clan_master">
+                  <p>
+                    <span>*</span> 클랜마스터
+                    <b class="gray_b">(인게임 닉네임)</b>
+                  </p>
+                  <input class="mt10" id="clan_master" type="text" />
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- 클랜마스터 디스코드, 클랜모집 조건 -->
+          <div class="clan_record_name_box mt20">
+            <div class="input_double_box">
+              <div class="mem_ber_input">
+                <label for="clan_discord">
+                  <p>
+                    <span>*</span> 클랜마스터 디스코드
+                    <b class="gray_b"> (링크 생성시 유효기간 설정필) </b>
+                  </p>
+                  <input class="mt10" id="clan_discord" type="text" />
+                </label>
+              </div>
+              <div class="mem_ber_input">
+                <label for="clan_condition">
+                  <p>
+                    <span>*</span> 클랜모집 조건
+                    <b class="gray_b">(5자 이내)</b>
+                  </p>
+                  <input class="mt10" id="clan_condition" type="text" />
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- 클랜마크 -->
+          <div class="clan_record_name_box mt20">
+            <div class="mem_ber_input">
+              <p><span>*</span> 클랜마크</p>
+              <div class="mark_box mt20">
+                <input id="clan_mark" type="file" />
+                <div class="add_icon_yo">
+                  <img src="/img/add_icon.png" alt="" />
+                </div>
+                <div class="delete_icon_yo">
+                  <img src="/img/delete_icon.png" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 클랜원등록 -->
+          <div class="clan_record_name_box mt20">
+            <div class="mem_ber_input">
+              <p>
+                <span>*</span> 클랜원등록
+                <b class="gray_b">
+                  (인게임 닉네임 검색이 다소 시간이 걸릴 수 있습니다.)
+                </b>
+              </p>
+              <div class="mark_box ragi mt20">
+                <div class="clan_regi_check">
+                  <input id="clan_regi01" type="file" />
+                  <div class="check_icon_yo">
+                    <img src="/img/check_icon.png" alt="" />
+                  </div>
+                </div>
+                <div class="add_icon_yo">
+                  <img src="/img/add_icon.png" alt="" />
+                </div>
+                <div class="delete_icon_yo">
+                  <img src="/img/delete_icon.png" alt="" />
+                </div>
+              </div>
+              <div class="mark_box ragi mt30">
+                <div class="clan_regi_check">
+                  <input id="clan_regi02" type="file" />
+                  <div class="check_icon_yo">
+                    <img src="/img/check_icon.png" alt="" />
+                  </div>
+                </div>
+                <div class="add_icon_yo">
+                  <img src="/img/add_icon.png" alt="" />
+                </div>
+                <div class="delete_icon_yo">
+                  <img src="/img/delete_icon.png" alt="" />
+                </div>
+              </div>
+              <div class="mark_box ragi mt30">
+                <div class="clan_regi_check">
+                  <input id="clan_regi03" type="file" />
+                  <div class="check_icon_yo">
+                    <img src="/img/check_icon.png" alt="" />
+                  </div>
+                </div>
+                <div class="add_icon_yo">
+                  <img src="/img/add_icon.png" alt="" />
+                </div>
+                <div class="delete_icon_yo">
+                  <img src="/img/delete_icon.png" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 클랜 등록 수정 버튼 -->
+          <div class="call_btn mt35">
+            <a href="javascript:;">
+              <p>클랜 등록 수정</p>
+            </a>
+          </div>
+          <!-- 취소 버튼 -->
+          <div class="call_btn cancel mt25">
+            <a href="javascript:;">
+              <p>취소</p>
+            </a>
+          </div>
+        </div>
+        <!-- right ad -->
+        <div class="ad-right">
+          <h2>오른쪽 광고</h2>
+        </div>
+      </div>
+
+      <footer id="footer">
+        <div class="footer_top">
+          <div class="inner">
+            <div class="footer_menu_box">
+              <div class="footer_menu">
+                <a href="/member/agree">이용약관</a>
+              </div>
+              <div class="header_bar">|</div>
+              <div class="footer_menu">
+                <a href="/member/policy">개인정보처리방침</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer_bottom">
+          <div class="inner">
+            <div class="footer_side">
+              <img src="/img/footer_logo.png" alt="" />
+            </div>
+            <div class="footer_side right">
+              <div class="footer_info_box">
+                <div class="footer_info_yo">
+                  <img src="/img/footer_icon01.png" alt="" />
+                  <p>NTROPYADMIN</p>
+                </div>
+                <div class="footer_info_yo">
+                  <img src="/img/footer_icon02.png" alt="" />
+                  <p>CKSUN0620@NAVER.COM</p>
+                </div>
+              </div>
+              <div class="copyright">
+                <p>© Copyrights 2025 NTROPHY All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<!-- 양 사이드 광고 높이 조정 스크립트 -->
+<script>
+  window.addEventListener("scroll", () => {
+    const container = document.querySelector(".container");
+    const ads = document.querySelectorAll(".ad");
+
+    const containerTop = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const containerBottom = containerTop + containerHeight;
+    const scrollTop = window.scrollY;
+    const padding = 20;
+
+    ads.forEach((ad) => {
+      const adHeight = ad.offsetHeight;
+      let topOffset = scrollTop + padding - containerTop;
+
+      if (scrollTop + padding < containerTop) {
+        topOffset = 0;
+      }
+
+      if (topOffset + adHeight > containerHeight) {
+        topOffset = containerHeight - adHeight;
+      }
+
+      ad.style.top = `${topOffset}px`;
+    });
+  });
+</script>
