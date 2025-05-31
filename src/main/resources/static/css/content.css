@@ -2454,3 +2454,61 @@
     width: 80%;
   }
 }
+
+/* 댓글입력 */
+.dat_write_box {
+  padding: 36px;
+  background: #13161a;
+  border: 1px solid #25282c;
+  border-top: 0;
+}
+
+.dat_geul_btn {
+  border-radius: 6px;
+  border: 1px solid #8c9498;
+  background: rgba(140, 148, 152, 0.2);
+  height: 20px;
+  width: 87px;
+  padding: 0 18px;
+  color: #fff;
+  margin-top: 20px;
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 게시글 비밀번호 */
+.notice_pw_box .notice_txt_box {
+  background-color: unset;
+  border: 0;
+}
+
+.notice_pw_box .board_pw_box {
+  justify-content: center;
+}
+
+.notice_pw_box p {
+  color: #fefdfe;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 32.4px */
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .dat_write_box {
+    padding: 18px 9px;
+  }
+  .dat_geul_btn {
+    margin-top: 10px;
+  }
+  .dat_left.mb_end {
+    justify-content: end;
+  }
+  .notice_pw_box .board_pw_box {
+    gap: 10px;
+  }
+}
