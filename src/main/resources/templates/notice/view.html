@@ -88,8 +88,8 @@
               </div>
               <div class="notice_btn_group mt70">
                 <div class="notice_btn">
-                  <button>수정</button>
-                  <button>삭제</button>
+                  <a th:href="@{/notice/password(id=${post.id}, cmd='edit')}" class="btn">수정</a>
+                  <a th:href="@{/notice/password(id=${post.id}, cmd='delete')}" class="delete">삭제</a>
                 </div>
               </div>
               <div class="notice_sub_btn mt35">

@@ -265,6 +265,7 @@
 
             <!-- 일반 글 3개 -->
             <div class="board-row_yo" th:each="post : ${postList}">
+              <a th:href="@{/notice/view/{id}(id=${post.id})}">
               <div class="col_yo num_yo" data-label="번호" th:text="${post.id}">1</div>
               <div class="col_yo title_yo" data-label="제목" th:text="${post.title}">
                 첫 번째 게시글입니다
@@ -273,9 +274,8 @@
               <div class="col_yo date_yo" data-label="작성일" th:text="${post.registerDate}">2025-05-09</div>
               <div class="col_yo views_yo" data-label="조회수" th:text="${post.views}">124</div>
               <div class="col_yo likes_yo" data-label="추천수">23</div>
+              </a>
             </div>
-
-
           </div>
         </div>
         <!-- right ad -->

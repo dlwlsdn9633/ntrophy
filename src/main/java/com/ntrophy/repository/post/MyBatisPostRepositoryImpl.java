@@ -24,4 +24,16 @@ public class MyBatisPostRepositoryImpl implements PostRepository {
     public List<Post> list(Post post) {
         return mapper.list(post);
     }
+    @Override
+    public int checkPassword(Post post) {
+        return mapper.checkPassword(post);
+    }
+    @Override
+    public int delete(Post post) {
+        return mapper.delete(post);
+    }
+    @Override
+    public int update(Post post) {
+        return mapper.update(post);
+    }
 }

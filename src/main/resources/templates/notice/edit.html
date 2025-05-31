@@ -47,27 +47,51 @@
             <div class="tit_line"></div>
           </div>
           <!-- 게시판 탭 -->
-          <form method="post" action="/notice/write">
+          <form method="post" action="/notice/edit">
             <div class="sub_page_tab_box tab_flex max_width_unset mt70">
-              <div class="tab_one_yo active" onclick="onClickBoardType(event, this)" data-boardtype="STEAM">
+              <div
+                      class="tab_one_yo"
+                      th:classappend="${post != null and post.postType != null and post.postType.name() == 'STEAM'} ? 'active' : ''"
+                      onclick="onClickBoardType(event, this)"
+                      data-boardtype="STEAM"
+              >
                 <p>STEAM</p>
               </div>
-              <div class="tab_one_yo" onclick="onClickBoardType(event, this)" data-boardtype="KAKAO">
+
+              <div
+                      class="tab_one_yo"
+                      th:classappend="${post != null and post.postType != null and post.postType.name() == 'KAKAO'} ? 'active' : ''"
+                      onclick="onClickBoardType(event, this)"
+                      data-boardtype="KAKAO"
+              >
                 <p>KAKAO</p>
               </div>
-              <div class="tab_one_yo" onclick="onClickBoardType(event, this)" data-boardtype="BROADCASTS">
+
+              <div
+                      class="tab_one_yo"
+                      th:classappend="${post != null and post.postType != null and post.postType.name() == 'BROADCASTS'} ? 'active' : ''"
+                      onclick="onClickBoardType(event, this)"
+                      data-boardtype="BROADCASTS"
+              >
                 <p>Broadcasts</p>
               </div>
-              <div class="tab_one_yo" onclick="onClickBoardType(event, this)" data-boardtype="MATCH_HISTORY">
+
+              <div
+                      class="tab_one_yo"
+                      th:classappend="${post != null and post.postType != null and post.postType.name() == 'MATCH_HISTORY'} ? 'active' : ''"
+                      onclick="onClickBoardType(event, this)"
+                      data-boardtype="MATCH_HISTORY"
+              >
                 <p>Match History</p>
               </div>
+
             </div>
             <!-- 커뮤니티 게시판 상세 -->
             <!-- 게시물 -->
             <div class="notice_view_box mt35">
               <div class="notice_txt_box">
                 <div class="notice_write_tit_box">
-                  <input type="text" placeholder="제목을 입력해주세요." name="title" />
+                  <input type="text" placeholder="제목을 입력해주세요." name="title" th:value="${post != null and post.title != null ? post.title : ''}" />
                 </div>
                 <div class="notice_editor_box">
                   <textarea
@@ -89,11 +113,12 @@
                       line-height: 180%; /* 32.4px */
                       text-transform: capitalize;
                     "
+                    th:text="${post != null and post.contents != null ? post.contents : ''}"
                   ></textarea>
                   <!-- 게시글 비밀번호 입력 -->
                   <div class="board_pw_box mt25">
                     <p>게시글 비밀번호</p>
-                    <input type="password" name="password" />
+                    <input type="password" name="password" th:value="${post != null and post.password != null ? post.password : ''}" />
                   </div>
                 </div>
                 <!-- 이전, 등록 버튼 -->
@@ -105,13 +130,10 @@
                 </div>
               </div>
             </div>
-            <input type="hidden" id="postType" name="postType" value="" required />
+            <input type="hidden" id="postType" name="postType" th:value="${post != null and post.postType != null and post.postType.name() != null ? post.postType.name() : ''}" />
+            <input type="hidden" id="id" name="id" th:value="${post != null ? post.id : 0}"/>
           </form>
-          <!-- 게시판 상세 중간광고 -->
-          <div class="notice_view_ad mt70">
-            <h2>광고</h2>
-          </div>
-
+        </div>
         <!-- right ad -->
         <div class="ad-right">
           <h2>오른쪽 광고</h2>

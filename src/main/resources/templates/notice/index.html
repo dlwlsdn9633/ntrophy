@@ -49,16 +49,16 @@
           <!-- 게시판 탭 -->
           <div class="sub_page_tab_box tab_flex mt70">
             <div class="tab_one_yo active">
-              <p>Hot</p>
+              <p><a href="/notice">Hot</a></p>
             </div>
             <div class="tab_one_yo">
-              <p>STEAM</p>
+              <p><a href="/notice/steam">STEAM</a></p>
             </div>
             <div class="tab_one_yo">
-              <p>KAKAO</p>
+              <p><a href="/notice/kakao">KAKAO</a></p>
             </div>
             <div class="tab_one_yo">
-              <p>Broadcasts</p>
+              <p><a href="/notice/broadcasts">Broadcasts</a></p>
             </div>
             <div class="tab_one_yo">
               <p>MATCH HISTORY</p>
@@ -135,7 +135,9 @@
             </div>
 
             <!-- 일반 글 3개 -->
+
             <div class="board-row_yo" th:each="post : ${postList}">
+              <a th:href="@{/notice/view/{id}(id=${post.id})}">
               <div class="col_yo num_yo" data-label="번호" th:text="${post.id}">1</div>
               <div class="col_yo title_yo" data-label="제목" th:text="${post.title}">
                 첫 번째 게시글입니다
@@ -144,7 +146,9 @@
               <div class="col_yo date_yo" data-label="작성일" th:text="${post.registerDate}">2025-05-09</div>
               <div class="col_yo views_yo" data-label="조회수" th:text="${post.views}">124</div>
               <div class="col_yo likes_yo" data-label="추천수">23</div>
+              </a>
             </div>
+
           </div>
           <!-- 글쓰기 버튼 -->
           <div class="call_btn write mt35">

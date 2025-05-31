@@ -1,5 +1,6 @@
 package com.ntrophy.controller;
 
+import com.ntrophy.domain.enums.Cmd;
 import com.ntrophy.domain.enums.PostType;
 import com.ntrophy.domain.post.Post;
 import com.ntrophy.dto.post.PostRequestDto;
@@ -20,16 +21,6 @@ import java.util.List;
 @RequestMapping("/notice")
 @RequiredArgsConstructor
 public class NoticeController {
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(PostType.class, new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String text) throws IllegalArgumentException {
-                setValue(PostType.fromCode(Integer.parseInt(text)));
-            }
-        });
-    }
-
     private final ConversionService conversionService;
     private final PostService postService;
     @GetMapping({"", "/{postType}"})
@@ -59,7 +50,6 @@ public class NoticeController {
     public String viewForm(@PathVariable("id") int id, Model model) {
         Post readPost = postService.read(PostRequestDto.builder().id(id).build());
         model.addAttribute("post", readPost);
-
         return "notice/view";
     }
     @GetMapping("/write")
@@ -70,5 +60,65 @@ public class NoticeController {
     public String write(@ModelAttribute PostRequestDto postRequestDto) {
         Post insertedPost = postService.insert(postRequestDto);
         return "redirect:/notice/view/" + insertedPost.getId();
+    }
+    @GetMapping("/edit")
+    public String editForm(
+            @RequestParam("id") String id,
+            Model model
+    ) {
+        // TODO: 비밀번호를 입력한 사람만 들어오게 만들기 (아직 구현 X)
+        Post post = postService.read(PostRequestDto.builder().id(Integer.parseInt(id)).build());
+        log.info("editPost: {}", post);
+        if (post != null) {
+            model.addAttribute("post", post);
+
+            return "notice/edit";
+        }
+        return "redirect:/notice";
+    }
+    @PostMapping("/edit")
+    public String edit(@ModelAttribute PostRequestDto postRequestDto) {
+        log.info("{}", postRequestDto);
+        return "notice/edit";
+    }
+    @GetMapping("/password")
+    public String passwordForm(@RequestParam("id") String id, @RequestParam("cmd") String cmd, Model model) {
+        try {
+            model.addAttribute("id", id);
+            model.addAttribute("cmd", cmd);
+            return "notice/password";
+        } catch (Exception e) {
+            return "redirect:/notice";
+        }
+    }
+
+    @PostMapping("/password")
+    public String password(@ModelAttribute PostRequestDto postRequestDto, @RequestParam("cmd") String strCmd) {
+        try {
+            // check password is correct
+            boolean isPasswordCorrect = postService.checkPassword(postRequestDto);
+            if (isPasswordCorrect) {
+                // then,
+                switch (Cmd.fromLabel(strCmd)) {
+                    case EDIT -> {
+                        return "redirect:/notice/edit?id=" + postRequestDto.getId();
+                    }
+                    case DELETE -> {
+                        int deleteResult = postService.delete(postRequestDto);
+                        if (deleteResult > 0) {
+                            return "redirect:/notice";
+                        }
+                        return "redirect:/notice";
+                    }
+                    default -> {
+                        return "redirect:/notice/read?id=" + postRequestDto.getId();
+                    }
+                }
+            }
+            return "redirect:/notice/read?id=" + postRequestDto.getId();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return "redirect:/notice";
+        }
     }
 }

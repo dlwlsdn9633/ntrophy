@@ -23,7 +23,6 @@ public class PostService {
                 .password(postRequestDto.getPassword())
                 .build();
         int insertedPost = postRepository.insert(post);
-        log.info("{}", post);
         if (insertedPost <= 0) {
             return null;
         }
@@ -36,6 +35,14 @@ public class PostService {
         return postRepository.read(post);
     }
 
+    public boolean checkPassword(PostRequestDto postRequestDto) {
+        Post post = Post.builder()
+                .id(postRequestDto.getId())
+                .password(postRequestDto.getPassword())
+                .build();
+        return postRepository.checkPassword(post) > 0;
+    }
+
     public List<Post> list(PostRequestDto postRequestDto) {
         Post post = Post.builder()
                 .postType(postRequestDto.getPostType())
@@ -43,5 +50,21 @@ public class PostService {
                 .pageRows(DEFAULT_PAGE_ROWS)
                 .build();
         return postRepository.list(post);
+    }
+    public int delete(PostRequestDto postRequestDto) {
+        Post post = Post.builder()
+                .id(postRequestDto.getId())
+                .build();
+        return postRepository.delete(post);
+    }
+    public int update(PostRequestDto postRequestDto) {
+        Post post = Post.builder()
+                .id(postRequestDto.getId())
+                .title(postRequestDto.getTitle())
+                .contents(postRequestDto.getContents())
+                .password(postRequestDto.getPassword())
+                .postType(postRequestDto.getPostType())
+                .build();
+        return postRepository.update(post);
     }
 }

@@ -8,4 +8,7 @@ public interface PostRepository {
     List<Post> list(Post post);
     int insert(Post post);
     Post read(Post post);
+    int checkPassword(Post post);
+    int delete(Post post);
+    int update(Post post);
 }

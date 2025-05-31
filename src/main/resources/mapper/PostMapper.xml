@@ -3,10 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ntrophy.mapper.PostMapper">
+    <resultMap id="postResultMap" type="com.ntrophy.domain.post.Post">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="contents" property="contents" />
+        <result column="views" property="views" />
+        <result column="password" property="password" />
+        <result column="post_type" property="postType" typeHandler="com.ntrophy.common.typehandler.PostTypeHandler" />
+    </resultMap>
+    
+
+    <select
+        id="checkPassword"
+        parameterType="com.ntrophy.domain.post.Post"
+        resultType="int"
+    >
+        SELECT COUNT(*)
+        FROM post
+        WHERE
+        id = #{id} AND password = #{password}
+    </select>
     <select
         id="list"
         parameterType="com.ntrophy.domain.post.Post"
-        resultType="com.ntrophy.domain.post.Post"
+        resultMap="postResultMap"
     >
         SELECT *
         FROM post
@@ -15,7 +35,7 @@
     <select
         id="read"
         parameterType="com.ntrophy.domain.post.Post"
-        resultType="com.ntrophy.domain.post.Post"
+        resultMap="postResultMap"
     >
         SELECT *
         FROM post
@@ -31,12 +51,32 @@
             title,
             contents,
             views,
-            password
+            password,
+            post_type
         ) VALUES (
             #{title},
             #{contents},
             #{views},
-            #{password}
+            #{password},
+            #{postType.code}
         )
     </insert>
+    <delete
+        id="delete"
+        parameterType="com.ntrophy.domain.post.Post"
+    >
+        DELETE FROM post WHERE id = #{id}
+    </delete>
+
+    <update
+        id="update"
+        parameterType="com.ntrophy.domain.post.Post"
+    >
+        UPDATE post SET
+        title = #{title},
+        contents = #{contents},
+        password = #{password},
+        post_type = #{postType.code}
+        WHERE id = #{id}
+    </update>
 </mapper>

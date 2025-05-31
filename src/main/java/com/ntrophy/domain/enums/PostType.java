@@ -27,8 +27,11 @@ public enum PostType {
         throw new IllegalArgumentException("Invalid PostType code: " + code);
     }
     public static PostType fromLabel(String label) {
+        if (label == null) {
+            throw new IllegalArgumentException("Label cannot be null");
+        }
         for (PostType type : PostType.values()) {
-            if (type.getLabel().equals(Function.isNull(label))) {
+            if (type.getLabel().equalsIgnoreCase(label)) {
                 return type;
             }
         }
