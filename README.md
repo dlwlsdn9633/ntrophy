@@ -3,7 +3,6 @@ Ntrophy는 **게임 전적 조회 및 커뮤니티** 웹사이트입니다.
 
 다양한 게임 플랫폼의 전적을 조회하고, 자유롭게 소통할 수 있는 공간을 제공합니다.
 
-
 ## ✨ 주요 기능
 - 🕹️ **게임 전적 조회**  
   - STEAM, KAKAO 등 플랫폼별 전적 확인 가능
@@ -21,3 +20,11 @@ Ntrophy는 **게임 전적 조회 및 커뮤니티** 웹사이트입니다.
 
 - 📢 **광고 영역**  
   - 좌우 및 상단 고정 광고 배치
+
+## 🛠️ 기술 스택
+- **Backend:** Java 17, Spring Boot  
+- **Persistence:** MyBatis  
+- **Template Engine:** Thymeleaf  
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla)  
+- **Database:** H2 (개발용)  
+- **Build Tool:** Gradle  
