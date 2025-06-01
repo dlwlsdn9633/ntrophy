@@ -23,6 +23,7 @@ public class MatchResponseDtoToMatch implements Converter<MatchResponseDto, Matc
                     .type(source.getData().getType())
                     .matchAttribute(getMatchAttribute(source.getData().getAttributes()))
                     .rosters(getMatchRosterList(source))
+                    .participantsMap(getParticipantsMap(source))
                     .build();
         } catch (Exception e) {
             log.error("error: {}", e.getMessage());

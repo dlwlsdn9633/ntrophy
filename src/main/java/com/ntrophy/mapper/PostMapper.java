@@ -12,4 +12,5 @@ public interface PostMapper {
     Post read(Post post);
     int checkPassword(Post post);
     int delete(Post post);
+
 }

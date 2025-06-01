@@ -69,7 +69,7 @@
                     <li class="notice_bar">|</li>
                     <li>
                       댓글
-                      <p>100</p>
+                      <p th:text="${commentCount}">100</p>
                     </li>
                     <li class="notice_bar">|</li>
                     <li>
@@ -117,7 +117,7 @@
             <div class="dat_tit_box">
               <div class="dat_left">
                 <h2>댓글</h2>
-                <p>총 <span>100</span> 개</p>
+                <p>총 <span th:text="${commentCount}">100</span> 개</p>
                 <select class="dat_select_yo">
                   <option>추천순</option>
                   <option>등록순</option>
@@ -131,37 +131,40 @@
             </div>
             <!-- 댓글입력칸 -->
             <div class="dat_write_box">
-              <textarea
-                      name=""
-                      id=""
-                      placeholder="내용을 입력해주세요."
-                      style="
-                  height: 80px;
-                  width: 100%;
-                  padding: 10px;
-                  border-radius: 6px;
-                  border: 1px solid #25282c;
-                  background: #101115;
-                  color: #8c9498;
-                  outline: unset;
-                  font-family: Sansation;
-                  font-size: 16px;
-                  font-style: normal;
-                  font-weight: 400;
-                  line-height: 180%; /* 32.4px */
-                  text-transform: capitalize;
-                "
-              ></textarea>
-              <button class="dat_geul_btn">등록</button>
+              <form method="post" th:action="@{/comment/write/{postId}(postId=${post.id})}">
+                <textarea
+                        name="contents"
+                        id=""
+                        placeholder="내용을 입력해주세요."
+                        style="
+                    height: 80px;
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 6px;
+                    border: 1px solid #25282c;
+                    background: #101115;
+                    color: #8c9498;
+                    outline: unset;
+                    font-family: Sansation;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 180%; /* 32.4px */
+                    text-transform: capitalize;
+                  "
+                        required
+                ></textarea>
+                <button type="submit" class="dat_geul_btn">등록</button>
+              </form>
             </div>
             <!-- 댓글 -->
             <div class="dat_geul_box">
-              <div class="dat_geul_con">
+              <div class="dat_geul_con" th:each="comment : ${commentList}">
                 <div class="dat_geul_wrap">
                   <div class="dat_left gap_zero">
-                    <h2>qwerasdf</h2>
+                    <h2 th:text="${comment.playerId}"></h2>
                     <p class="notice_bar">|</p>
-                    <span>25.05.05</span>
+                    <span th:text="${comment.formattedRegisterDate}">25.05.05</span>
                   </div>
                   <div class="dat_left right align_start">
                     <img src="/img/n_sub_icon03.png" alt="" />
@@ -169,25 +172,11 @@
                   </div>
                 </div>
                 <div class="dat_geul_txt">
-                  <p>커뮤니티 게시물 댓글입니다.</p>
+                  <p th:text="${comment.contents}">커뮤니티 게시물 댓글입니다.</p>
                 </div>
               </div>
-              <div class="dat_geul_con">
-                <div class="dat_geul_wrap">
-                  <div class="dat_left gap_zero">
-                    <h2>qwerasdf</h2>
-                    <p class="notice_bar">|</p>
-                    <span>25.05.05</span>
-                  </div>
-                  <div class="dat_left right align_start">
-                    <img src="/img/n_sub_icon03.png" alt="" />
-                    <p>신고</p>
-                  </div>
-                </div>
-                <div class="dat_geul_txt">
-                  <p>커뮤니티 게시물 댓글입니다.</p>
-                </div>
-              </div>
+
+
               <!-- 댓글 페이지네이션 -->
               <div class="pagination_yo dat mt70">
                 <button class="arrow_yo prev_yo" aria-label="이전 페이지">
@@ -259,69 +248,17 @@
             </div>
 
             <!-- 공지 3개 -->
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">
+            <div class="board-row_yo" th:each="post : ${postList}">
+              <a th:href="@{/notice/view/{postId}(postId=${post.id})}">
+              <div class="col_yo num_yo" data-label="번호" th:text="${post.id}"></div>
+              <div class="col_yo title_yo" data-label="제목" th:text="${post.title}">
                 게시판 이용 안내
               </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-05-01</div>
-              <div class="col_yo views_yo" data-label="조회수">999</div>
+              <div class="col_yo writer_yo" data-label="글쓴이">글쓴이</div>
+              <div class="col_yo date_yo" data-label="작성일" th:text="${post.formattedRegisterDate}">2025-05-01</div>
+              <div class="col_yo views_yo" data-label="조회수" th:text="${post.views}">999</div>
               <div class="col_yo likes_yo" data-label="추천수">87</div>
-            </div>
-
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">커뮤니티 규칙</div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-04-28</div>
-              <div class="col_yo views_yo" data-label="조회수">830</div>
-              <div class="col_yo likes_yo" data-label="추천수">65</div>
-            </div>
-
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">
-                자주 묻는 질문(FAQ)
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-04-20</div>
-              <div class="col_yo views_yo" data-label="조회수">752</div>
-              <div class="col_yo likes_yo" data-label="추천수">40</div>
-            </div>
-
-            <!-- 일반 글 3개 -->
-            <div class="board-row_yo">
-              <div class="col_yo num_yo" data-label="번호">1</div>
-              <div class="col_yo title_yo" data-label="제목">
-                첫 번째 게시글입니다
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">홍길동</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-05-09</div>
-              <div class="col_yo views_yo" data-label="조회수">124</div>
-              <div class="col_yo likes_yo" data-label="추천수">23</div>
-            </div>
-
-            <div class="board-row_yo">
-              <div class="col_yo num_yo" data-label="번호">2</div>
-              <div class="col_yo title_yo" data-label="제목">
-                두 번째 글이에요
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">김철수</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-05-08</div>
-              <div class="col_yo views_yo" data-label="조회수">98</div>
-              <div class="col_yo likes_yo" data-label="추천수">11</div>
-            </div>
-
-            <div class="board-row_yo">
-              <div class="col_yo num_yo" data-label="번호">3</div>
-              <div class="col_yo title_yo" data-label="제목">
-                세 번째 글입니다
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">이영희</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-05-07</div>
-              <div class="col_yo views_yo" data-label="조회수">72</div>
-              <div class="col_yo likes_yo" data-label="추천수">5</div>
+              </a>
             </div>
           </div>
           <!-- 페이지네이션 -->

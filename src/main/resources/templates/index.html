@@ -230,39 +230,6 @@
               <div class="col_yo views_yo">조회수</div>
               <div class="col_yo likes_yo">추천수</div>
             </div>
-
-            <!-- 공지 3개 -->
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">
-                게시판 이용 안내
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-05-01</div>
-              <div class="col_yo views_yo" data-label="조회수">999</div>
-              <div class="col_yo likes_yo" data-label="추천수">87</div>
-            </div>
-
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">커뮤니티 규칙</div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-04-28</div>
-              <div class="col_yo views_yo" data-label="조회수">830</div>
-              <div class="col_yo likes_yo" data-label="추천수">65</div>
-            </div>
-
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">
-                자주 묻는 질문(FAQ)
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-04-20</div>
-              <div class="col_yo views_yo" data-label="조회수">752</div>
-              <div class="col_yo likes_yo" data-label="추천수">40</div>
-            </div>
-
             <!-- 일반 글 3개 -->
             <div class="board-row_yo" th:each="post : ${postList}">
               <a th:href="@{/notice/view/{id}(id=${post.id})}">

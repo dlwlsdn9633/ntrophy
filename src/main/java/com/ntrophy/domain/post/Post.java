@@ -19,7 +19,10 @@ public class Post {
     private String contents;
     private PostType postType;
     private String password;
+    private String stype;
+    private String sval;
     private LocalDateTime registerDate;
+    private String formattedRegisterDate;
     private int startPage;
     private int pageRows;
 }

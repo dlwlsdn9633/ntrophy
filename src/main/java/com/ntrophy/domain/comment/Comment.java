@@ -13,10 +13,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Comment {
     private int id;
+    private int playerId;
     private int postId;
     private String contents;
     private int groupId;
     private int orderInGroupId;
     private int depth;
     private LocalDateTime registerDate;
+    private String formattedRegisterDate;
+    private int startPage;
+    private int pageRows;
 }

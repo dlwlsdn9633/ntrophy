@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
@@ -46,10 +47,17 @@ public class PostService {
     public List<Post> list(PostRequestDto postRequestDto) {
         Post post = Post.builder()
                 .postType(postRequestDto.getPostType())
+                .stype(postRequestDto.getStype())
+                .sval(postRequestDto.getSval())
                 .startPage(postRequestDto.getStartPage())
                 .pageRows(DEFAULT_PAGE_ROWS)
                 .build();
-        return postRepository.list(post);
+        List<Post> postList = postRepository.list(post);
+        postList.forEach(p -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+            p.setFormattedRegisterDate(p.getRegisterDate().format(formatter));
+        });
+        return postList;
     }
     public int delete(PostRequestDto postRequestDto) {
         Post post = Post.builder()

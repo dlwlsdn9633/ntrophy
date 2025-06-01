@@ -1,6 +1,5 @@
-package com.ntrophy.dto.post;
+package com.ntrophy.dto.comment;
 
-import com.ntrophy.domain.enums.PostType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,13 +9,9 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class PostRequestDto {
+public class CommentRequestDto {
     private int id;
-    private String title;
+    private int postId;
     private String contents;
-    private String password;
-    private PostType postType;
     private int startPage;
-    private String stype;
-    private String sval;
 }

@@ -11,7 +11,34 @@
         <result column="password" property="password" />
         <result column="post_type" property="postType" typeHandler="com.ntrophy.common.typehandler.PostTypeHandler" />
     </resultMap>
-    
+
+    <sql id="search">
+        <where>
+            <include refid="searchSql" />
+        </where>
+    </sql>
+    <sql id="searchSql">
+        <if test="postType.code != null and postType.code != 0">
+            AND post_type = #{postType.code}
+        </if>
+        <if test="stype != null">
+            <!-- FOR MYSQL
+            <if test="stype == 'all'">
+                AND (title LIKE CONCAT('%', #{sval},'%') OR contents LIKE CONCAT('%', #{sval} ,'%'))
+            </if>
+            <if test="stype != 'all'">
+                AND ${stype} LIKE CONCAT('%', #{sval} ,'%')
+            </if>
+            -->
+            <if test="stype == 'all'">
+                AND (title LIKE '%' || #{sval} || '%' OR contents LIKE '%' || #{sval} || '%')
+            </if>
+            <if test="stype != 'all'">
+                AND ${stype} LIKE '%' || #{sval} || '%'
+            </if>
+        </if>
+
+    </sql>
 
     <select
         id="checkPassword"
@@ -30,7 +57,11 @@
     >
         SELECT *
         FROM post
+        <include refid="search" />
+        <!--
         LIMIT #{startPage}, #{pageRows}
+        -->
+        LIMIT #{pageRows} OFFSET #{startPage}
     </select>
     <select
         id="read"

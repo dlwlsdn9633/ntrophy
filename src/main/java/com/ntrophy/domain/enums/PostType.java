@@ -1,8 +1,11 @@
 package com.ntrophy.domain.enums;
 
 import com.ntrophy.util.Function;
+import lombok.Getter;
 
+@Getter
 public enum PostType {
+    DEFAULT(0, ""),
     STEAM(1, "steam"),
     KAKAO(2, "kakao"),
     BROADCASTS(3, "broadcasts"),
@@ -13,10 +16,6 @@ public enum PostType {
         this.code = code;
         this.label = label;
     }
-    public int getCode() {
-        return this.code;
-    }
-    public String getLabel() { return this.label; }
 
     public static PostType fromCode(int code) {
         for (PostType type : PostType.values()) {

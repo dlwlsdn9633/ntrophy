@@ -48,39 +48,43 @@
 
           <!-- 게시판 탭 -->
           <div class="sub_page_tab_box tab_flex mt70">
-            <div class="tab_one_yo active">
+            <div class="tab_one_yo" th:classappend="${postType != null and postType.code == 0 ? 'active' : ''}">
               <p><a href="/notice">Hot</a></p>
             </div>
-            <div class="tab_one_yo">
-              <p><a href="/notice/steam">STEAM</a></p>
+            <div class="tab_one_yo" th:classappend="${postType != null and postType.code == 1 ? 'active' : ''}">
+              <p><a href="/notice?postType=steam">STEAM</a></p>
             </div>
-            <div class="tab_one_yo">
-              <p><a href="/notice/kakao">KAKAO</a></p>
+            <div class="tab_one_yo" th:classappend="${postType != null and postType.code == 2 ? 'active' : ''}">
+              <p><a href="/notice?postType=kakao">KAKAO</a></p>
             </div>
-            <div class="tab_one_yo">
-              <p><a href="/notice/broadcasts">Broadcasts</a></p>
+            <div class="tab_one_yo" th:classappend="${postType != null and postType.code == 3 ? 'active' : ''}">
+              <p><a href="/notice?postType=broadcasts">Broadcasts</a></p>
             </div>
-            <div class="tab_one_yo">
-              <p>MATCH HISTORY</p>
+            <div class="tab_one_yo" th:classappend="${postType != null and postType.code == 4 ? 'active' : ''}">
+              <p><a href="/notice?postType=history">MATCH HISTORY</a></p>
             </div>
           </div>
 
           <!-- 검색창 -->
-          <div class="search-bar_yo mt70">
-            <select class="search-select_yo">
-              <option>제목+내용</option>
-              <option>제목만</option>
-              <option>글쓴이</option>
-            </select>
-            <input
-              type="text"
-              class="search-input_yo"
-              placeholder="검색어를 입력하세요"
-            />
-            <button class="search-btn_yo">
-              <img src="/img/search_icon_white.png" alt="" />
-            </button>
-          </div>
+          <form method="get" th:action="@{/notice(postType=${postType.label})}">
+            <input type="hidden" name="postType" th:value="${postType != null ? postType.label : ''}" />
+            <div class="search-bar_yo mt70">
+              <select class="search-select_yo" name="stype">
+                <option value="all" th:selected="${stype == 'all'}">제목+내용</option>
+                <option value="title" th:selected="${stype == 'title'}">제목만</option>
+                <option value="name" th:selected="${stype == 'name'}">글쓴이</option>
+              </select>
+              <input
+                type="text"
+                name="sval"
+                class="search-input_yo"
+                placeholder="검색어를 입력하세요"
+              />
+              <button class="search-btn_yo">
+                <img src="/img/search_icon_white.png" alt="" />
+              </button>
+            </div>
+          </form>
 
           <!-- 커뮤니티 게시판 -->
           <div class="board_yo mt70">
@@ -93,42 +97,6 @@
               <div class="col_yo views_yo">조회수</div>
               <div class="col_yo likes_yo">추천수</div>
             </div>
-
-            <!-- 공지 3개 -->
-            <div
-              class="board-row_yo notice_yo"
-              onclick="location.href='/subPage/notice/view.html'"
-            >
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">
-                게시판 이용 안내
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-05-01</div>
-              <div class="col_yo views_yo" data-label="조회수">999</div>
-              <div class="col_yo likes_yo" data-label="추천수">87</div>
-            </div>
-
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">커뮤니티 규칙</div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-04-28</div>
-              <div class="col_yo views_yo" data-label="조회수">830</div>
-              <div class="col_yo likes_yo" data-label="추천수">65</div>
-            </div>
-
-            <div class="board-row_yo notice_yo">
-              <div class="col_yo num_yo" data-label="번호">공지</div>
-              <div class="col_yo title_yo" data-label="제목">
-                자주 묻는 질문(FAQ)
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">운영자</div>
-              <div class="col_yo date_yo" data-label="작성일">2025-04-20</div>
-              <div class="col_yo views_yo" data-label="조회수">752</div>
-              <div class="col_yo likes_yo" data-label="추천수">40</div>
-            </div>
-
             <!-- 공지글 사이 광고 -->
             <div class="notice_ad">
               <hw>게시판 광고</hw>

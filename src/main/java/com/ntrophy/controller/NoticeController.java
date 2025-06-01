@@ -1,9 +1,12 @@
 package com.ntrophy.controller;
 
+import com.ntrophy.domain.comment.Comment;
 import com.ntrophy.domain.enums.Cmd;
 import com.ntrophy.domain.enums.PostType;
 import com.ntrophy.domain.post.Post;
+import com.ntrophy.dto.comment.CommentRequestDto;
 import com.ntrophy.dto.post.PostRequestDto;
+import com.ntrophy.service.CommentService;
 import com.ntrophy.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,33 +26,49 @@ import java.util.List;
 public class NoticeController {
     private final ConversionService conversionService;
     private final PostService postService;
-    @GetMapping({"", "/{postType}"})
+    private final CommentService commentService;
+
+    @GetMapping("")
     public String indexForm(
             @RequestParam(
                     value = "reqPage",
                     required = false,
                     defaultValue = "0"
             ) int reqPage,
-            @PathVariable(value = "postType", required = false) String postType,
+            @RequestParam(value = "postType", required = false) String postTypeLabel,
+            @RequestParam(value = "stype", required = false, defaultValue = "all") String stype,
+            @RequestParam(value = "sval", required = false, defaultValue = "") String sval,
             Model model
     ) {
+        PostType postType = PostType.DEFAULT;
         try {
-            List<Post> postList = postService.list(
-                    PostRequestDto.builder()
-                            .startPage(reqPage)
-                            .build()
-            );
-            model.addAttribute("postList", postList);
-            return "notice/index";
+            postType = PostType.fromLabel(postTypeLabel);
         } catch (Exception e) {
-            log.error(e.getMessage());
-            return "redirect:/notice";
+            log.warn(e.getMessage());
         }
+        List<Post> postList = postService.list(
+                PostRequestDto.builder()
+                        .startPage(reqPage)
+                        .postType(postType)
+                        .stype(stype)
+                        .sval(sval)
+                        .build()
+        );
+        model.addAttribute("postList", postList);
+        model.addAttribute("postType", postType);
+        return "notice/index";
     }
     @GetMapping("/view/{id}")
     public String viewForm(@PathVariable("id") int id, Model model) {
         Post readPost = postService.read(PostRequestDto.builder().id(id).build());
+        List<Comment> commentList = commentService.list(CommentRequestDto.builder().postId(id).build());
+        int commentCount = commentService.countByPostId(CommentRequestDto.builder().postId(id).build());
+        List<Post> postList = postService.list(PostRequestDto.builder().postType(readPost.getPostType()).build());
+
         model.addAttribute("post", readPost);
+        model.addAttribute("commentList", commentList);
+        model.addAttribute("commentCount", commentCount);
+        model.addAttribute("postList", postList);
         return "notice/view";
     }
     @GetMapping("/write")
@@ -78,8 +97,11 @@ public class NoticeController {
     }
     @PostMapping("/edit")
     public String edit(@ModelAttribute PostRequestDto postRequestDto) {
-        log.info("{}", postRequestDto);
-        return "notice/edit";
+        int updateResult = postService.update(postRequestDto);
+        if (updateResult > 0) {
+            return "redirect:/notice/view/" + postRequestDto.getId();
+        }
+        return "redirect:/notice/view/" + postRequestDto.getId();
     }
     @GetMapping("/password")
     public String passwordForm(@RequestParam("id") String id, @RequestParam("cmd") String cmd, Model model) {
@@ -121,4 +143,6 @@ public class NoticeController {
             return "redirect:/notice";
         }
     }
+
+
 }

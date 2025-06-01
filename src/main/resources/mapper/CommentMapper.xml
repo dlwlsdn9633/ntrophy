@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.ntrophy.mapper.CommentMapper"
+>
+    <insert
+        id="insert"
+        parameterType="com.ntrophy.domain.comment.Comment"
+        useGeneratedKeys="true"
+        keyProperty="id"
+    >
+        INSERT INTO comment (
+            playerId,
+            postId,
+            contents,
+            groupId,
+            orderInGroupId,
+            depth
+        ) VALUES (
+            #{playerId},
+            #{postId},
+            #{contents},
+            #{groupId},
+            #{orderInGroupId},
+            #{depth}
+        )
+    </insert>
+    <select
+        id="list"
+        parameterType="com.ntrophy.domain.comment.Comment"
+        resultType="com.ntrophy.domain.comment.Comment"
+    >
+        SELECT *
+        FROM comment
+        WHERE postId = #{postId}
+        ORDER BY registerDate DESC
+        <!--
+        LIMIT #{startPage}, #{pageRows}
+        -->
+        LIMIT #{pageRows} OFFSET #{startPage}
+    </select>
+    <select
+            id="countByPostId"
+            parameterType="com.ntrophy.domain.comment.Comment"
+            resultType="int"
+    >
+        SELECT COUNT(*)
+        FROM comment
+        WHERE postId = #{postId}
+    </select>
+</mapper>
