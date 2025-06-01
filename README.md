@@ -26,5 +26,5 @@ Ntrophy는 **게임 전적 조회 및 커뮤니티** 웹사이트입니다.
 - **Persistence:** MyBatis  
 - **Template Engine:** Thymeleaf  
 - **Frontend:** HTML5, CSS3, JavaScript (Vanilla)  
-- **Database:** H2 (개발용)  
+- **Database:** H2 (개발용) -> SQLite3
 - **Build Tool:** Gradle  
