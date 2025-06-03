@@ -2253,6 +2253,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
   height: 36px;
   padding: 0 18px;
   outline: unset;
+      color:#fff;
 }
 
 .admin_input_group label p {
@@ -2271,6 +2272,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 
 .admin_delete .admin_input_group input {
   width: 100%;
+      color:#fff;
 }
 .admin_tit span {
   color: #fff;

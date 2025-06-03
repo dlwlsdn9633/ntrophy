@@ -93,6 +93,7 @@ body {
   .mv_search_box input {
     padding: 0 15px;
     font-size: 16px;
+    color:#fff;
   }
   .search_icon_box {
     right: 15px;
