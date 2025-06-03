@@ -6,6 +6,7 @@ import com.ntrophy.dto.pubg.player.PlayerDto;
 import com.ntrophy.dto.pubg.enums.GameMode;
 import com.ntrophy.dto.pubg.enums.Platform;
 import com.ntrophy.dto.pubg.enums.PlatformRegion;
+import com.ntrophy.service.AdminService;
 import com.ntrophy.service.PostService;
 import com.ntrophy.service.PubgService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class HomeController {
     private static final int HOME_LEADERBOARD_TOTAL_NUMBER = 10;
     private final PubgService pubgService;
     private final PostService postService;
+    private final AdminService adminService;
     @GetMapping("/")
     public String home(Model model) {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
@@ -59,6 +61,7 @@ public class HomeController {
             model.addAttribute("kakaoPlayerList", futures.get(1).get());
             model.addAttribute("steamFppPlayerList", futures.get(2).get());
             model.addAttribute("postList", postService.list(PostRequestDto.builder().startPage(0).build()));
+            model.addAttribute("youtubeList", adminService.youtubeList());
 
         } catch (InterruptedException | ExecutionException e) {
             log.error("Error Fetching PUBG Player Data", e);
@@ -66,6 +69,7 @@ public class HomeController {
             model.addAttribute("kakaoPlayerList", List.of());
             model.addAttribute("steamFppPlayerList", List.of());
             model.addAttribute("postList", postService.list(PostRequestDto.builder().startPage(0).build()));
+            model.addAttribute("youtubeList", adminService.youtubeList());
         } finally {
             executorService.shutdown();
         }

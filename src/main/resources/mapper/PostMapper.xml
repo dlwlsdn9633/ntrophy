@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.ntrophy.mapper.PostMapper">
     <resultMap id="postResultMap" type="com.ntrophy.domain.post.Post">
         <id column="id" property="id" />

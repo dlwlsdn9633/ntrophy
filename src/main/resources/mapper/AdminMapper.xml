@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.ntrophy.mapper.AdminMapper"
+>
+    <resultMap id="adminYoutubeMap" type="com.ntrophy.domain.admin.AdminYoutube">
+        <id column="id" property="id" />
+        <result column="idx" property="idx" />
+        <result column="youtube_url" property="youtubeUrl" />
+        <result column="registerDate" property="registerDate" />
+    </resultMap>
+
+    <select
+        id="youtubeList"
+        resultMap="adminYoutubeMap"
+    >
+        SELECT *
+        FROM admin_youtubes
+        ORDER BY idx ASC
+    </select>
+    <select
+        id="countYoutubeUrl"
+        parameterType="int"
+        resultType="int"
+    >
+        SELECT COUNT(*)
+        FROM admin_youtubes
+        WHERE idx = #{idx}
+    </select>
+    <insert
+        id="insertYoutubeUrl"
+        parameterType="com.ntrophy.domain.admin.AdminYoutube"
+    >
+        INSERT INTO admin_youtubes (
+        idx,
+        youtube_url
+        ) VALUES (
+        #{idx},
+        #{youtubeUrl}
+        )
+    </insert>
+    <update
+        id="updateYoutubeUrl"
+        parameterType="com.ntrophy.domain.admin.AdminYoutube"
+    >
+        UPDATE admin_youtubes SET
+        youtube_url = #{youtubeUrl}
+        WHERE idx = #{idx}
+    </update>
+</mapper>

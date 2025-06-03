@@ -40,14 +40,16 @@
                 <div class="admin_tit">
                   <h2>메인 페이지 유튜브링크</h2>
                 </div>
-                <div class="admin_input_group">
-                  <input type="text" />
-                  <input type="text" />
-                  <input type="text" />
-                </div>
-                <div class="admin_btn">
-                  <button>등록</button>
-                </div>
+                <form method="post" action="/admin/youtube-urls">
+                  <div class="admin_input_group">
+                    <input type="text" name="youtubeUrls" />
+                    <input type="text" name="youtubeUrls" />
+                    <input type="text" name="youtubeUrls" />
+                  </div>
+                  <div class="admin_btn">
+                    <button>등록</button>
+                  </div>
+                </form>
               </div>
               <div class="admin_input_yo">
                 <div class="admin_tit">

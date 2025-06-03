@@ -13,6 +13,14 @@ public class ClanController {
     public String listForm() {
         return "clan/list/index";
     }
+    @GetMapping("/write")
+    public String writeForm() {
+        return "clan/registration/index";
+    }
+    @GetMapping("/edit")
+    public String editForm() {
+        return "clan/edit/index";
+    }
     @GetMapping("/record")
     public String recordForm() {
         return "clan/record/index";
