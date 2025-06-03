@@ -521,10 +521,10 @@
                     <!-- 팀 요약 -->
 
 
-                    <div class="match-summary_yo detail_custom">
+                    <div class="match-summary_yo detail_custom" th:each="myRosters : ${match.myRoster}">
                       <div class="match_left_wrapper">
                         <div class="match_his_bar"></div>
-                        <div class="match-info-center_yo">#1</div>
+                        <div class="match-info-center_yo">#<span th:text="${myRosters.rank}">1</span></div>
                       </div>
                       <div class="match-info-right_yo">
                         <div class="match-stats_yo">
@@ -544,7 +544,7 @@
                       </div>
                     </div>
                     <!-- 팀원 테이블 -->
-                    <div class="team-table_yo mt35">
+                    <div class="team-table_yo mt35" th:each="myRosters : ${match.myRoster}">
                       <!-- 헤더 -->
                       <div class="team-row_yo team-header_yo">
                         <div class="cell_yo team_mem_yo">팀원</div>
@@ -560,19 +560,19 @@
                       </div>
 
                       <!-- 생존자 -->
-                      <div class="team-row_yo survivor_yo">
+                      <div class="team-row_yo survivor_yo" th:each="myParticipant : ${myRosters.participants}">
                         <div class="cell_yo team_mem_yo" data-label="팀원">
-                          <strong>QwerAsdf</strong>
-                          <span class="status_yo">(생존)</span>
+                          <strong th:text="${myParticipant.name}">QwerAsdf</strong>
+                          (<span class="status_yo" th:text="${myParticipant.deathType}">(생존)</span>)
                         </div>
-                        <div class="cell_yo" data-label="주무기">M4</div>
-                        <div class="cell_yo highlight_yo" data-label="킬">
+                        <div class="cell_yo" data-label="주무기">-</div>
+                        <div class="cell_yo highlight_yo" data-label="킬" th:text="${myParticipant.kills}">
                           10
                         </div>
-                        <div class="cell_yo highlight_yo" data-label="헤드">
+                        <div class="cell_yo highlight_yo" data-label="헤드" th:text="${myParticipant.headshotKills}">
                           1
                         </div>
-                        <div class="cell_yo highlight_yo" data-label="어시">
+                        <div class="cell_yo highlight_yo" data-label="어시" th:text="${myParticipant.assists}">
                           1
                         </div>
                         <div class="cell_yo flex_center_yo" data-label="딜량">
@@ -581,66 +581,78 @@
                               class="damage-fill_yo"
                               style="width: 80%"
                             ></div>
-                            <span>555</span>
+                            <span th:text="${myParticipant.damageDealt}">555</span>
                           </div>
                         </div>
-                        <div class="cell_yo" data-label="DBNO">5</div>
+                        <div class="cell_yo" data-label="DBNO" th:text="${myParticipant.DBNOs}">5</div>
                         <div class="cell_yo highlight_yo" data-label="이동거리">
-                          5.55KM
+                          <span th:with="kmValue = ${myParticipant.walkDistance / 1000.0}">
+    <span th:if="${kmValue % 1 != 0}">
+        <span th:if="${kmValue < 0.005}" th:text="'0KM'"></span>
+        <span th:unless="${kmValue < 0.005}"
+              th:text="${#numbers.formatDecimal(kmValue, 1, 2)} + 'KM'"></span>
+    </span>
+
+    <span th:unless="${kmValue % 1 != 0}"
+          th:text="${#numbers.formatDecimal(kmValue, 0, 0)} + 'KM'"></span>
+</span>
                         </div>
                         <div class="cell_yo highlight_yo" data-label="저격">
-                          555M
+                                                  <span th:if="${myParticipant.longestKill % 1 != 0}"
+                                                        th:text="${#numbers.formatDecimal(myParticipant.longestKill, 1, 2)} + 'M'">0.00M</span>
+                          <span th:unless="${myParticipant.longestKill % 1 != 0}"
+                                th:text="${#numbers.formatDecimal(myParticipant.longestKill, 0, 0)} + 'M'">0M</span>
                         </div>
-                        <div class="cell_yo" data-label="생존시간">22:22</div>
+                        <div class="cell_yo" data-label="생존시간" th:text="${#numbers.formatInteger(myParticipant.timeSurvived / 60, 2)} + ':' + ${#numbers.formatInteger(myParticipant.timeSurvived % 60, 2)}">22:22</div>
                       </div>
 
                       <!-- 일반 인원 1 -->
-                      <div class="team-row_yo">
-                        <div class="cell_yo team_mem_yo" data-label="팀원">
-                          Abc
-                        </div>
-                        <div class="cell_yo" data-label="주무기">MK12</div>
-                        <div class="cell_yo" data-label="킬">1</div>
-                        <div class="cell_yo" data-label="헤드">-</div>
-                        <div class="cell_yo" data-label="어시">-</div>
-                        <div class="cell_yo flex_center_yo" data-label="딜량">
-                          <div class="damage-bar_yo">
-                            <div
-                              class="damage-fill_yo"
-                              style="width: 10%"
-                            ></div>
-                            <span>10</span>
-                          </div>
-                        </div>
-                        <div class="cell_yo" data-label="DBNO">-</div>
-                        <div class="cell_yo" data-label="이동거리">1.00KM</div>
-                        <div class="cell_yo" data-label="저격">100M</div>
-                        <div class="cell_yo" data-label="생존시간">11:00</div>
-                      </div>
+<!--                      <div class="team-row_yo">-->
+<!--                        <div class="cell_yo team_mem_yo" data-label="팀원">-->
+<!--                          Abc-->
+<!--                        </div>-->
+<!--                        <div class="cell_yo" data-label="주무기">MK12</div>-->
+<!--                        <div class="cell_yo" data-label="킬">1</div>-->
+<!--                        <div class="cell_yo" data-label="헤드">-</div>-->
+<!--                        <div class="cell_yo" data-label="어시">-</div>-->
+<!--                        <div class="cell_yo flex_center_yo" data-label="딜량">-->
+<!--                          <div class="damage-bar_yo">-->
+<!--                            <div-->
+<!--                              class="damage-fill_yo"-->
+<!--                              style="width: 10%"-->
+<!--                            ></div>-->
+<!--                            <span>10</span>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="cell_yo" data-label="DBNO">-</div>-->
+<!--                        <div class="cell_yo" data-label="이동거리">1.00KM</div>-->
+<!--                        <div class="cell_yo" data-label="저격">100M</div>-->
+<!--                        <div class="cell_yo" data-label="생존시간">11:00</div>-->
+<!--                      </div>-->
 
                       <!-- 일반 인원 2 -->
-                      <div class="team-row_yo">
-                        <div class="cell_yo team_mem_yo" data-label="팀원">
-                          Dfg
-                        </div>
-                        <div class="cell_yo" data-label="주무기">MK12</div>
-                        <div class="cell_yo" data-label="킬">1</div>
-                        <div class="cell_yo" data-label="헤드">-</div>
-                        <div class="cell_yo" data-label="어시">-</div>
-                        <div class="cell_yo flex_center_yo" data-label="딜량">
-                          <div class="damage-bar_yo">
-                            <div
-                              class="damage-fill_yo"
-                              style="width: 10%"
-                            ></div>
-                            <span>10</span>
-                          </div>
-                        </div>
-                        <div class="cell_yo" data-label="DBNO">-</div>
-                        <div class="cell_yo" data-label="이동거리">1.00KM</div>
-                        <div class="cell_yo" data-label="저격">100M</div>
-                        <div class="cell_yo" data-label="생존시간">11:00</div>
-                      </div>
+<!--                      <div class="team-row_yo">-->
+<!--                        <div class="cell_yo team_mem_yo" data-label="팀원">-->
+<!--                          Dfg-->
+<!--                        </div>-->
+<!--                        <div class="cell_yo" data-label="주무기">MK12</div>-->
+<!--                        <div class="cell_yo" data-label="킬">1</div>-->
+<!--                        <div class="cell_yo" data-label="헤드">-</div>-->
+<!--                        <div class="cell_yo" data-label="어시">-</div>-->
+<!--                        <div class="cell_yo flex_center_yo" data-label="딜량">-->
+<!--                          <div class="damage-bar_yo">-->
+<!--                            <div-->
+<!--                              class="damage-fill_yo"-->
+<!--                              style="width: 10%"-->
+<!--                            ></div>-->
+<!--                            <span>10</span>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="cell_yo" data-label="DBNO">-</div>-->
+<!--                        <div class="cell_yo" data-label="이동거리">1.00KM</div>-->
+<!--                        <div class="cell_yo" data-label="저격">100M</div>-->
+<!--                        <div class="cell_yo" data-label="생존시간">11:00</div>-->
+<!--                      </div>-->
                     </div>
 
 
