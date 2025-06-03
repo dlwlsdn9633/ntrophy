@@ -23,34 +23,8 @@
   </head>
   <body class="main">
     <div id="wrap">
-      <!--%@ include file="/include/header.jsp" %-->
-      <!--%@ include file="/include/main_visual.jsp" %-->
-
       <!-- header -->
-      <header>
-        <div class="inner">
-          <div class="h_logo">
-            <a href="/">
-              <img src="/img/logo.png" alt="" />
-            </a>
-          </div>
-          <div class="gnb">
-            <ul>
-              <li>
-                <a href="/subPage/leaderboard/index.html">리더보드</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li>
-                <a href="/subPage/notice/index.html">게시판</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li class="active">
-                <a href="/subPage/member/login.html">로그인</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+      <div th:replace="~{fragments/header :: siteHeader}"></div>
       <!-- main container -->
       <div class="container mt70">
         <!-- left ad -->

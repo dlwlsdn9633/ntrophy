@@ -24,30 +24,7 @@
   <body class="main">
     <div id="wrap">
       <!-- header -->
-      <header>
-        <div class="inner">
-          <div class="h_logo">
-            <a href="/">
-              <img src="/img/logo.png" alt="" />
-            </a>
-          </div>
-          <div class="gnb">
-            <ul>
-              <li>
-                <a href="/subPage/leaderboard/index.html">리더보드</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li>
-                <a href="/subPage/notice/index.html">게시판</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li>
-                <a href="/subPage/member/login.html">로그인</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+      <div th:replace="~{fragments/header :: siteHeader}"></div>
       <!-- main center -->
       <!-- 500 -->
       <div class="main-content f404_custom">

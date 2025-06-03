@@ -86,6 +86,10 @@ body {
   .mv_search_box {
     width: 100%;
   }
+   .mv_logo_box form {
+   width:100%;}
+
+
   .mv_search_box input {
     padding: 0 15px;
     font-size: 16px;
@@ -280,6 +284,12 @@ body {
 }
 .steam_kakao_box .board-row_yo:last-child {
   margin-bottom: unset;
+}
+
+.board-row_yo a {
+    width:100%:
+    display:flex;
+    align-items: center;
 }
 
 .steam_kakao_box .board-header_yo {

@@ -12,6 +12,9 @@
   margin: auto;
 }
 
+.mr30 {
+margin-right: 30px;}
+
 @media all and (max-width: 1400px) {
   .inner {
     width: 93.75%;
@@ -77,14 +80,20 @@ header .inner {
 
 @media all and (max-width: 768px) {
   .gnb ul li a {
-    font-size: 14px;
+    font-size: 13px;
   }
   .header_bar {
     margin: 0 5px;
   }
-  .h_logo a {
-    width: 80%;
-  }
+  .h_logo {
+  width: 100px;}
+
+  header {
+  height: 55px;}
+
+    .mr30 {
+    margin-right: 5px;}
+
 }
 
 /* footer */

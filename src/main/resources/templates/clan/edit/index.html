@@ -23,35 +23,8 @@
   </head>
   <body class="main">
     <div id="wrap">
-      <!--%@ include file="/include/header.jsp" %-->
-      <!--%@ include file="/include/main_visual.jsp" %-->
-
       <!-- header -->
-      <header>
-        <div class="inner">
-          <div class="h_logo">
-            <a href="/">
-              <img src="/img/logo.png" alt="" />
-            </a>
-          </div>
-          <div class="gnb">
-            <ul>
-              <li class="active">
-                <a href="/leaderboard">리더보드</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li>
-                <a href="javascript:;">리그</a>
-              </li>
-              <li class="header_bar">|</li>
-              <li>
-                <a href="/notice">게시판</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
+      <div th:replace="~{fragments/header :: siteHeader}"></div>
       <!-- top ad -->
       <div class="top_ad">
         <h2>상단 광고</h2>
