@@ -10,15 +10,14 @@ import com.ntrophy.dto.pubg.match.MatchResponseDto;
 import com.ntrophy.dto.pubg.player.PlayerDto;
 import com.ntrophy.dto.pubg.player.PlayerMatchData;
 import com.ntrophy.util.Function;
+import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.*;
 
 @Slf4j
 @Service
@@ -26,20 +25,32 @@ import java.util.Optional;
 public class MatchService {
     private final PubgApiClient pubgApiClient;
     private final ConversionService conversionService;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(10);
     public List<Match> getMatches(Platform platform, String accountId) {
         List<Match> matchList = new ArrayList<>();
         PlayerDto playerDto = pubgApiClient.getPlayer(platform, accountId);
 
-        for (PlayerMatchData matchData : playerDto.getRelationships().getMatches().getData()) {
-            MatchResponseDto matchResponseDto = pubgApiClient.getMatch(platform, matchData.getId());
-            Match match = conversionService.convert(matchResponseDto, Match.class);
-            match.getRosters().sort((roster1, roster2) -> {
-                return roster1.getRank() - roster2.getRank();
+        List<PlayerMatchData> matchesData = playerDto.getRelationships().getMatches().getData();
+        List<Future<Match>> futures = new ArrayList<>();
+
+        for (PlayerMatchData matchData : matchesData) {
+            Future<Match> future = executorService.submit(() -> {
+                MatchResponseDto dto = pubgApiClient.getMatch(platform, matchData.getId());
+                Match match = conversionService.convert(dto, Match.class);
+                match.getRosters().sort(Comparator.comparing(MatchRoster::getRank));
+                findRosterByPlayerId(match, accountId).ifPresent(match::setMyRoster);
+                return match;
             });
-            findRosterByPlayerId(match, accountId).ifPresent(match::setMyRoster);
-            matchList.add(match);
+            futures.add(future);
         }
 
+        for (Future<Match> future : futures) {
+            try {
+                matchList.add(future.get());
+            } catch (InterruptedException | ExecutionException e) {
+                log.error("Error While Fetching Match: {}", e.getMessage());
+            }
+        }
         return matchList;
     }
 
@@ -48,5 +59,17 @@ public class MatchService {
                 .filter(roster -> roster.getParticipants().stream()
                         .anyMatch(p -> p.getPlayerId().equals(accountId)))
                 .findFirst();
+    }
+    @PreDestroy
+    public void shutdownExecutor() {
+        executorService.shutdown();
+        try {
+            if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            executorService.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
     }
 }

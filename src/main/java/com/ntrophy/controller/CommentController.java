@@ -25,7 +25,6 @@ public class CommentController {
     ) {
         commentRequestDto.setPostId(Integer.parseInt(postId));
         int insertResult = commentService.insert(commentRequestDto);
-        log.info("insert: {}", insertResult);
         if (insertResult > 0) {
             return "redirect:/notice/view/" + postId;
         }

@@ -14,6 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Member;
+import java.util.List;
+import java.util.concurrent.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -40,19 +44,42 @@ public class MemberController {
         if (seasonId == null) {
             seasonId = pubgService.getCurrentSeasonId(platform);
         }
-        PlayerDto playerRank = pubgService.getPlayerRank(platform, accountId, seasonId);
-        PlayerDto player = pubgService.getPlayerNormal(platform, accountId, seasonId);
-        PlayerDto playerInfo = pubgService.getPlayer(platform, accountId);
-        Player member = Player.builder()
-                .name(playerInfo.getAttributes().getName())
-                .playerRankSquad(conversionService.convert(playerRank, PlayerRankSquad.class))
-                .playerSquad(conversionService.convert(player, PlayerSquad.class))
-                .playerDuo(conversionService.convert(player, PlayerDuo.class))
-                .playerSolo(conversionService.convert(player, PlayerSolo.class))
-                .build();
-        model.addAttribute("player", member);
-        model.addAttribute("matchList", matchService.getMatches(platform, accountId));
-        model.addAttribute("seasonList", seasonService.getSeasonList(platform));
-        return "record/index";
+
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+        try {
+            String finalSeasonId = seasonId;
+            Callable<PlayerDto> playerRankTask = () -> pubgService.getPlayerRank(platform, accountId, finalSeasonId);
+            Callable<PlayerDto> playerNormalTask = () -> pubgService.getPlayerNormal(platform, accountId, finalSeasonId);
+            Callable<PlayerDto> playerInfoTask = () -> pubgService.getPlayer(platform, accountId);
+
+            Future<PlayerDto> playerRankFuture = executor.submit(playerRankTask);
+            Future<PlayerDto> playerNormalFuture = executor.submit(playerNormalTask);
+            Future<PlayerDto> playerInfoFuture = executor.submit(playerInfoTask);
+
+            PlayerDto playerRank = playerRankFuture.get();
+            PlayerDto player = playerNormalFuture.get();
+            PlayerDto playerInfo = playerInfoFuture.get();
+
+            Player member = Player.builder()
+                    .name(playerInfo.getAttributes().getName())
+                    .playerRankSquad(conversionService.convert(playerRank, PlayerRankSquad.class))
+                    .playerSquad(conversionService.convert(player, PlayerSquad.class))
+                    .playerDuo(conversionService.convert(player, PlayerDuo.class))
+                    .playerSolo(conversionService.convert(player, PlayerSolo.class))
+                    .build();
+            model.addAttribute("player", member);
+            model.addAttribute("matchList", matchService.getMatches(platform, accountId));
+            model.addAttribute("seasonList", seasonService.getSeasonList(platform));
+            return "record/index";
+
+        } catch (InterruptedException | ExecutionException e) {
+            log.error(e.getMessage());
+            model.addAttribute("player", Player.builder().build());
+            model.addAttribute("matchList", List.of());
+            model.addAttribute("seasonList", List.of());
+            return "error/5xx";
+        } finally {
+            executor.shutdown();
+        }
     }
 }
