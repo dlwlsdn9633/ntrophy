@@ -32,7 +32,8 @@
         <div class="mv_box">
           <div class="mv_logo_box">
             <div class="mv_logo">
-              <img src="/img/mv_logo.png" alt="" />
+<!--              <img src="/img/mv_logo.png" alt="" />-->
+              <h2>Track Your Skills. Dominate the Game.</h2>
             </div>
             <form action="/search" method="get">
               <div class="mv_search_box">
@@ -95,12 +96,12 @@
                   <div class="pyo_sub_tit_box steam">
                     <div class="pyo_tit">
                       <h2>STEAM 경쟁전</h2>
-                      <div class="fpp_check_box">
-                        <label for="steam_fpp">
-                          <input type="checkbox" id="steam_fpp"  />
-                          <p>FPP</p>
-                        </label>
-                      </div>
+<!--                      <div class="fpp_check_box">-->
+<!--                        <label for="steam_fpp">-->
+<!--                          <input type="checkbox" id="steam_fpp"  />-->
+<!--                          <p>FPP</p>-->
+<!--                        </label>-->
+<!--                      </div>-->
                     </div>
                     <div class="pyo_link_yo">
                       <a href="javascript:;">
@@ -114,7 +115,7 @@
                       <div class="col_yo player_yo">플레이어</div>
                       <div class="col_yo rp_yo">RP</div>
                       <div class="col_yo kda_yo">KDA</div>
-                      <div class="col_yo matches_yo">경기수</div>
+                      <div class="col_yo matches_yo dil">평균딜량</div>
                     </div>
 
 
@@ -125,17 +126,17 @@
                             onclick="goToPlayer(this, 'steam')"
                             style="cursor: pointer"
                     >
-                      <div class="col_yo num_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
-                      <div class="col_yo title_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
-                      <div class="col_yo writer_yo"
+                      <div class="col_yo rank_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
+                      <div class="col_yo player_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
+                      <div class="col_yo rp_yo"
                            th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
                            data-label="RP">
                       </div>
-                      <div class="col_yo date_yo"
+                      <div class="col_yo kda_yo"
                            th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
                            data-label="KDA">
                       </div>
-                      <div class="col_yo views_yo" th:text="${player.attributes.stats.games}" data-label="경기수"></div>
+                      <div class="col_yo matches_yo dil" th:text="${player.attributes.stats.games}" data-label="평균딜량"></div>
                     </div>
 
 
@@ -160,7 +161,7 @@
                       <div class="col_yo player_yo">플레이어</div>
                       <div class="col_yo rp_yo">RP</div>
                       <div class="col_yo kda_yo">KDA</div>
-                      <div class="col_yo matches_yo">경기수</div>
+                      <div class="col_yo matches_yo dil">평균딜량</div>
                     </div>
 
                     <div
@@ -170,17 +171,17 @@
                             onclick="goToPlayer(this, 'kakao')"
                             style="cursor: pointer"
                     >
-                      <div class="col_yo num_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
-                      <div class="col_yo title_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
-                      <div class="col_yo writer_yo"
+                      <div class="col_yo rank_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
+                      <div class="col_yo player_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
+                      <div class="col_yo rp_yo"
                            th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
                            data-label="RP">
                       </div>
-                      <div class="col_yo date_yo"
+                      <div class="col_yo kda_yo"
                            th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
                            data-label="KDA">
                       </div>
-                      <div class="col_yo views_yo" th:text="${player.attributes.stats.games}" data-label="경기수"></div>
+                      <div class="col_yo matches_yo dil" th:text="${player.attributes.stats.games}" data-label="평균딜량"></div>
                     </div>
                   </div>
 
@@ -191,7 +192,7 @@
           <!-- 커뮤니티 목록 -->
           <div class="pyo_sub_tit_box community mt70">
             <div class="pyo_tit">
-              <h2>커뮤니티dd</h2>
+              <h2>커뮤니티</h2>
             </div>
             <div class="pyo_link_yo">
               <a href="javascript:;">
@@ -199,7 +200,7 @@
               </a>
             </div>
           </div>
-          <div class="board_yo">
+          <div class="board_yo main_bottom_board">
             <!-- 헤더 -->
             <div class="board-header_yo">
               <div class="col_yo num_yo">번호</div>

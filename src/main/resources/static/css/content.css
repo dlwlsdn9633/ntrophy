@@ -512,7 +512,7 @@ text-transform: uppercase;
 }
 
 .dat_select_yo {
-  color: #8c9498;
+  color: #fff;
   border: 1px solid #25282c;
   border-radius: 6px 6px 0px 0px;
   background: rgba(19, 22, 26, 0.9);
@@ -584,7 +584,7 @@ text-transform: uppercase;
   border: 1px solid #25282c;
   background: #13161a;
   height: 140px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
@@ -653,6 +653,23 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
   gap: 35px;
 }
 
+/* 기록없음 */
+.no_data_li .competition_box_yo {
+    min-height:158.5px;
+    display:flex;
+      align-items: center;
+      justify-content: center;
+      color: #8C9498;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: capitalize;
+      border-radius: 0px 0px 9px 9px;
+      border: 1px solid #25282C;
+      background: #13161A;
+}
+
 .per_info_id h2 {
   color: #fefdfe;
   font-size: 30px;
@@ -685,6 +702,19 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
   align-items: center;
   gap: 10px;
 }
+.update_icon_box {
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid #25282C;
+    background: #13161A;
+    width: 120px;
+    padding: 8px 9px;
+    gap:10px;
+    font-size:13px;
+    cursor:pointer;
+}
 
 .personal_info_box {
   display: flex;
@@ -708,7 +738,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 
 .record_side_yo p {
   color: #fefdfe;
-  font-size: 14px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -918,6 +948,9 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 
 .dat_select_yo.persnonal_select {
   min-width: 120px;
+  border-radius: 6px;
+ font-size: 13px;
+
 }
 
 @media all and (max-width: 900px) {

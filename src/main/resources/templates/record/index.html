@@ -21,16 +21,12 @@
       rel="stylesheet"
     />
 
-
-
   </head>
   <body class="main">
     <div id="wrap">
 
-
       <!-- header -->
       <div th:replace="~{fragments/header :: siteHeader}"></div>
-
 
       <!-- top ad -->
       <div class="top_ad">
@@ -64,17 +60,24 @@
                       <h2 th:text="${player.name}">QwerAsdf</h2>
                       <p class="mt10">최근 업데이트: <span>1</span> 시간 전</p>
                     </div>
-                    <div class="per_icon_box">
-                      <div class="per_icon_yo">
-                        <img src="/img/per_icon01.png" alt="" />
-                      </div>
-                      <div class="per_icon_yo">
-                        <img src="/img/per_icon02.png" alt="" />
-                      </div>
-                    </div>
+<!--                    <div class="per_icon_box">-->
+<!--                      <div class="per_icon_yo">-->
+<!--                        <img src="/img/per_icon01.png" alt="" />-->
+<!--                      </div>-->
+<!--                      <div class="per_icon_yo">-->
+<!--                        <img src="/img/per_icon02.png" alt="" />-->
+<!--                      </div>-->
+<!--                    </div>-->
                   </div>
                   <div class="per_info_bottom">
                     <div class="per_select_wrapper">
+
+                      <!-- 전적갱신 버튼-->
+                      <div class="update_icon_box">
+                        <p>전적갱신</p>
+                        <img src="/img/update_icon.png" alt="전적갱신">
+                      </div>
+
                       <select class="dat_select_yo persnonal_select" onchange="onChangeSeason(event, this);">
                         <th:block th:each="season : ${seasonList}">
                           <option th:value="${season.id}"
@@ -87,12 +90,12 @@
                         <option>경쟁전 시즌8</option>
                         -->
                       </select>
-                      <div class="fpp_check_box">
-                        <label for="personal_fpp">
-                          <input type="checkbox" id="personal_fpp" />
-                          <p>FPP</p>
-                        </label>
-                      </div>
+<!--                      <div class="fpp_check_box">-->
+<!--                        <label for="personal_fpp">-->
+<!--                          <input type="checkbox" id="personal_fpp" />-->
+<!--                          <p>FPP</p>-->
+<!--                        </label>-->
+<!--                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -105,7 +108,6 @@
               </div>
             </div>
           </div>
-
           <!-- 개인전적 탭 -->
 
           <div class="sub_page_tab_box over_history mt70">
@@ -199,62 +201,62 @@
                 </div>
               </li>
               <!-- 솔로 -->
-              <li>
-                <div class="pyo_box">
-                  <div class="pyo_sub_tit_box solo">
-                    <div class="pyo_tit">
-                      <h2>경쟁전 솔로</h2>
-                    </div>
-                  </div>
-                  <div class="competition_box_yo">
-                    <div class="competition_top no_data_yo">
-                      <div class="compet_info_yo">
-                        <p>기록 없음</p>
-                      </div>
-                    </div>
-                    <div class="competition_middle">
-                      <div class="comp_three_info">
-                        <p>KDA</p>
-                        <span>10.00</span>
-                      </div>
-                      <div class="comp_three_info">
-                        <p>승률</p>
-                        <span>100%</span>
-                      </div>
-                      <div class="comp_three_info">
-                        <p>Top10</p>
-                        <span>100%</span>
-                      </div>
-                    </div>
-                    <div class="competition_bottom">
-                      <div class="comp_two_box">
-                        <p>평균 딜량</p>
-                        <span>100</span>
-                      </div>
-                      <div class="comp_two_box">
-                        <p>최다 킬 수</p>
-                        <span>100</span>
-                      </div>
-                      <div class="comp_two_box">
-                        <p>게임 수</p>
-                        <span>100</span>
-                      </div>
-                      <div class="comp_two_box">
-                        <p>헤드샷</p>
-                        <span>100%</span>
-                      </div>
-                      <div class="comp_two_box">
-                        <p>생존</p>
-                        <span>100분</span>
-                      </div>
-                      <div class="comp_two_box">
-                        <p>저격</p>
-                        <span>100m</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
+<!--              <li>-->
+<!--                <div class="pyo_box">-->
+<!--                  <div class="pyo_sub_tit_box solo">-->
+<!--                    <div class="pyo_tit">-->
+<!--                      <h2>경쟁전 솔로</h2>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="competition_box_yo">-->
+<!--                    <div class="competition_top no_data_yo">-->
+<!--                      <div class="compet_info_yo">-->
+<!--                        <p>기록 없음</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="competition_middle">-->
+<!--                      <div class="comp_three_info">-->
+<!--                        <p>KDA</p>-->
+<!--                        <span>10.00</span>-->
+<!--                      </div>-->
+<!--                      <div class="comp_three_info">-->
+<!--                        <p>승률</p>-->
+<!--                        <span>100%</span>-->
+<!--                      </div>-->
+<!--                      <div class="comp_three_info">-->
+<!--                        <p>Top10</p>-->
+<!--                        <span>100%</span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="competition_bottom">-->
+<!--                      <div class="comp_two_box">-->
+<!--                        <p>평균 딜량</p>-->
+<!--                        <span>100</span>-->
+<!--                      </div>-->
+<!--                      <div class="comp_two_box">-->
+<!--                        <p>최다 킬 수</p>-->
+<!--                        <span>100</span>-->
+<!--                      </div>-->
+<!--                      <div class="comp_two_box">-->
+<!--                        <p>게임 수</p>-->
+<!--                        <span>100</span>-->
+<!--                      </div>-->
+<!--                      <div class="comp_two_box">-->
+<!--                        <p>헤드샷</p>-->
+<!--                        <span>100%</span>-->
+<!--                      </div>-->
+<!--                      <div class="comp_two_box">-->
+<!--                        <p>생존</p>-->
+<!--                        <span>100분</span>-->
+<!--                      </div>-->
+<!--                      <div class="comp_two_box">-->
+<!--                        <p>저격</p>-->
+<!--                        <span>100m</span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </li>-->
             </ul>
           </div>
 
@@ -414,6 +416,20 @@
                   </div>
                 </div>
               </li>
+<!--              기록없음-->
+              <li class="no_data_li">
+                <div class="pyo_box">
+                  <div class="pyo_sub_tit_box normal">
+                    <div class="pyo_tit">
+                      <h2>일반 스쿼드</h2>
+                    </div>
+                  </div>
+                  <div class="competition_box_yo">
+                    <p>기록없음</p>
+                  </div>
+                </div>
+              </li>
+
             </ul>
           </div>
           </section>
@@ -491,9 +507,6 @@
                 </div>
               </div>
 
-
-
-
               <!-- 매치 히스토리 상세 -->
               <div class="match-detail_yo">
                 <!-- 팀 전적, 전체 순위 탭 -->
@@ -519,7 +532,6 @@
                       <p>팀 요약</p>
                     </div>
                     <!-- 팀 요약 -->
-
 
                     <div class="match-summary_yo detail_custom" th:each="myRosters : ${match.myRoster}">
                       <div class="match_left_wrapper">
