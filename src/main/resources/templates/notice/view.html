@@ -64,7 +64,7 @@
                   <ul>
                     <li>
                       조회수
-                      <p>100</p>
+                      <p th:text="${post.views}">100</p>
                     </li>
                     <li class="notice_bar">|</li>
                     <li>
@@ -74,7 +74,7 @@
                     <li class="notice_bar">|</li>
                     <li>
                       추천
-                      <p th:text="${post.views}">100</p>
+                      <p th:text="${likeCount}" id="likes_number">100</p>
                     </li>
                   </ul>
                 </div>
@@ -95,8 +95,10 @@
               <div class="notice_sub_btn mt35">
                 <ul>
                   <li>
-                    <img src="/img/n_sub_icon01.png" alt="" />
-                    <p>추천</p>
+                    <a href="javascript:;" th:data-id="${post.id}" onclick="onLike(event, this);">
+                      <img src="/img/n_sub_icon01.png" alt="" />
+                      <p>추천</p>
+                    </a>
                   </li>
                   <li class="notice_bar">|</li>
                   <li>
@@ -301,8 +303,39 @@
   </body>
 </html>
 
+<script>
+  function onLike(event, obj) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const id = $(obj).data("id");
+
+    $.ajax({
+      url: `/v1/likes/${id}`,
+      method: 'POST',
+      success: function(response) {
+        $.ajax({
+          url: `/v1/likes/${id}`,
+          method: 'GET',
+          success: function(response) {
+            const likesNumber = response.data.likesNumber;
+            $("#likes_number").text(likesNumber);
+          },
+          error: function(error) {
+            alert("오류가 발생했습니다.\n비젠 소프트 내선번호 601번 또는 602번으로 연락하세요");
+          }
+        });
+      },
+      error: function() {
+        alert("오류가 발생했습니다.\n비젠 소프트 내선번호 601번 또는 602번으로 연락하세요");
+      }
+    });
+  }
+</script>
+
 <!-- 양 사이드 광고 높이 조정 스크립트 -->
 <script>
+
   window.addEventListener("scroll", () => {
     const container = document.querySelector(".container");
     const ads = document.querySelectorAll(".ad");

@@ -6,6 +6,7 @@ import com.ntrophy.repository.post.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -29,7 +30,9 @@ public class PostService {
         }
         return post;
     }
+    @Transactional
     public Post read(PostRequestDto postRequestDto) {
+        postRepository.increaseViews(postRequestDto.getId());
         Post post = Post.builder()
                 .id(postRequestDto.getId())
                 .build();
@@ -75,4 +78,6 @@ public class PostService {
                 .build();
         return postRepository.update(post);
     }
+
+
 }

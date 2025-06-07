@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.ntrophy.mapper.PostToLikesMapper"
+>
+    <select
+        id="count"
+        parameterType="com.ntrophy.domain.post.PostToLikes"
+        resultType="int"
+    >
+        SELECT COUNT(*)
+        FROM post_to_likes
+        WHERE post_fk = #{postFk}
+    </select>
+
+    <select
+        id="checkByUUID"
+        parameterType="com.ntrophy.domain.post.PostToLikes"
+        resultType="int"
+    >
+        SELECT COUNT(*)
+        FROM post_to_likes
+        WHERE post_fk = #{postFk} AND uuid = #{uuid}
+    </select>
+    <insert
+        id="insert"
+        parameterType="com.ntrophy.domain.post.PostToLikes"
+    >
+        INSERT INTO post_to_likes (
+            post_fk,
+            member_fk,
+            uuid
+        ) VALUES (
+            #{postFk},
+            #{memberFk},
+            #{uuid}
+        )
+    </insert>
+    <delete
+        id="deleteByUUID"
+        parameterType="com.ntrophy.domain.post.PostToLikes"
+    >
+        DELETE FROM post_to_likes
+        WHERE uuid = #{uuid} AND post_fk = #{postFk}
+    </delete>
+
+</mapper>

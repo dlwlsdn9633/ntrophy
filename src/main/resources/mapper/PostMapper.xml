@@ -11,6 +11,7 @@
         <result column="views" property="views" />
         <result column="password" property="password" />
         <result column="post_type" property="postType" typeHandler="com.ntrophy.common.typehandler.PostTypeHandler" />
+        <result column="likes_count" property="postLikesNumber" />
     </resultMap>
 
     <sql id="search">
@@ -56,9 +57,15 @@
         parameterType="com.ntrophy.domain.post.Post"
         resultMap="postResultMap"
     >
-        SELECT *
+        SELECT
+        post.*
+        , COUNT(post_to_likes.post_fk) AS likes_count
+
         FROM post
+        LEFT JOIN post_to_likes
+        ON post.id = post_to_likes.post_fk
         <include refid="search" />
+        GROUP BY post.id
         <!--
         LIMIT #{startPage}, #{pageRows}
         -->
@@ -109,6 +116,15 @@
         contents = #{contents},
         password = #{password},
         post_type = #{postType.code}
+        WHERE id = #{id}
+    </update>
+
+    <update
+        id="increaseViews"
+        parameterType="int"
+    >
+        UPDATE post SET
+        views = views + 1
         WHERE id = #{id}
     </update>
 </mapper>

@@ -36,4 +36,8 @@ public class MyBatisPostRepositoryImpl implements PostRepository {
     public int update(Post post) {
         return mapper.update(post);
     }
+    @Override
+    public void increaseViews(int id) {
+        mapper.increaseViews(id);
+    }
 }

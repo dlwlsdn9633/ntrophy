@@ -11,4 +11,5 @@ public interface PostRepository {
     int checkPassword(Post post);
     int delete(Post post);
     int update(Post post);
+    void increaseViews(int id);
 }

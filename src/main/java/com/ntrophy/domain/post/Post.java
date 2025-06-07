@@ -25,4 +25,5 @@ public class Post {
     private String formattedRegisterDate;
     private int startPage;
     private int pageRows;
+    private int postLikesNumber;
 }

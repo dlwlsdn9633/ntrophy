@@ -4,10 +4,14 @@ import com.ntrophy.domain.comment.Comment;
 import com.ntrophy.domain.enums.Cmd;
 import com.ntrophy.domain.enums.PostType;
 import com.ntrophy.domain.post.Post;
+import com.ntrophy.domain.post.PostToLikes;
 import com.ntrophy.dto.comment.CommentRequestDto;
 import com.ntrophy.dto.post.PostRequestDto;
 import com.ntrophy.service.CommentService;
 import com.ntrophy.service.PostService;
+import com.ntrophy.service.PostToLikesService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.ConversionService;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -27,6 +32,7 @@ public class NoticeController {
     private final ConversionService conversionService;
     private final PostService postService;
     private final CommentService commentService;
+    private final PostToLikesService postToLikesService;
 
     @GetMapping("")
     public String indexForm(
@@ -56,15 +62,31 @@ public class NoticeController {
         );
         model.addAttribute("postList", postList);
         model.addAttribute("postType", postType);
+
         return "notice/index";
     }
     @GetMapping("/view/{id}")
-    public String viewForm(@PathVariable("id") int id, Model model) {
+    public String viewForm(
+            @PathVariable("id") int id,
+            Model model,
+            @CookieValue(name = "ntrophy-token", required = false) String ntrophyToken,
+            HttpServletResponse response
+    ) {
+        if (ntrophyToken == null || ntrophyToken.isEmpty()) {
+            ntrophyToken = UUID.randomUUID().toString();
+            Cookie cookie = new Cookie("ntrophy-token", ntrophyToken);
+            cookie.setPath("/");
+            cookie.setMaxAge(60 * 60 * 24);
+            cookie.setHttpOnly(true);
+            response.addCookie(cookie);
+        }
+
         Post readPost = postService.read(PostRequestDto.builder().id(id).build());
         List<Comment> commentList = commentService.list(CommentRequestDto.builder().postId(id).build());
         int commentCount = commentService.countByPostId(CommentRequestDto.builder().postId(id).build());
         List<Post> postList = postService.list(PostRequestDto.builder().postType(readPost.getPostType()).build());
 
+        model.addAttribute("likeCount", postToLikesService.count(readPost.getId()));
         model.addAttribute("post", readPost);
         model.addAttribute("commentList", commentList);
         model.addAttribute("commentCount", commentCount);
