@@ -415,8 +415,13 @@ body {
 }
 
 .steam_kakao_box ul.item02 li {
+  width: calc(50% - 9px);
+}
+.steam_kakao_box.box_one_yo ul.item02 li {
   width: 100%;
 }
+
+
 
 .pyo_sub_tit_box {
   display: flex;
