@@ -160,24 +160,33 @@
                     <div class="competition_middle">
                       <div class="comp_three_info">
                         <p>KDA</p>
-                        <span th:text="${player.playerRankSquad.kda}">10.00</span>
+                        <span
+                                th:text="${player.playerRankSquad.kda}"
+                                th:style="${player.playerRankSquad.kda >= 5} ? 'color:#FF2727' : ''"
+                        >10.00</span>
                       </div>
+
                       <div class="comp_three_info">
                         <p>승률</p>
                         <span th:text="${player.playerRankSquad.winRatio}">100%</span>
                       </div>
+
                       <div class="comp_three_info">
-                        <p>Top10</p>
-                        <span th:text="${player.playerRankSquad.top10Ratio}">100%</span>
+                        <p>평균딜량</p>
+                        <span
+                                th:text="${player.playerRankSquad.avgDamageDealt}"
+                                th:style="${player.playerRankSquad.avgDamageDealt >= 500} ? 'color:#FF2727' : ''"
+                        >100%</span>
                       </div>
                     </div>
+
                     <div class="competition_bottom">
                       <div class="comp_two_box">
-                        <p>평균 딜량</p>
-                        <span th:text="${player.playerRankSquad.avgDamageDealt}">100</span>
+                        <p>Top10</p>
+                        <span th:text="${player.playerRankSquad.top10Ratio}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>킬수</p>
+                        <p>승</p>
                         <span th:text="${player.playerRankSquad.kills}">100</span>
                       </div>
                       <div class="comp_two_box">
@@ -185,15 +194,15 @@
                         <span th:text="${player.playerRankSquad.roundsPlayed}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>헤드샷</p>
+                        <p>탑</p>
                         <span th:text="${player.playerRankSquad.headshotKillRatio}">100%</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>승리</p>
+                        <p>평균등수</p>
                         <span th:text="${player.playerRankSquad.wins}">100</span>
                       </div>
                       <div class="comp_two_box">
-                        <p>최대 저격</p>
+                        <p>패</p>
                         <span th:text="${player.playerRankSquad.longestKill}">100m</span>
                       </div>
                     </div>

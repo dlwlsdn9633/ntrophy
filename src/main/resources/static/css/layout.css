@@ -78,7 +78,61 @@ header .inner {
   color: #25282c !important;
 }
 
+/* 검색창 */
+.search-wrapper {
+  position: relative;
+}
+
+.search-popup {
+  position: absolute;
+  top: 50%;
+  right: 115%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 40px;
+  background: white;
+  border-radius: 50px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: width 0.3s ease;
+  padding: 0;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.search-popup input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 0 10px;
+  flex: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  width: 150px;
+}
+
+.search-popup button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.search-popup.show {
+  width: 220px;
+  padding: 0 10px;
+}
+
+.search-popup.show input {
+  opacity: 1;
+}
 @media all and (max-width: 768px) {
+  .search-popup.show {
+    width: 150px;
+  }
   .gnb ul li a {
     font-size: 13px;
   }

@@ -1690,7 +1690,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
   border: 1px solid #25282c;
   background: #101115;
   color: #8c9498;
-  font-family: Sansation;
+
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -1712,7 +1712,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 }
 .board_pw_box p {
   color: #fefdfe;
-  font-family: Sansation;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1785,7 +1785,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 
 .mem_ber_input {
   color: #fefdfe;
-  font-family: Sansation;
+
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -1816,7 +1816,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
   height: 44px;
 
   color: #fefdfe;
-  font-family: Sansation;
+
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -1856,7 +1856,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
   display: flex;
   align-items: center;
   color: #8c9498;
-  font-family: Sansation;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1945,7 +1945,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 .f404_txt h2 {
   color: #f0f0f0;
   text-align: center;
-  font-family: Sansation;
+
   font-size: 90px;
   font-style: normal;
   font-weight: 700;
@@ -2055,7 +2055,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 .clan_info p,
 .discord_btn a p {
   color: #fefdfe;
-  font-family: Sansation;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -2095,7 +2095,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 }
 .search-bar_yo.clan_search_custom input {
   color: #fff;
-  font-family: Sansation;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -2186,7 +2186,7 @@ background: linear-gradient(0deg, #13161A 0%, #13161A 100%), #13161A;
 }
 .rp_box.clan h2 {
   color: #91d7a4;
-  font-family: Sansation;
+
   font-size: 26px;
   font-style: normal;
   font-weight: 700;

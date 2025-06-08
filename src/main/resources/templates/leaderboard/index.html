@@ -49,24 +49,16 @@
 
           <!-- 리더보드 탭 -->
           <div class="sub_page_tab_box mt70">
-            <div class="tab_one_yo active">
+            <div class="tab_one_yo" th:classappend="${#httpServletRequest.requestURI.contains('/steam')} ? ' active'">
               <p><a href="/leaderboard/steam">STEAM</a></p>
             </div>
-            <div class="tab_one_yo">
+            <div class="tab_one_yo" th:classappend="${#httpServletRequest.requestURI.contains('/kakao')} ? ' active'">
               <p><a href="/leaderboard/kakao">KAKAO</a></p>
-            </div>
-            <div class="fpp_check_box">
-              <label for="leader_fpp">
-                <input type="checkbox" id="leader_fpp" onchange="onChangeFpp(event)" />
-                <p>FPP</p>
-              </label>
             </div>
           </div>
 
           <!-- 리더보드 게시판 -->
           <div class="board_yo leader_board_yo mt20">
-
-
 
             <!-- 헤더 -->
             <div class="board-header_yo">
@@ -140,53 +132,53 @@
 <!-- 양 사이드 광고 높이 조정 스크립트 -->
 <script>
 
-  function onChangeFpp(event) {
-    event.preventDefault();
-    event.stopPropagation();
+ function onChangeFpp(event) {
+   event.preventDefault();
+   event.stopPropagation();
 
-    const checkbox = document.getElementById("leader_fpp");
-    const normalList = document.getElementById("normal_list");
-    const fppList = document.getElementById("fpp_list");
+   const checkbox = document.getElementById("leader_fpp");
+   const normalList = document.getElementById("normal_list");
+   const fppList = document.getElementById("fpp_list");
 
-    // Toggle the display of normal_list and fpp_list
+   // Toggle the display of normal_list and fpp_list
 
-    if (checkbox.checked) {
-      // Hide normal list and show fpp list when checkbox is checked
-      normalList.style.display = 'none';
-      fppList.style.display = 'block';
-    } else {
-      // Show normal list and hide fpp list when checkbox is unchecked
-      normalList.style.display = 'block';
-      fppList.style.display = 'none';
-    }
+   if (checkbox.checked) {
+     // Hide normal list and show fpp list when checkbox is checked
+     normalList.style.display = 'none';
+     fppList.style.display = 'block';
+   } else {
+     // Show normal list and hide fpp list when checkbox is unchecked
+     normalList.style.display = 'block';
+     fppList.style.display = 'none';
+   }
 
-  }
+ }
 
-  window.addEventListener("scroll", () => {
-    const container = document.querySelector(".container");
-    const ads = document.querySelectorAll(".ad");
+ window.addEventListener("scroll", () => {
+   const container = document.querySelector(".container");
+   const ads = document.querySelectorAll(".ad");
 
-    const containerTop = container.offsetTop;
-    const containerHeight = container.offsetHeight;
-    const containerBottom = containerTop + containerHeight;
-    const scrollTop = window.scrollY;
-    const padding = 20;
+   const containerTop = container.offsetTop;
+   const containerHeight = container.offsetHeight;
+   const containerBottom = containerTop + containerHeight;
+   const scrollTop = window.scrollY;
+   const padding = 20;
 
 
 
-    ads.forEach((ad) => {
-      const adHeight = ad.offsetHeight;
-      let topOffset = scrollTop + padding - containerTop;
+   ads.forEach((ad) => {
+     const adHeight = ad.offsetHeight;
+     let topOffset = scrollTop + padding - containerTop;
 
-      if (scrollTop + padding < containerTop) {
-        topOffset = 0;
-      }
+     if (scrollTop + padding < containerTop) {
+       topOffset = 0;
+     }
 
-      if (topOffset + adHeight > containerHeight) {
-        topOffset = containerHeight - adHeight;
-      }
+     if (topOffset + adHeight > containerHeight) {
+       topOffset = containerHeight - adHeight;
+     }
 
-      ad.style.top = `${topOffset}px`;
-    });
-  });
+     ad.style.top = `${topOffset}px`;
+   });
+ });
 </script>
