@@ -129,6 +129,10 @@ body {
   }
 }
 
+.container.mt70 {
+  margin-top: 0 !important;
+}
+
 /* main con */
 .container {
   max-width: 1760px;
