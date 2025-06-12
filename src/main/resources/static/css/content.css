@@ -59,7 +59,7 @@ text-transform: uppercase;
   display: inline-flex;
   height: 42px;
   flex: 1;
-  max-width: 185px;
+  max-width: 232px;
   /* max-width: 100%; */
   align-items: center;
   justify-content: center;
@@ -448,15 +448,15 @@ text-transform: uppercase;
   align-items: center;
 }
 
-.notice_sub_btn ul li {
+.notice_sub_btn ul li a {
   display: flex;
-  gap: 9px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   color: #8c9498;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
-  align-items: start;
   cursor: pointer;
 }
 
@@ -464,7 +464,10 @@ text-transform: uppercase;
   color: #25282c !important;
   margin: 0 18px;
 }
-
+/* 추천 활성화시 텍스트 색상 변경 */
+.notice_sub_btn a.active p {
+  color: #4B6EFF;
+}
 /* .notice_dat_box {
 } */
 

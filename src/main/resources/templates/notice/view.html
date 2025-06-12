@@ -102,13 +102,17 @@
                   </li>
                   <li class="notice_bar">|</li>
                   <li>
-                    <img src="/img/n_sub_icon02.png" alt="" />
-                    <p>공유</p>
+                    <a href="javascript:;" id="share-button">
+                      <img src="/img/n_sub_icon02.png" alt="" />
+                      <p>공유</p>
+                    </a>
                   </li>
                   <li class="notice_bar">|</li>
                   <li>
-                    <img src="/img/n_sub_icon03.png" alt="" />
-                    <p>신고</p>
+                    <a href="javascript:;">
+                      <img src="/img/n_sub_icon03.png" alt="" />
+                      <p>신고</p>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -168,10 +172,10 @@
                     <p class="notice_bar">|</p>
                     <span th:text="${comment.formattedRegisterDate}">25.05.05</span>
                   </div>
-                  <div class="dat_left right align_start">
+                  <!-- <div class="dat_left right align_start">
                     <img src="/img/n_sub_icon03.png" alt="" />
                     <p>신고</p>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="dat_geul_txt">
                   <p th:text="${comment.contents}">커뮤니티 게시물 댓글입니다.</p>
@@ -309,6 +313,7 @@
     event.stopPropagation();
 
     const id = $(obj).data("id");
+    const isActive = $(obj).hasClass("active");
 
     $.ajax({
       url: `/v1/likes/${id}`,
@@ -320,14 +325,29 @@
           success: function(response) {
             const likesNumber = response.data.likesNumber;
             $("#likes_number").text(likesNumber);
+
+            const imgTag = $(obj).find("img");
+            const pTag = $(obj).find("p");
+
+            if (!isActive) {
+              // 추천 활성화
+              imgTag.attr("src", "/img/n_sub_icon01-1.png");
+              pTag.css("color", "#5C83FF");
+              $(obj).addClass("active");
+            } else {
+              // 추천 비활성화
+              imgTag.attr("src", "/img/n_sub_icon01.png");
+              pTag.css("color", "");
+              $(obj).removeClass("active");
+            }
           },
-          error: function(error) {
-            alert("오류가 발생했습니다.\n비젠 소프트 내선번호 601번 또는 602번으로 연락하세요");
+          error: function() {
+            alert("오류가 발생했습니다.");
           }
         });
       },
       error: function() {
-        alert("오류가 발생했습니다.\n비젠 소프트 내선번호 601번 또는 602번으로 연락하세요");
+        alert("오류가 발생했습니다.");
       }
     });
   }
@@ -499,5 +519,26 @@
 
     // 댓글 페이지네이션 렌더링
     renderPagination_yo(true);
+  });
+</script>
+  // 공유하기 버튼 클릭시
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const shareButton = document.getElementById("share-button");
+
+    if (shareButton) {
+      shareButton.addEventListener("click", function () {
+        const url = window.location.href;
+
+        navigator.clipboard.writeText(url)
+                .then(() => {
+                  alert("링크가 복사되었습니다.");
+                })
+                .catch(err => {
+                  alert("복사에 실패했습니다.");
+                  console.error('복사 실패:', err);
+                });
+      });
+    }
   });
 </script>
