@@ -61,7 +61,7 @@
             <div class="you_tube_con">
               <iframe width="100%" height="100%" th:src="@{https://www.youtube.com/embed/{code}(code=${youtube.youtubeUrl})}" frameborder="0" allowfullscreen></iframe>
             </div>
-            <p>배틀그라운드 플레이 영상</p>
+            <p th:text="${youtube.title}">배틀그라운드 플레이 영상</p>
           </li>
         </ul>
       </div>
@@ -197,7 +197,7 @@
         <div class="footer_side right">
           <div class="footer_info_box">
             <div class="footer_info_yo"><img src="/img/footer_icon01.png" alt="" /><p>NTROPYADMIN</p></div>
-            <div class="footer_info_yo"><img src="/img/footer_icon02.png" alt="" /><p>CKSUN0620@NAVER.COM</p></div>
+            <div class="footer_info_yo"><img src="/img/footer_icon02.png" alt="" /><p>ntrophymanager@naver.com</p></div>
           </div>
           <div class="copyright"><p>© Copyrights 2025 NTROPHY All rights reserved.</p></div>
         </div>
