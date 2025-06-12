@@ -5,19 +5,23 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 40px;
   position: relative;
 }
+
 .inner.blank {
   max-width: calc(100% - calc(calc(100% - 1400px) / 2));
   margin: auto;
 }
 
 .mr30 {
-margin-right: 30px;}
+  margin-right: 30px;
+}
 
 @media all and (max-width: 1400px) {
   .inner {
     width: 93.75%;
+    padding: 0 20px;
   }
   .inner.blank {
     width: 96.875%;
@@ -48,6 +52,7 @@ header .inner {
   align-items: center;
   height: 100%;
 }
+
 .h_logo a {
   height: 100%;
   align-items: center;
@@ -57,6 +62,7 @@ header .inner {
 .gnb ul li {
   height: 100%;
 }
+
 .gnb ul li a {
   font-size: 16px;
   font-weight: 400;
@@ -129,6 +135,7 @@ header .inner {
 .search-popup.show input {
   opacity: 1;
 }
+
 @media all and (max-width: 768px) {
   .search-popup.show {
     width: 150px;
@@ -140,14 +147,14 @@ header .inner {
     margin: 0 5px;
   }
   .h_logo {
-  width: 100px;}
-
+    width: 100px;
+  }
   header {
-  height: 55px;}
-
-    .mr30 {
-    margin-right: 5px;}
-
+    height: 55px;
+  }
+  .mr30 {
+    margin-right: 5px;
+  }
 }
 
 /* footer */
@@ -179,9 +186,16 @@ header .inner {
 
 .footer_bottom {
   padding: 36px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.footer_bottom .inner {
+.footer_inner {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 40px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -198,8 +212,9 @@ header .inner {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 214.286% */
+  line-height: 30px;
 }
+
 .footer_info_yo {
   display: flex;
   align-items: center;
@@ -217,9 +232,10 @@ header .inner {
 }
 
 @media all and (max-width: 600px) {
-  .footer_bottom .inner {
+  .footer_inner {
     flex-direction: column;
     gap: 20px;
+    padding: 0 20px;
   }
   .footer_info_yo {
     justify-content: center;

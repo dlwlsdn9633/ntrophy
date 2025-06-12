@@ -2,288 +2,215 @@
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <th:block th:replace="~{fragments/common_head :: commonHeadScripts}"></th:block>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fighting</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fighting</title>
 
-    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
-    <link
-      rel="stylesheet"
-      href="/css/content.css"
-      type="text/css"
-      media="all"
-    />
-    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/css/content.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
+  <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+</head>
 
-  </head>
-  <body class="main">
-    <div id="wrap">
-      <!-- header -->
-      <div th:replace="~{fragments/header :: siteHeader}"></div>
+<body class="main">
+<div id="wrap">
+  <!-- header -->
+  <div th:replace="~{fragments/header :: siteHeader}"></div>
 
-      <!-- main visual -->
-      <div class="mv_inner">
-        <div class="mv_box">
-          <div class="mv_logo_box">
-            <div class="mv_logo">
-<!--              <img src="/img/mv_logo.png" alt="" />-->
-              <h2>Track Your Skills. Dominate the Game.</h2>
+  <!-- main visual -->
+  <div class="mv_inner">
+    <div class="mv_box">
+      <div class="mv_logo_box">
+        <div class="mv_logo">
+          <h2>Track Your Skills. Dominate the Game.</h2>
+        </div>
+        <form action="/search" method="get">
+          <div class="mv_search_box">
+            <input type="text" name="name" placeholder="배틀그라운드 닉네임을 입력해주세요." maxlength="17" />
+            <div class="search_icon_box">
+              <img src="/img/search_icon.png" alt="" />
             </div>
-            <form action="/search" method="get">
-              <div class="mv_search_box">
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="배틀그라운드 닉네임을 입력해주세요."
-                    maxlength="17"
-                  />
-                <div class="search_icon_box">
-                  <img src="/img/search_icon.png" alt="" />
-                </div>
-              </div>
-            </form>
           </div>
-          <div class="mv_link_box">
-            <a href="https://discord.gg/aBJtP8gyRy" target="_blank">
-              <img src="/img/mv_link01.png" alt="">
-            </a>
-          </div>
+        </form>
       </div>
-
-      <!-- main container -->
-      <div class="container mt70">
-        <!-- left ad -->
-        <div class="ad-left">
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4282223541896969"
-                  crossorigin="anonymous"></script>
-          <ins class="adsbygoogle"
-               style="display:block"
-               data-ad-client="ca-pub-4282223541896969"
-               data-ad-slot="5277802822"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-        <!-- main center -->
-        <div class="main-content">
-          <!-- main youtube -->
-          <div class="youtube_box">
-            <ul class="item03">
-              <li th:each="youtube : ${youtubeList}">
-                <div class="you_tube_con">
-                  <!--
-                  <img src="/img/youtube_01.png" alt="" />
-                  -->
-                  <iframe width="100%" height="100%" th:src="@{https://www.youtube.com/embed/{code}(code=${youtube.youtubeUrl})}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <p>배틀그라운드 플레이 영상</p>
-              </li>
-            </ul>
-          </div>
-          <!-- main ad -->
-          <div class="ad_center mt70">
-            <h2>메인 광고</h2>
-          </div>
-          <!-- 스팀,카카오 경쟁전 -->
-          <div class="steam_kakao_box mt70">
-            <ul class="item02">
-              <li>
-                <div class="pyo_box">
-                  <div class="pyo_sub_tit_box steam">
-                    <div class="pyo_tit">
-                      <h2>STEAM 경쟁전</h2>
-<!--                      <div class="fpp_check_box">-->
-<!--                        <label for="steam_fpp">-->
-<!--                          <input type="checkbox" id="steam_fpp"  />-->
-<!--                          <p>FPP</p>-->
-<!--                        </label>-->
-<!--                      </div>-->
-                    </div>
-                    <div class="pyo_link_yo">
-                      <a href="/leaderboard/steam">
-                        <img src="/img/pyo_link.png" alt="" />
-                      </a>
-                    </div>
-                  </div>
-                  <div class="board_yo">
-                    <div class="board-header_yo">
-                      <div class="col_yo rank_yo">순위</div>
-                      <div class="col_yo player_yo">플레이어</div>
-                      <div class="col_yo rp_yo">RP</div>
-                      <div class="col_yo kda_yo">KDA</div>
-                      <div class="col_yo matches_yo dil">평균딜량</div>
-                    </div>
-
-
-                    <div
-                            th:each="player, stat : ${steamPlayerList}"
-                            th:class="board-row_yo"
-                            th:attr="data-id=${player.id}"
-                            onclick="goToPlayer(this, 'steam')"
-                            style="cursor: pointer"
-                    >
-                      <div class="col_yo rank_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
-                      <div class="col_yo player_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
-                      <div class="col_yo rp_yo"
-                           th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
-                           data-label="RP">
-                      </div>
-                      <div class="col_yo kda_yo"
-                           th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
-                           data-label="KDA">
-                      </div>
-                      <div class="col_yo matches_yo dil" th:text="${player.attributes.stats.games}" data-label="평균딜량"></div>
-                    </div>
-
-
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="pyo_box">
-                  <div class="pyo_sub_tit_box kakao">
-                    <div class="pyo_tit">
-                      <h2>KAKAO 경쟁전</h2>
-                    </div>
-                    <div class="pyo_link_yo">
-                      <a href="/leaderboard/kakao">
-                        <img src="/img/pyo_link.png" alt="" />
-                      </a>
-                    </div>
-                  </div>
-                  <div class="board_yo">
-                    <div class="board-header_yo">
-                      <div class="col_yo rank_yo">순위</div>
-                      <div class="col_yo player_yo">플레이어</div>
-                      <div class="col_yo rp_yo">RP</div>
-                      <div class="col_yo kda_yo">KDA</div>
-                      <div class="col_yo matches_yo dil">평균딜량</div>
-                    </div>
-
-                    <div
-                            th:each="player, stat : ${kakaoPlayerList}"
-                            th:class="board-row_yo"
-                            th:attr="data-id=${player.id}"
-                            onclick="goToPlayer(this, 'kakao')"
-                            style="cursor: pointer"
-                    >
-                      <div class="col_yo rank_yo" th:text="${player.attributes.rank}" data-label="순위"></div>
-                      <div class="col_yo player_yo" th:text="${player.attributes.name}" data-label="플레이어"></div>
-                      <div class="col_yo rp_yo"
-                           th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"
-                           data-label="RP">
-                      </div>
-                      <div class="col_yo kda_yo"
-                           th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"
-                           data-label="KDA">
-                      </div>
-                      <div class="col_yo matches_yo dil" th:text="${player.attributes.stats.games}" data-label="평균딜량"></div>
-                    </div>
-                  </div>
-
-                </div>
-              </li>
-            </ul>
-          </div>
-          <!-- 커뮤니티 목록 -->
-          <div class="pyo_sub_tit_box community mt70">
-            <div class="pyo_tit">
-              <h2>커뮤니티</h2>
-            </div>
-            <div class="pyo_link_yo">
-              <a href="javascript:;">
-                <img src="/img/pyo_link.png" alt="" />
-              </a>
-            </div>
-          </div>
-          <div class="board_yo main_bottom_board">
-            <!-- 헤더 -->
-            <div class="board-header_yo">
-              <div class="col_yo num_yo">번호</div>
-              <div class="col_yo title_yo">제목</div>
-              <div class="col_yo writer_yo">글쓴이</div>
-              <div class="col_yo date_yo">작성일</div>
-              <div class="col_yo views_yo">조회수</div>
-              <div class="col_yo likes_yo">추천수</div>
-            </div>
-            <!-- 일반 글 3개 -->
-            <div class="board-row_yo" th:each="post : ${postList}">
-              <a th:href="@{/notice/view/{id}(id=${post.id})}">
-              <div class="col_yo num_yo" data-label="번호" th:text="${post.id}">1</div>
-              <div class="col_yo title_yo" data-label="제목" th:text="${post.title}">
-                첫 번째 게시글입니다
-              </div>
-              <div class="col_yo writer_yo" data-label="글쓴이">홍길동</div>
-              <div class="col_yo date_yo" data-label="작성일" th:text="${post.registerDate}">2025-05-09</div>
-              <div class="col_yo views_yo" data-label="조회수" th:text="${post.views}">124</div>
-              <div class="col_yo likes_yo" data-label="추천수" th:text="${post.postLikesNumber}">23</div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- right ad -->
-        <div class="ad-right">
-          <h2>오른쪽 광고</h2>
-        </div>
+      <div class="mv_link_box">
+        <a href="https://discord.gg/aBJtP8gyRy" target="_blank">
+          <img src="/img/mv_link01.png" alt="">
+        </a>
       </div>
-      <!-- 푸터 -->
-      <footer id="footer">
-        <div class="footer_top">
-          <div class="inner">
-            <div class="footer_menu_box">
-              <div class="footer_menu">
-                <a href="/member/agree.html">이용약관</a>
-              </div>
-              <div class="header_bar">|</div>
-              <div class="footer_menu">
-                <a href="/member/policy.html">개인정보처리방침</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer_bottom">
-          <div class="inner">
-            <div class="footer_side">
-              <img src="/img/footer_logo.png" alt="" />
-            </div>
-            <div class="footer_side right">
-              <div class="footer_info_box">
-                <div class="footer_info_yo">
-                  <img src="/img/footer_icon01.png" alt="" />
-                  <p>NTROPYADMIN</p>
-                </div>
-                <div class="footer_info_yo">
-                  <img src="/img/footer_icon02.png" alt="" />
-                  <p>CKSUN0620@NAVER.COM</p>
-                </div>
-              </div>
-              <div class="copyright">
-                <p>© Copyrights 2025 NTROPHY All rights reserved.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
-  </body>
-</html>
+  </div>
 
-<!-- 양 사이드 광고 높이 조정 스크립트 -->
+  <!-- main container -->
+  <div class="container mt70">
+    <!-- left ad -->
+    <div class="ad-left">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4282223541896969" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4282223541896969" data-ad-slot="5277802822" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- main center -->
+    <div class="main-content">
+      <!-- youtube -->
+      <div class="youtube_box">
+        <ul class="item03">
+          <li th:each="youtube : ${youtubeList}">
+            <div class="you_tube_con">
+              <iframe width="100%" height="100%" th:src="@{https://www.youtube.com/embed/{code}(code=${youtube.youtubeUrl})}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p>배틀그라운드 플레이 영상</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ad -->
+      <div class="ad_center mt70">
+        <h2>메인 광고</h2>
+      </div>
+
+      <!-- 스팀, 카카오 경쟁전 -->
+      <div class="steam_kakao_box mt70">
+        <ul class="item02">
+          <li>
+            <div class="pyo_box">
+              <div class="pyo_sub_tit_box steam">
+                <div class="pyo_tit">
+                  <h2>STEAM 경쟁전</h2>
+                </div>
+                <div class="pyo_link_yo">
+                  <a href="/leaderboard/steam">
+                    <img src="/img/pyo_link.png" alt="" />
+                  </a>
+                </div>
+              </div>
+
+              <div class="board_yo">
+                <div class="board-header_yo">
+                  <div class="col_yo rank_yo">순위</div>
+                  <div class="col_yo player_yo">플레이어</div>
+                  <div class="col_yo rp_yo">RP</div>
+                  <div class="col_yo kda_yo">KDA</div>
+                  <div class="col_yo matches_yo dil">평균딜량</div>
+                </div>
+
+                <div th:each="player, stat : ${steamPlayerList}" th:class="board-row_yo" th:attr="data-id=${player.id}" onclick="goToPlayer(this, 'steam')" style="cursor: pointer">
+                  <div class="col_yo rank_yo" th:text="${player.attributes.rank}"></div>
+                  <div class="col_yo player_yo" th:text="${player.attributes.name}"></div>
+                  <div class="col_yo rp_yo" th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"></div>
+                  <div class="col_yo kda_yo" th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"></div>
+                  <div class="col_yo matches_yo dil" th:text="${player.attributes.stats.games}"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="pyo_box">
+              <div class="pyo_sub_tit_box kakao">
+                <div class="pyo_tit">
+                  <h2>KAKAO 경쟁전</h2>
+                </div>
+                <div class="pyo_link_yo">
+                  <a href="/leaderboard/kakao">
+                    <img src="/img/pyo_link.png" alt="" />
+                  </a>
+                </div>
+              </div>
+
+              <div class="board_yo">
+                <div class="board-header_yo">
+                  <div class="col_yo rank_yo">순위</div>
+                  <div class="col_yo player_yo">플레이어</div>
+                  <div class="col_yo rp_yo">RP</div>
+                  <div class="col_yo kda_yo">KDA</div>
+                  <div class="col_yo matches_yo dil">평균딜량</div>
+                </div>
+
+                <div th:each="player, stat : ${kakaoPlayerList}" th:class="board-row_yo" th:attr="data-id=${player.id}" onclick="goToPlayer(this, 'kakao')" style="cursor: pointer">
+                  <div class="col_yo rank_yo" th:text="${player.attributes.rank}"></div>
+                  <div class="col_yo player_yo" th:text="${player.attributes.name}"></div>
+                  <div class="col_yo rp_yo" th:text="${#numbers.formatDecimal(player.attributes.stats.rankPoints, 0, 0)}"></div>
+                  <div class="col_yo kda_yo" th:text="${#numbers.formatDecimal(player.attributes.stats.kda, 1, 2)}"></div>
+                  <div class="col_yo matches_yo dil" th:text="${player.attributes.stats.games}"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 커뮤니티 -->
+      <div class="pyo_sub_tit_box community mt70">
+        <div class="pyo_tit"><h2>커뮤니티</h2></div>
+        <div class="pyo_link_yo"><a href="javascript:;"><img src="/img/pyo_link.png" alt="" /></a></div>
+      </div>
+
+      <div class="board_yo main_bottom_board">
+        <div class="board-header_yo">
+          <div class="col_yo num_yo">번호</div>
+          <div class="col_yo title_yo">제목</div>
+          <div class="col_yo writer_yo">글쓴이</div>
+          <div class="col_yo date_yo">작성일</div>
+          <div class="col_yo views_yo">조회수</div>
+          <div class="col_yo likes_yo">추천수</div>
+        </div>
+
+        <div class="board-row_yo" th:each="post : ${postList}">
+          <a th:href="@{/notice/view/{id}(id=${post.id})}">
+            <div class="col_yo num_yo" th:text="${post.id}"></div>
+            <div class="col_yo title_yo" th:text="${post.title}"></div>
+            <div class="col_yo writer_yo">홍길동</div>
+            <div class="col_yo date_yo" th:text="${post.registerDate}"></div>
+            <div class="col_yo views_yo" th:text="${post.views}"></div>
+            <div class="col_yo likes_yo" th:text="${post.postLikesNumber}"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- right ad -->
+    <div class="ad-right">
+      <h2>오른쪽 광고</h2>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <footer id="footer">
+    <div class="footer_top">
+      <div class="footer_inner">
+        <div class="footer_menu_box">
+          <div class="footer_menu"><a href="/member/agree.html">이용약관</a></div>
+          <div class="header_bar">|</div>
+          <div class="footer_menu"><a href="/member/policy.html">개인정보처리방침</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer_bottom">
+      <div class="footer_inner">
+        <div class="footer_side">
+          <img src="/img/footer_logo.png" alt="" />
+        </div>
+        <div class="footer_side right">
+          <div class="footer_info_box">
+            <div class="footer_info_yo"><img src="/img/footer_icon01.png" alt="" /><p>NTROPYADMIN</p></div>
+            <div class="footer_info_yo"><img src="/img/footer_icon02.png" alt="" /><p>CKSUN0620@NAVER.COM</p></div>
+          </div>
+          <div class="copyright"><p>© Copyrights 2025 NTROPHY All rights reserved.</p></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- 광고 스크롤 스크립트 -->
 <script>
-
   function onChangeSteamFpp(event) {
     event.preventDefault();
     event.stopPropagation();
-
   }
 
   function goToPlayer(element, platform) {
@@ -297,7 +224,6 @@
 
     const containerTop = container.offsetTop;
     const containerHeight = container.offsetHeight;
-    const containerBottom = containerTop + containerHeight;
     const scrollTop = window.scrollY;
     const padding = 20;
 
@@ -305,15 +231,12 @@
       const adHeight = ad.offsetHeight;
       let topOffset = scrollTop + padding - containerTop;
 
-      if (scrollTop + padding < containerTop) {
-        topOffset = 0;
-      }
-
-      if (topOffset + adHeight > containerHeight) {
-        topOffset = containerHeight - adHeight;
-      }
+      if (scrollTop + padding < containerTop) topOffset = 0;
+      if (topOffset + adHeight > containerHeight) topOffset = containerHeight - adHeight;
 
       ad.style.top = `${topOffset}px`;
     });
   });
 </script>
+</body>
+</html>
