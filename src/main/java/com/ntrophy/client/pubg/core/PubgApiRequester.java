@@ -15,6 +15,7 @@ public class PubgApiRequester {
                 .baseUrl("https://api.pubg.com")
                 .defaultHeader("Authorization", "Bearer " + apiKey)
                 .defaultHeader("Accept", "application/vnd.api+json")
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)) // 🔥 10MB 제한
                 .build();
     }
     public <T> T get(String uri, Class<T> responseType) throws Exception {
