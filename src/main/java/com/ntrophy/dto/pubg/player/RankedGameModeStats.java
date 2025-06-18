@@ -6,5 +6,13 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RankedGameModeStats {
-    Squad squad;
+    private RankGameModeStats all;
+
+    public RankGameModeStats getAll() {
+        return all;
+    }
+
+    public void setAll(RankGameModeStats all) {
+        this.all = all;
+    }
 }
