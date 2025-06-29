@@ -1,7 +1,4 @@
 <!-- fragments/header.html -->
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<body>
 <div th:fragment="siteHeader">
     <header>
         <div class="inner">
@@ -12,14 +9,13 @@
             </div>
             <div class="gnb">
                 <ul>
-<!--                    <li class="mr30"><a href="#"><img src="/img/h_search.png" alt=""></a></li>-->
                     <li class="search-wrapper">
                         <a href="#" id="searchBtn">
                             <img src="/img/h_search.png" alt="search icon" />
                         </a>
 
                         <div class="search-popup" id="searchPopup">
-                            <input type="text" placeholder="Search" id="searchInput" />
+                            <input type="text" placeholder="Search..." id="searchInput" />
                             <button type="button" id="searchClose">&times;</button>
                         </div>
                     </li>
@@ -27,41 +23,12 @@
                     <li><a th:href="@{/leaderboard/steam}">리더보드</a></li>
                     <li class="header_bar">|</li>
                     <li><a th:href="@{/notice}">게시판</a></li>
-<!--                    <li class="header_bar">|</li>-->
-<!--                    <li><a th:href="@{/member/login}">로그인</a></li>-->
                 </ul>
             </div>
         </div>
     </header>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4282223541896969" crossorigin="anonymous"></script>
+
+    <script src="/js/common.js" defer></script>
 </div>
-</body>
-</html>
-
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4282223541896969"
-        crossorigin="anonymous"></script>
-
-<!-- 검색창 스크립트 -->
-<script>
-    const searchBtn = document.getElementById("searchBtn");
-    const searchPopup = document.getElementById("searchPopup");
-    const searchClose = document.getElementById("searchClose");
-    const searchInput = document.getElementById("searchInput");
-
-    searchBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      searchPopup.classList.toggle("show");
-      searchInput.focus();
-    });
-
-    searchClose.addEventListener("click", () => {
-      searchPopup.classList.remove("show");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!searchPopup.contains(e.target) && !searchBtn.contains(e.target)) {
-        searchPopup.classList.remove("show");
-      }
-    });
-</script>
-

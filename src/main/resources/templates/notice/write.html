@@ -1,77 +1,61 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
 <head>
   <th:block th:replace="~{fragments/common_head :: commonHeadScripts}"></th:block>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fighting</title>
 
-    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
-    <link
-      rel="stylesheet"
-      href="/css/content.css"
-      type="text/css"
-      media="all"
-    />
-    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="main">
-    <div id="wrap">
+</head>
+<body class="main">
+<div id="wrap">
+  <!-- header -->
+  <div th:replace="~{fragments/header :: siteHeader}"></div>
 
-      <!-- header -->
-      <div th:replace="~{fragments/header :: siteHeader}"></div>
+  <!-- top ad -->
+  <div class="top_ad">
+    <h2>상단 광고</h2>
+  </div>
 
+  <!-- main container -->
+  <div class="container mt70">
+    <!-- left ad -->
+    <div class="ad-left">
+      <h2>왼쪽 광고</h2>
+    </div>
 
-      <!-- top ad -->
-      <div class="top_ad">
-        <h2>상단 광고</h2>
+    <!-- main center -->
+    <div class="main-content">
+      <!-- 메인 제목 (커뮤니티)-->
+      <div class="sub_page_tit_box">
+        <h2>COMMUNITY BOARD</h2>
+        <div class="tit_line"></div>
       </div>
 
-      <!-- main container -->
-      <div class="container mt70">
-        <!-- left ad -->
-        <div class="ad-left">
-          <h2>왼쪽 광고</h2>
-        </div>
-        <!-- main center -->
-        <div class="main-content">
-          <!-- 메인 제목 (커뮤니티)-->
-          <div class="sub_page_tit_box">
-            <h2>COMMUNITY BOARD</h2>
-            <div class="tit_line"></div>
+      <!-- 게시판 탭 -->
+      <form method="post" action="/notice/write">
+        <div class="sub_page_tab_box tab_flex max_width_unset mt70">
+          <div class="tab_one_yo active" onclick="onClickBoardType(event, this)" data-boardtype="STEAM">
+            <p>STEAM</p>
           </div>
-          <!-- 게시판 탭 -->
-          <form method="post" action="/notice/write">
-            <div class="sub_page_tab_box tab_flex max_width_unset mt70">
-              <div class="tab_one_yo active" onclick="onClickBoardType(event, this)" data-boardtype="STEAM">
-                <p>STEAM</p>
-              </div>
-              <div class="tab_one_yo" onclick="onClickBoardType(event, this)" data-boardtype="KAKAO">
-                <p>KAKAO</p>
-              </div>
-              <div class="tab_one_yo" onclick="onClickBoardType(event, this)" data-boardtype="BROADCASTS">
-                <p>Broadcasts</p>
-              </div>
+          <div class="tab_one_yo" onclick="onClickBoardType(event, this)" data-boardtype="KAKAO">
+            <p>KAKAO</p>
+          </div>
+          <div class="tab_one_yo" onclick="onClickBoardType(event, this)" data-boardtype="BROADCASTS">
+            <p>Broadcasts</p>
+          </div>
+        </div>
+
+        <!-- 커뮤니티 게시판 상세 -->
+        <div class="notice_view_box mt35">
+          <div class="notice_txt_box">
+            <div class="notice_write_tit_box">
+              <input type="text" placeholder="제목을 입력해주세요." name="title" />
             </div>
-            <!-- 커뮤니티 게시판 상세 -->
-            <!-- 게시물 -->
-            <div class="notice_view_box mt35">
-              <div class="notice_txt_box">
-                <div class="notice_write_tit_box">
-                  <input type="text" placeholder="제목을 입력해주세요." name="title" />
-                </div>
-                <div class="notice_editor_box">
+
+            <div class="notice_editor_box">
                   <textarea
-                    name="contents"
-                    id=""
-                    placeholder="내용을 입력해주세요."
-                    style="
+                          name="contents"
+                          placeholder="내용을 입력해주세요."
+                          style="
                       height: 280px;
                       padding: 18px;
                       border-radius: 6px;
@@ -83,42 +67,47 @@
                       font-size: 18px;
                       font-style: normal;
                       font-weight: 400;
-                      line-height: 180%; /* 32.4px */
+                      line-height: 180%;
                       text-transform: capitalize;
                     "
                   ></textarea>
-                  <!-- 게시글 비밀번호 입력 -->
-                  <div class="board_pw_box mt25">
-                    <p>게시글 비밀번호</p>
-                    <input type="password" name="password" />
-                  </div>
-                </div>
-                <!-- 이전, 등록 버튼 -->
-                <div class="notice_btn_group mt70 mb35">
-                  <div class="notice_btn">
-                    <button>이전</button>
-                    <button type="submit" class="blue_btn_yo">등록</button>
-                  </div>
-                </div>
+
+              <!-- 게시글 비밀번호 입력 -->
+              <div class="board_pw_box mt25">
+                <p>게시글 비밀번호</p>
+                <input type="password" name="password" />
               </div>
             </div>
-            <input type="hidden" id="postType" name="postType" value="" required />
-          </form>
-          <!-- 게시판 상세 중간광고 -->
-          <div class="notice_view_ad mt70">
-            <h2>광고</h2>
+
+            <!-- 이전, 등록 버튼 -->
+            <div class="notice_btn_group mt70 mb35">
+              <div class="notice_btn">
+                <button type="button">이전</button>
+                <button type="submit" class="blue_btn_yo">등록</button>
+              </div>
+            </div>
           </div>
-
-        <!-- right ad -->
-        <div class="ad-right">
-          <h2>오른쪽 광고</h2>
         </div>
-      </div>
 
-      <!--%@ include file="/include/footer.jsp" %-->
+        <input type="hidden" id="postType" name="postType" value="" required />
+      </form>
+
+      <!-- 게시판 상세 중간광고 -->
+      <div class="notice_view_ad mt70">
+        <h2>광고</h2>
+      </div>
+    </div> <!-- main-content -->
+
+    <!-- right ad -->
+    <div class="ad-right">
+      <h2>오른쪽 광고</h2>
     </div>
-  </body>
-</html>
+  </div> <!-- container -->
+
+  <!-- 푸터 -->
+  <div th:replace="~{fragments/footer :: siteFooter}"></div>
+</div> <!-- wrap -->
+
 
 <!-- 양 사이드 광고 높이 조정 스크립트 -->
 <script>
@@ -312,3 +301,8 @@
     renderPagination_yo(true);
   });
 </script>
+
+</body>
+</html>
+
+

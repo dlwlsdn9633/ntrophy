@@ -2,24 +2,7 @@
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <th:block th:replace="~{fragments/common_head :: commonHeadScripts}"></th:block>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fighting</title>
 
-    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
-    <link
-      rel="stylesheet"
-      href="/css/content.css"
-      type="text/css"
-      media="all"
-    />
-    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="main">
     <div id="wrap">
@@ -302,243 +285,248 @@
         </div>
       </div>
 
-      <!--%@ include file="/include/footer.jsp" %-->
+      <!-- 푸터 -->
+      <div th:replace="~{fragments/footer :: siteFooter}"></div>
     </div>
-  </body>
-</html>
 
-<script>
-  function onLike(event, obj) {
-    event.preventDefault();
-    event.stopPropagation();
 
-    const id = $(obj).data("id");
-    const isActive = $(obj).hasClass("active");
+    <script>
+      function onLike(event, obj) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    $.ajax({
-      url: `/v1/likes/${id}`,
-      method: 'POST',
-      success: function(response) {
+        const id = $(obj).data("id");
+        const isActive = $(obj).hasClass("active");
+
         $.ajax({
           url: `/v1/likes/${id}`,
-          method: 'GET',
+          method: 'POST',
           success: function(response) {
-            const likesNumber = response.data.likesNumber;
-            $("#likes_number").text(likesNumber);
+            $.ajax({
+              url: `/v1/likes/${id}`,
+              method: 'GET',
+              success: function(response) {
+                const likesNumber = response.data.likesNumber;
+                $("#likes_number").text(likesNumber);
 
-            const imgTag = $(obj).find("img");
-            const pTag = $(obj).find("p");
+                const imgTag = $(obj).find("img");
+                const pTag = $(obj).find("p");
 
-            if (!isActive) {
-              // 추천 활성화
-              imgTag.attr("src", "/img/n_sub_icon01-1.png");
-              pTag.css("color", "#5C83FF");
-              $(obj).addClass("active");
-            } else {
-              // 추천 비활성화
-              imgTag.attr("src", "/img/n_sub_icon01.png");
-              pTag.css("color", "");
-              $(obj).removeClass("active");
-            }
+                if (!isActive) {
+                  // 추천 활성화
+                  imgTag.attr("src", "/img/n_sub_icon01-1.png");
+                  pTag.css("color", "#5C83FF");
+                  $(obj).addClass("active");
+                } else {
+                  // 추천 비활성화
+                  imgTag.attr("src", "/img/n_sub_icon01.png");
+                  pTag.css("color", "");
+                  $(obj).removeClass("active");
+                }
+              },
+              error: function() {
+                alert("오류가 발생했습니다.");
+              }
+            });
           },
           error: function() {
             alert("오류가 발생했습니다.");
           }
         });
-      },
-      error: function() {
-        alert("오류가 발생했습니다.");
       }
-    });
-  }
-</script>
+    </script>
 
-<!-- 양 사이드 광고 높이 조정 스크립트 -->
-<script>
+    <!-- 양 사이드 광고 높이 조정 스크립트 -->
+    <script>
 
-  window.addEventListener("scroll", () => {
-    const container = document.querySelector(".container");
-    const ads = document.querySelectorAll(".ad");
+      window.addEventListener("scroll", () => {
+        const container = document.querySelector(".container");
+        const ads = document.querySelectorAll(".ad");
 
-    const containerTop = container.offsetTop;
-    const containerHeight = container.offsetHeight;
-    const containerBottom = containerTop + containerHeight;
-    const scrollTop = window.scrollY;
-    const padding = 20;
+        const containerTop = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const containerBottom = containerTop + containerHeight;
+        const scrollTop = window.scrollY;
+        const padding = 20;
 
-    ads.forEach((ad) => {
-      const adHeight = ad.offsetHeight;
-      let topOffset = scrollTop + padding - containerTop;
+        ads.forEach((ad) => {
+          const adHeight = ad.offsetHeight;
+          let topOffset = scrollTop + padding - containerTop;
 
-      if (scrollTop + padding < containerTop) {
-        topOffset = 0;
-      }
-
-      if (topOffset + adHeight > containerHeight) {
-        topOffset = containerHeight - adHeight;
-      }
-
-      ad.style.top = `${topOffset}px`;
-    });
-  });
-</script>
-
-<!-- 페이지네이션 -->
-<script>
-  // 일반 페이지네이션
-  const totalPages = 10;
-  let currentPage = 1;
-
-  // 댓글(dat) 페이지네이션
-  const datTotalPages = 5; // 댓글은 페이지 수가 다를 수 있으므로 별도 설정
-  let datCurrentPage = 1;
-
-  function renderPagination_yo(isDat = false) {
-    const selector = isDat ? ".page-list_yo.dat" : ".page-list_yo:not(.dat)";
-    const list = document.querySelector(selector);
-    const prevBtn = isDat
-      ? document.querySelector(".pagination_yo.dat .prev_yo")
-      : document.querySelector(".pagination_yo:not(.dat) .prev_yo");
-    const nextBtn = isDat
-      ? document.querySelector(".pagination_yo.dat .next_yo")
-      : document.querySelector(".pagination_yo:not(.dat) .next_yo");
-
-    if (!list) return; // 해당 요소가 없으면 실행하지 않음
-
-    list.innerHTML = "";
-
-    const pages = isDat ? datTotalPages : totalPages;
-    const current = isDat ? datCurrentPage : currentPage;
-
-    const addItem = (
-      text,
-      page = null,
-      isActive = false,
-      isEllipsis = false
-    ) => {
-      const li = document.createElement("li");
-      li.className = "page-item_yo";
-      if (isActive) li.classList.add("active_yo");
-      li.textContent = text;
-
-      if (!isActive && !isEllipsis && page) {
-        li.style.cursor = "pointer";
-        li.addEventListener("click", () => {
-          if (isDat) {
-            datCurrentPage = page;
-            // 여기에 댓글 데이터 로드 함수 호출 가능
-            loadDatData(page);
-          } else {
-            currentPage = page;
-            // 여기에 게시글 데이터 로드 함수 호출 가능
-            loadPageData(page);
+          if (scrollTop + padding < containerTop) {
+            topOffset = 0;
           }
-          renderPagination_yo(isDat);
+
+          if (topOffset + adHeight > containerHeight) {
+            topOffset = containerHeight - adHeight;
+          }
+
+          ad.style.top = `${topOffset}px`;
         });
-      }
-
-      list.appendChild(li);
-    };
-
-    // 좌우 버튼 이벤트 설정
-    if (prevBtn) {
-      prevBtn.onclick = () => {
-        if (isDat && datCurrentPage > 1) {
-          datCurrentPage--;
-          loadDatData(datCurrentPage);
-          renderPagination_yo(isDat);
-        } else if (!isDat && currentPage > 1) {
-          currentPage--;
-          loadPageData(currentPage);
-          renderPagination_yo(isDat);
-        }
-      };
-    }
-
-    if (nextBtn) {
-      nextBtn.onclick = () => {
-        if (isDat && datCurrentPage < datTotalPages) {
-          datCurrentPage++;
-          loadDatData(datCurrentPage);
-          renderPagination_yo(isDat);
-        } else if (!isDat && currentPage < totalPages) {
-          currentPage++;
-          loadPageData(currentPage);
-          renderPagination_yo(isDat);
-        }
-      };
-    }
-
-    // 실제 페이지 표시
-    if (pages <= 7) {
-      for (let i = 1; i <= pages; i++) {
-        addItem(i.toString(), i, i === current);
-      }
-      return;
-    }
-
-    if (current <= 3) {
-      for (let i = 1; i <= 5; i++) {
-        addItem(i.toString(), i, i === current);
-      }
-      addItem("...", null, false, true);
-      addItem(pages.toString(), pages);
-    } else if (current >= pages - 2) {
-      addItem("1", 1);
-      addItem("...", null, false, true);
-      for (let i = pages - 4; i <= pages; i++) {
-        addItem(i.toString(), i, i === current);
-      }
-    } else {
-      addItem("1", 1);
-      addItem("...", null, false, true);
-      for (let i = current - 1; i <= current + 1; i++) {
-        addItem(i.toString(), i, i === current);
-      }
-      addItem("...", null, false, true);
-      addItem(pages.toString(), pages);
-    }
-  }
-
-  // 페이지 데이터 로딩 함수 (실제 구현 필요)
-  function loadPageData(page) {
-    console.log(`게시판 ${page}페이지 데이터 로드`);
-    // AJAX 호출이나 다른 방식으로 데이터 로드 로직 구현
-  }
-
-  // 댓글 데이터 로딩 함수 (실제 구현 필요)
-  function loadDatData(page) {
-    console.log(`댓글 ${page}페이지 데이터 로드`);
-    // AJAX 호출이나 다른 방식으로 댓글 데이터 로드 로직 구현
-  }
-
-  // 초기 렌더링
-  document.addEventListener("DOMContentLoaded", function () {
-    // 일반 페이지네이션 렌더링
-    renderPagination_yo(false);
-
-    // 댓글 페이지네이션 렌더링
-    renderPagination_yo(true);
-  });
-</script>
-  // 공유하기 버튼 클릭시
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const shareButton = document.getElementById("share-button");
-
-    if (shareButton) {
-      shareButton.addEventListener("click", function () {
-        const url = window.location.href;
-
-        navigator.clipboard.writeText(url)
-                .then(() => {
-                  alert("링크가 복사되었습니다.");
-                })
-                .catch(err => {
-                  alert("복사에 실패했습니다.");
-                  console.error('복사 실패:', err);
-                });
       });
-    }
-  });
-</script>
+    </script>
+
+    <!-- 페이지네이션 -->
+    <script>
+      // 일반 페이지네이션
+      const totalPages = 10;
+      let currentPage = 1;
+
+      // 댓글(dat) 페이지네이션
+      const datTotalPages = 5; // 댓글은 페이지 수가 다를 수 있으므로 별도 설정
+      let datCurrentPage = 1;
+
+      function renderPagination_yo(isDat = false) {
+        const selector = isDat ? ".page-list_yo.dat" : ".page-list_yo:not(.dat)";
+        const list = document.querySelector(selector);
+        const prevBtn = isDat
+          ? document.querySelector(".pagination_yo.dat .prev_yo")
+          : document.querySelector(".pagination_yo:not(.dat) .prev_yo");
+        const nextBtn = isDat
+          ? document.querySelector(".pagination_yo.dat .next_yo")
+          : document.querySelector(".pagination_yo:not(.dat) .next_yo");
+
+        if (!list) return; // 해당 요소가 없으면 실행하지 않음
+
+        list.innerHTML = "";
+
+        const pages = isDat ? datTotalPages : totalPages;
+        const current = isDat ? datCurrentPage : currentPage;
+
+        const addItem = (
+          text,
+          page = null,
+          isActive = false,
+          isEllipsis = false
+        ) => {
+          const li = document.createElement("li");
+          li.className = "page-item_yo";
+          if (isActive) li.classList.add("active_yo");
+          li.textContent = text;
+
+          if (!isActive && !isEllipsis && page) {
+            li.style.cursor = "pointer";
+            li.addEventListener("click", () => {
+              if (isDat) {
+                datCurrentPage = page;
+                // 여기에 댓글 데이터 로드 함수 호출 가능
+                loadDatData(page);
+              } else {
+                currentPage = page;
+                // 여기에 게시글 데이터 로드 함수 호출 가능
+                loadPageData(page);
+              }
+              renderPagination_yo(isDat);
+            });
+          }
+
+          list.appendChild(li);
+        };
+
+        // 좌우 버튼 이벤트 설정
+        if (prevBtn) {
+          prevBtn.onclick = () => {
+            if (isDat && datCurrentPage > 1) {
+              datCurrentPage--;
+              loadDatData(datCurrentPage);
+              renderPagination_yo(isDat);
+            } else if (!isDat && currentPage > 1) {
+              currentPage--;
+              loadPageData(currentPage);
+              renderPagination_yo(isDat);
+            }
+          };
+        }
+
+        if (nextBtn) {
+          nextBtn.onclick = () => {
+            if (isDat && datCurrentPage < datTotalPages) {
+              datCurrentPage++;
+              loadDatData(datCurrentPage);
+              renderPagination_yo(isDat);
+            } else if (!isDat && currentPage < totalPages) {
+              currentPage++;
+              loadPageData(currentPage);
+              renderPagination_yo(isDat);
+            }
+          };
+        }
+
+        // 실제 페이지 표시
+        if (pages <= 7) {
+          for (let i = 1; i <= pages; i++) {
+            addItem(i.toString(), i, i === current);
+          }
+          return;
+        }
+
+        if (current <= 3) {
+          for (let i = 1; i <= 5; i++) {
+            addItem(i.toString(), i, i === current);
+          }
+          addItem("...", null, false, true);
+          addItem(pages.toString(), pages);
+        } else if (current >= pages - 2) {
+          addItem("1", 1);
+          addItem("...", null, false, true);
+          for (let i = pages - 4; i <= pages; i++) {
+            addItem(i.toString(), i, i === current);
+          }
+        } else {
+          addItem("1", 1);
+          addItem("...", null, false, true);
+          for (let i = current - 1; i <= current + 1; i++) {
+            addItem(i.toString(), i, i === current);
+          }
+          addItem("...", null, false, true);
+          addItem(pages.toString(), pages);
+        }
+      }
+
+      // 페이지 데이터 로딩 함수 (실제 구현 필요)
+      function loadPageData(page) {
+        console.log(`게시판 ${page}페이지 데이터 로드`);
+        // AJAX 호출이나 다른 방식으로 데이터 로드 로직 구현
+      }
+
+      // 댓글 데이터 로딩 함수 (실제 구현 필요)
+      function loadDatData(page) {
+        console.log(`댓글 ${page}페이지 데이터 로드`);
+        // AJAX 호출이나 다른 방식으로 댓글 데이터 로드 로직 구현
+      }
+
+      // 초기 렌더링
+      document.addEventListener("DOMContentLoaded", function () {
+        // 일반 페이지네이션 렌더링
+        renderPagination_yo(false);
+
+        // 댓글 페이지네이션 렌더링
+        renderPagination_yo(true);
+      });
+    </script>
+    // 공유하기 버튼 클릭시
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const shareButton = document.getElementById("share-button");
+
+        if (shareButton) {
+          shareButton.addEventListener("click", function () {
+            const url = window.location.href;
+
+            navigator.clipboard.writeText(url)
+                    .then(() => {
+                      alert("링크가 복사되었습니다.");
+                    })
+                    .catch(err => {
+                      alert("복사에 실패했습니다.");
+                      console.error('복사 실패:', err);
+                    });
+          });
+        }
+      });
+    </script>
+
+
+  </body>
+</html>
+

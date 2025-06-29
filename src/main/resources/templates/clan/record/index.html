@@ -2,24 +2,7 @@
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <th:block th:replace="~{fragments/common_head :: commonHeadScripts}"></th:block>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fighting</title>
 
-    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
-    <link
-      rel="stylesheet"
-      href="/css/content.css"
-      type="text/css"
-      media="all"
-    />
-    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="main">
     <div id="wrap">
@@ -592,192 +575,159 @@
         </div>
       </div>
 
-      <footer id="footer">
-        <div class="footer_top">
-          <div class="inner">
-            <div class="footer_menu_box">
-              <div class="footer_menu">
-                <a href="/member/agree">이용약관</a>
-              </div>
-              <div class="header_bar">|</div>
-              <div class="footer_menu">
-                <a href="/member/policy">개인정보처리방침</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer_bottom">
-          <div class="inner">
-            <div class="footer_side">
-              <img src="/img/footer_logo.png" alt="" />
-            </div>
-            <div class="footer_side right">
-              <div class="footer_info_box">
-                <div class="footer_info_yo">
-                  <img src="/img/footer_icon01.png" alt="" />
-                  <p>NTROPYADMIN</p>
-                </div>
-                <div class="footer_info_yo">
-                  <img src="/img/footer_icon02.png" alt="" />
-                  <p>CKSUN0620@NAVER.COM</p>
-                </div>
-              </div>
-              <div class="copyright">
-                <p>© Copyrights 2025 NTROPHY All rights reserved.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <!-- 푸터 -->
+      <div th:replace="~{fragments/footer :: siteFooter}"></div>
     </div>
+
+    <!-- 양 사이드 광고 높이 조정 스크립트 -->
+    <script>
+      window.addEventListener("scroll", () => {
+        const container = document.querySelector(".container");
+        const ads = document.querySelectorAll(".ad");
+
+        const containerTop = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const containerBottom = containerTop + containerHeight;
+        const scrollTop = window.scrollY;
+        const padding = 20;
+
+        ads.forEach((ad) => {
+          const adHeight = ad.offsetHeight;
+          let topOffset = scrollTop + padding - containerTop;
+
+          if (scrollTop + padding < containerTop) {
+            topOffset = 0;
+          }
+
+          if (topOffset + adHeight > containerHeight) {
+            topOffset = containerHeight - adHeight;
+          }
+
+          ad.style.top = `${topOffset}px`;
+        });
+      });
+    </script>
+
+    <!-- 랭크바 스크립트 -->
+    <script>
+      function updateRankBar({ tier, rankText, percent }) {
+        const tierLabel = document.getElementById("tierLabel");
+        const rankPercentText = document.getElementById("rankPercentText");
+        const progressFill = document.getElementById("progressFill");
+
+        // 텍스트 업데이트
+        if (tierLabel) tierLabel.textContent = tier;
+        if (rankPercentText) rankPercentText.textContent = rankText;
+
+        // 진행 바 채우기
+        const clampedPercent = Math.max(0, Math.min(percent, 100));
+        if (progressFill) progressFill.style.width = clampedPercent + "%";
+      }
+
+      // DOM 로드 후 실행
+      document.addEventListener("DOMContentLoaded", function () {
+        updateRankBar({
+          tier: "Master 1",
+          rankText: "1위 (상위 0.0001%)",
+          percent: 92.5,
+        });
+      });
+    </script>
+
+    <!-- 매치 히스토리 아코디언 스크립트 -->
+    <script>
+      document.querySelectorAll(".toggle_btn_box").forEach((button) => {
+        button.addEventListener("click", () => {
+          const item = button.closest(".match-item_yo");
+          const detail = item.querySelector(".match-detail_yo");
+          const isOpen = detail.style.display === "block";
+
+          // 모든 항목 초기화
+          document
+            .querySelectorAll(".match-detail_yo")
+            .forEach((d) => (d.style.display = "none"));
+          document.querySelectorAll(".arrow-icon_yo").forEach((icon) => {
+            icon.style.transform = "rotate(0deg)";
+          });
+
+          // 클릭한 항목 열기
+          if (!isOpen) {
+            detail.style.display = "block";
+            const icon = button.querySelector(".arrow-icon_yo");
+            icon.style.transform = "rotate(180deg)";
+          }
+        });
+      });
+    </script>
+
+    <!-- 딜량 스크립트 -->
+    <script>
+      // 딜량 바를 동적으로 설정하는 함수
+      function setDamageBar(element, damage) {
+        const damageFill = element.querySelector(".damage-fill_yo");
+        const damageText = element.querySelector(".damage-bar_yo span");
+
+        // 최대 딜량 값 (예: 600으로 가정)
+        const maxDamage = 600;
+
+        // 딜량에 따른 너비 비율 계산 (최소 5%, 최대 95%)
+        const widthPercent = Math.max(5, Math.min(95, (damage / maxDamage) * 100));
+
+        // 딜량 값 설정
+        damageText.textContent = damage;
+
+        // 바 너비 설정
+        damageFill.style.width = widthPercent + "%";
+      }
+
+      // 예시: 페이지 로드 후 모든 딜량 바 설정
+      document.addEventListener("DOMContentLoaded", () => {
+        // 모든 딜량 셀 찾기
+        const damageCells = document.querySelectorAll(
+          '.cell_yo[data-label="딜량"]'
+        );
+
+        damageCells.forEach((cell) => {
+          // 예시로 각 셀의 숫자 텍스트를 가져와 딜량으로 사용
+          const damageText = cell.querySelector(".damage-bar_yo span").textContent;
+          const damage = parseInt(damageText, 10);
+
+          // 딜량 바 설정
+          setDamageBar(cell, damage);
+        });
+      });
+    </script>
+
+    <!-- 팀 전적, 전체 순위 탭 -->
+    <script>
+      document.querySelectorAll(".tab_one_yo").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // 탭 스타일 갱신
+          document
+            .querySelectorAll(".tab_one_yo")
+            .forEach((el) => el.classList.remove("active"));
+          tab.classList.add("active");
+
+          // 모든 전적 영역 숨김
+          document
+            .querySelectorAll(".match_detail_wrapper_yo")
+            .forEach((section) => {
+              section.style.display = "none";
+            });
+
+          // 선택된 탭의 대상만 보이게
+          const target = tab.getAttribute("data-target");
+          const selected = document.querySelector(
+            `.match_detail_wrapper_yo.${target}`
+          );
+          if (selected) {
+            selected.style.display = "block";
+          }
+        });
+      });
+    </script>
+
+
   </body>
 </html>
 
-<!-- 양 사이드 광고 높이 조정 스크립트 -->
-<script>
-  window.addEventListener("scroll", () => {
-    const container = document.querySelector(".container");
-    const ads = document.querySelectorAll(".ad");
-
-    const containerTop = container.offsetTop;
-    const containerHeight = container.offsetHeight;
-    const containerBottom = containerTop + containerHeight;
-    const scrollTop = window.scrollY;
-    const padding = 20;
-
-    ads.forEach((ad) => {
-      const adHeight = ad.offsetHeight;
-      let topOffset = scrollTop + padding - containerTop;
-
-      if (scrollTop + padding < containerTop) {
-        topOffset = 0;
-      }
-
-      if (topOffset + adHeight > containerHeight) {
-        topOffset = containerHeight - adHeight;
-      }
-
-      ad.style.top = `${topOffset}px`;
-    });
-  });
-</script>
-
-<!-- 랭크바 스크립트 -->
-<script>
-  function updateRankBar({ tier, rankText, percent }) {
-    const tierLabel = document.getElementById("tierLabel");
-    const rankPercentText = document.getElementById("rankPercentText");
-    const progressFill = document.getElementById("progressFill");
-
-    // 텍스트 업데이트
-    if (tierLabel) tierLabel.textContent = tier;
-    if (rankPercentText) rankPercentText.textContent = rankText;
-
-    // 진행 바 채우기
-    const clampedPercent = Math.max(0, Math.min(percent, 100));
-    if (progressFill) progressFill.style.width = clampedPercent + "%";
-  }
-
-  // DOM 로드 후 실행
-  document.addEventListener("DOMContentLoaded", function () {
-    updateRankBar({
-      tier: "Master 1",
-      rankText: "1위 (상위 0.0001%)",
-      percent: 92.5,
-    });
-  });
-</script>
-
-<!-- 매치 히스토리 아코디언 스크립트 -->
-<script>
-  document.querySelectorAll(".toggle_btn_box").forEach((button) => {
-    button.addEventListener("click", () => {
-      const item = button.closest(".match-item_yo");
-      const detail = item.querySelector(".match-detail_yo");
-      const isOpen = detail.style.display === "block";
-
-      // 모든 항목 초기화
-      document
-        .querySelectorAll(".match-detail_yo")
-        .forEach((d) => (d.style.display = "none"));
-      document.querySelectorAll(".arrow-icon_yo").forEach((icon) => {
-        icon.style.transform = "rotate(0deg)";
-      });
-
-      // 클릭한 항목 열기
-      if (!isOpen) {
-        detail.style.display = "block";
-        const icon = button.querySelector(".arrow-icon_yo");
-        icon.style.transform = "rotate(180deg)";
-      }
-    });
-  });
-</script>
-
-<!-- 딜량 스크립트 -->
-<script>
-  // 딜량 바를 동적으로 설정하는 함수
-  function setDamageBar(element, damage) {
-    const damageFill = element.querySelector(".damage-fill_yo");
-    const damageText = element.querySelector(".damage-bar_yo span");
-
-    // 최대 딜량 값 (예: 600으로 가정)
-    const maxDamage = 600;
-
-    // 딜량에 따른 너비 비율 계산 (최소 5%, 최대 95%)
-    const widthPercent = Math.max(5, Math.min(95, (damage / maxDamage) * 100));
-
-    // 딜량 값 설정
-    damageText.textContent = damage;
-
-    // 바 너비 설정
-    damageFill.style.width = widthPercent + "%";
-  }
-
-  // 예시: 페이지 로드 후 모든 딜량 바 설정
-  document.addEventListener("DOMContentLoaded", () => {
-    // 모든 딜량 셀 찾기
-    const damageCells = document.querySelectorAll(
-      '.cell_yo[data-label="딜량"]'
-    );
-
-    damageCells.forEach((cell) => {
-      // 예시로 각 셀의 숫자 텍스트를 가져와 딜량으로 사용
-      const damageText = cell.querySelector(".damage-bar_yo span").textContent;
-      const damage = parseInt(damageText, 10);
-
-      // 딜량 바 설정
-      setDamageBar(cell, damage);
-    });
-  });
-</script>
-
-<!-- 팀 전적, 전체 순위 탭 -->
-<script>
-  document.querySelectorAll(".tab_one_yo").forEach((tab) => {
-    tab.addEventListener("click", () => {
-      // 탭 스타일 갱신
-      document
-        .querySelectorAll(".tab_one_yo")
-        .forEach((el) => el.classList.remove("active"));
-      tab.classList.add("active");
-
-      // 모든 전적 영역 숨김
-      document
-        .querySelectorAll(".match_detail_wrapper_yo")
-        .forEach((section) => {
-          section.style.display = "none";
-        });
-
-      // 선택된 탭의 대상만 보이게
-      const target = tab.getAttribute("data-target");
-      const selected = document.querySelector(
-        `.match_detail_wrapper_yo.${target}`
-      );
-      if (selected) {
-        selected.style.display = "block";
-      }
-    });
-  });
-</script>

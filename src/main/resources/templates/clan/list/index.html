@@ -2,24 +2,7 @@
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <th:block th:replace="~{fragments/common_head :: commonHeadScripts}"></th:block>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fighting</title>
 
-    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
-    <link
-      rel="stylesheet"
-      href="/css/content.css"
-      type="text/css"
-      media="all"
-    />
-    <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="main">
     <div id="wrap">
@@ -267,152 +250,119 @@
         </div>
       </div>
       <!-- 푸터 -->
-      <footer id="footer">
-        <div class="footer_top">
-          <div class="inner">
-            <div class="footer_menu_box">
-              <div class="footer_menu">
-                <a href="/member/agree">이용약관</a>
-              </div>
-              <div class="header_bar">|</div>
-              <div class="footer_menu">
-                <a href="/member/policy">개인정보처리방침</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer_bottom">
-          <div class="inner">
-            <div class="footer_side">
-              <img src="/img/footer_logo.png" alt="" />
-            </div>
-            <div class="footer_side right">
-              <div class="footer_info_box">
-                <div class="footer_info_yo">
-                  <img src="/img/footer_icon01.png" alt="" />
-                  <p>NTROPYADMIN</p>
-                </div>
-                <div class="footer_info_yo">
-                  <img src="/img/footer_icon02.png" alt="" />
-                  <p>CKSUN0620@NAVER.COM</p>
-                </div>
-              </div>
-              <div class="copyright">
-                <p>© Copyrights 2025 NTROPHY All rights reserved.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <div th:replace="~{fragments/footer :: siteFooter}"></div>
     </div>
+
+    <!-- 양 사이드 광고 높이 조정 스크립트 -->
+    <script>
+      window.addEventListener("scroll", () => {
+        const container = document.querySelector(".container");
+        const ads = document.querySelectorAll(".ad");
+
+        const containerTop = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const containerBottom = containerTop + containerHeight;
+        const scrollTop = window.scrollY;
+        const padding = 20;
+
+        ads.forEach((ad) => {
+          const adHeight = ad.offsetHeight;
+          let topOffset = scrollTop + padding - containerTop;
+
+          if (scrollTop + padding < containerTop) {
+            topOffset = 0;
+          }
+
+          if (topOffset + adHeight > containerHeight) {
+            topOffset = containerHeight - adHeight;
+          }
+
+          ad.style.top = `${topOffset}px`;
+        });
+      });
+    </script>
+
+    <!-- 페이지네이션 -->
+    <script>
+      const totalPages = 10;
+      let currentPage = 1;
+
+      function renderPagination_yo() {
+        const list = document.querySelector(".page-list_yo");
+        list.innerHTML = "";
+
+        const addItem = (
+          text,
+          page = null,
+          isActive = false,
+          isEllipsis = false
+        ) => {
+          const li = document.createElement("li");
+          li.className = "page-item_yo";
+          if (isActive) li.classList.add("active_yo");
+          li.textContent = text;
+
+          if (!isActive && !isEllipsis && page) {
+            li.style.cursor = "pointer";
+            li.addEventListener("click", () => {
+              currentPage = page;
+              renderPagination_yo();
+            });
+          }
+
+          list.appendChild(li);
+        };
+
+        // 좌우 버튼
+        document.querySelector(".prev_yo").onclick = () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderPagination_yo();
+          }
+        };
+
+        document.querySelector(".next_yo").onclick = () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderPagination_yo();
+          }
+        };
+
+        // 실제 페이지 표시
+        if (totalPages <= 7) {
+          for (let i = 1; i <= totalPages; i++) {
+            addItem(i.toString(), i, i === currentPage);
+          }
+          return;
+        }
+
+        if (currentPage <= 3) {
+          for (let i = 1; i <= 5; i++) {
+            addItem(i.toString(), i, i === currentPage);
+          }
+          addItem("...", null, false, true);
+          addItem(totalPages.toString(), totalPages);
+        } else if (currentPage >= totalPages - 2) {
+          addItem("1", 1);
+          addItem("...", null, false, true);
+          for (let i = totalPages - 4; i <= totalPages; i++) {
+            addItem(i.toString(), i, i === currentPage);
+          }
+        } else {
+          addItem("1", 1);
+          addItem("...", null, false, true);
+          for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+            addItem(i.toString(), i, i === currentPage);
+          }
+          addItem("...", null, false, true);
+          addItem(totalPages.toString(), totalPages);
+        }
+      }
+
+      renderPagination_yo();
+    </script>
+
+
   </body>
 </html>
 
-<!-- 양 사이드 광고 높이 조정 스크립트 -->
-<script>
-  window.addEventListener("scroll", () => {
-    const container = document.querySelector(".container");
-    const ads = document.querySelectorAll(".ad");
-
-    const containerTop = container.offsetTop;
-    const containerHeight = container.offsetHeight;
-    const containerBottom = containerTop + containerHeight;
-    const scrollTop = window.scrollY;
-    const padding = 20;
-
-    ads.forEach((ad) => {
-      const adHeight = ad.offsetHeight;
-      let topOffset = scrollTop + padding - containerTop;
-
-      if (scrollTop + padding < containerTop) {
-        topOffset = 0;
-      }
-
-      if (topOffset + adHeight > containerHeight) {
-        topOffset = containerHeight - adHeight;
-      }
-
-      ad.style.top = `${topOffset}px`;
-    });
-  });
-</script>
-
-<!-- 페이지네이션 -->
-<script>
-  const totalPages = 10;
-  let currentPage = 1;
-
-  function renderPagination_yo() {
-    const list = document.querySelector(".page-list_yo");
-    list.innerHTML = "";
-
-    const addItem = (
-      text,
-      page = null,
-      isActive = false,
-      isEllipsis = false
-    ) => {
-      const li = document.createElement("li");
-      li.className = "page-item_yo";
-      if (isActive) li.classList.add("active_yo");
-      li.textContent = text;
-
-      if (!isActive && !isEllipsis && page) {
-        li.style.cursor = "pointer";
-        li.addEventListener("click", () => {
-          currentPage = page;
-          renderPagination_yo();
-        });
-      }
-
-      list.appendChild(li);
-    };
-
-    // 좌우 버튼
-    document.querySelector(".prev_yo").onclick = () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderPagination_yo();
-      }
-    };
-
-    document.querySelector(".next_yo").onclick = () => {
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderPagination_yo();
-      }
-    };
-
-    // 실제 페이지 표시
-    if (totalPages <= 7) {
-      for (let i = 1; i <= totalPages; i++) {
-        addItem(i.toString(), i, i === currentPage);
-      }
-      return;
-    }
-
-    if (currentPage <= 3) {
-      for (let i = 1; i <= 5; i++) {
-        addItem(i.toString(), i, i === currentPage);
-      }
-      addItem("...", null, false, true);
-      addItem(totalPages.toString(), totalPages);
-    } else if (currentPage >= totalPages - 2) {
-      addItem("1", 1);
-      addItem("...", null, false, true);
-      for (let i = totalPages - 4; i <= totalPages; i++) {
-        addItem(i.toString(), i, i === currentPage);
-      }
-    } else {
-      addItem("1", 1);
-      addItem("...", null, false, true);
-      for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-        addItem(i.toString(), i, i === currentPage);
-      }
-      addItem("...", null, false, true);
-      addItem(totalPages.toString(), totalPages);
-    }
-  }
-
-  renderPagination_yo();
-</script>

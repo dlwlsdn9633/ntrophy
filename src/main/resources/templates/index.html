@@ -2,34 +2,6 @@
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <th:block th:replace="~{fragments/common_head :: commonHeadScripts}"></th:block>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>엔트로피</title>
-  <link rel="icon" href="img/favicon.png"/>
-  <link rel="apple-touch-icon" href="img/favicon.png"/>
-  <meta name="subject" content="엔트로피 | 배틀그라운드 전적 검색 · 통계 기반 커뮤니티">
-  <meta name="description" content="엔트로피는 배틀그라운드 유저를 위한 전적 검색, 랭킹, 클랜 시스템을 제공하는 통계 기반 커뮤니티입니다. 실시간 전적 비교와 분석 기능을 통해 경쟁력을 높여보세요.">
-  <meta name="keywords" content="배틀그라운드 전적검색, 배그전적사이트, 클랜 찾기, 전적 통계, 게임 통계 플랫폼, 엔트로피, Ntrophy, PUBG Stats">
-  <meta name="classification" content="게임 통계, 배틀그라운드, PUBG, 전적 분석, 게이머 커뮤니티">
-
-  <!-- 오픈그래프 (Facebook 등) -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="엔트로피">
-  <meta property="og:title" content="엔트로피 | 배틀그라운드 전적 검색 · 통계 기반 커뮤니티">
-  <meta property="og:description" content="배틀그라운드 전적 검색, 랭킹 시스템, 클랜 기능을 갖춘 통계 기반 커뮤니티 플랫폼. 당신의 실력을 수치로 증명하세요.">
-  <meta property="og:url" content="https://www.ntrophy.me">
-  <meta property="og:image" content="#">
-
-  <!-- 검색엔진 최적화 -->
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-
-  <link rel="stylesheet" href="/css/layout.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/basic.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/content.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/gap.css" type="text/css" media="all" />
-  <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" />
 </head>
 
 <body class="main">
@@ -196,32 +168,9 @@
   </div>
 
   <!-- 푸터 -->
-  <footer id="footer">
-    <div class="footer_top">
-      <div class="footer_inner">
-        <div class="footer_menu_box">
-          <div class="footer_menu"><a href="/member/agree.html">이용약관</a></div>
-          <div class="header_bar">|</div>
-          <div class="footer_menu"><a href="/member/policy.html">개인정보처리방침</a></div>
-        </div>
-      </div>
-    </div>
+  <div th:replace="~{fragments/footer :: siteFooter}"></div>
 
-    <div class="footer_bottom">
-      <div class="footer_inner">
-        <div class="footer_side">
-          <img src="/img/footer_logo.png" alt="" />
-        </div>
-        <div class="footer_side right">
-          <div class="footer_info_box">
-            <div class="footer_info_yo"><img src="/img/footer_icon01.png" alt="" /><p>NTROPYADMIN</p></div>
-            <div class="footer_info_yo"><img src="/img/footer_icon02.png" alt="" /><p>ntrophymanager@naver.com</p></div>
-          </div>
-          <div class="copyright"><p>© Copyrights 2025 NTROPHY All rights reserved.</p></div>
-        </div>
-      </div>
-    </div>
-  </footer>
+
 </div>
 
 <!-- 광고 스크롤 스크립트 -->

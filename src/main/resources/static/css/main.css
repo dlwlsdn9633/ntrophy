@@ -118,6 +118,9 @@ body {
    .mv_logo_box form {
    width:100%;}
 
+.mv_logo h2 {
+font-size:16px;
+}
 
   .mv_search_box input {
     padding: 0 15px;
